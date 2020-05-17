@@ -1,34 +1,19 @@
-exports.getProperty = (req, res, next) => {
-  res.status(200).json({
-    status: 'success',
-    message: 'get a property doc'
-  })
-};
+const Property = require('../models/Property');
 
-exports.getAllProperty = (req, res, next) => {
-    res.status(200).json({
-      status: 'success',
-      message: 'get all property doc',
-    });
-};
+const {
+  getAll,
+  getOne,
+  createOne,
+  updateOne,
+  deleteOne,
+} = require('./handlerFactory');
 
-exports.createProperty = (req, res, next) => {
-    res.status(201).json({
-      status: 'success',
-      message: 'create a property doc',
-    });
-};
+exports.getProperty = getOne(Property);
 
-exports.updateProperty = (req, res, next) => {
-    res.status(200).json({
-      status: 'success',
-      message: 'update a property doc',
-    });
-};
+exports.getAllProperty = getAll(Property);
 
-exports.deleteProperty = (req, res, next) => {
-    res.status(204).json({
-      status: 'success',
-      message: 'delete a property doc',
-    });
-};
+exports.createProperty = createOne(Property);
+
+exports.updateProperty = updateOne(Property);
+
+exports.deleteProperty = deleteOne(Property);

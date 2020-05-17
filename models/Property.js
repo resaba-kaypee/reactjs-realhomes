@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify');
 
 // * Property ID [string]
 
@@ -63,10 +64,12 @@ const mongoose = require('mongoose');
 const propertyType = {
   category: {
     type: String,
+    required: [true, 'A property must have a category.'],
     enum: ['commercial', 'residential'],
   },
   type: {
     type: String,
+    required: [true, 'A property must have a type.'],
     enum: [
       'office',
       'retail',
@@ -74,6 +77,7 @@ const propertyType = {
       'special purpose',
       'Other',
       'single-family home',
+      'villa',
       'condominium',
       'townhouse',
       'land',
@@ -88,6 +92,10 @@ const propertyStatus = {
 };
 
 const PropertySchema = mongoose.Schema({
+  // user: {
+  //   type: mongoose.Schema.ObjectId,
+  //   ref: 'user',
+  // },
   status: propertyStatus,
   type: propertyType,
   title: {
@@ -100,24 +108,38 @@ const PropertySchema = mongoose.Schema({
   },
   features: [String],
   location: {
-    type: String,
-    default: 'Point',
-    enum: ['Point'],
+    type: {
+      type: String,
+      default: 'Point',
+      enum: ['Point'],
+      required: [true, 'A property must have a address'],
+    },
     coordinates: [Number], // longitude first then latitude
     address: String,
-    day: Number,
+    state: String,
+    zipcode: Number,
   },
-  information: {
-    price: String, // 450$ per/mo
-    areaSize: String, // 4500 sq.ft.
-    lotSize: String, // 4800 sq.ft.
-    bedrooms: Number,
-    bathrooms: Number,
-    garage: Number,
-    year: Date,
+  price: {
+    type: String,
+    required: [true, 'A property must have price!'],
+  }, // 450$ per/mo
+  slug: String,
+  areaSize: String, // 4500 sq.ft.
+  lotSize: String, // 4800 sq.ft.
+  bedrooms: Number,
+  bathrooms: Number,
+  garage: Number,
+  images: [String],
+  video: String,
+  datePosted: {
+    type: Date,
+    default: Date.now(),
   },
-  images: [Array],
-  video: [String],
+});
+
+PropertySchema.pre('save', function (next) {
+  this.slug = slugify(this.title, { lower: true });
+  next();
 });
 
 module.exports = mongoose.model('Property', PropertySchema);
