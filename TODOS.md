@@ -1,60 +1,58 @@
 ### Backend
 
-[x] Setup server
+#### Setup server
 
-- Morgan
-- Helmet
+[x] Morgan
+[x] Helmet
 
-[x] Setup eslint
+#### Setup and connect to database
 
-- npx eslint --init
-- To check syntax, find problems, and enforce codestyle
-- CommonJS (require/export)
-- None of these
-- No
-- Node
-- Use a popular style guide
-- Airbnb
-- Javascript
+[x] Connect to MongoDB
 
-[x] Initialize CRUD routes for PROPERTY
+#### Setup eslint
 
-- GET
-- POST
-- PATCH
-- DELETE
+[] npx eslint --init
+[] To check syntax, find problems, and enforce codestyle
+[] CommonJS (require/export)
+[] None of these
+[] No
+[] Node
+[] Use a popular style guide
+[] Airbnb
+[] Javascript
 
-[x] Initialize CRUD routes for USER
+#### Initialize CRUD routes for PROPERTY
 
-- GET
-- POST
-- PATCH
-- DELETE
+[x] GET proptery by id
+[x] POST create new property doc
+[x] PATCH update property, [] upload property images
+[x] DELETE property
 
-[x] Setup and connect to database
+#### Initialize CRUD routes for USER
 
-- Connect to MongoDB
+[x] GET user by id
+[x] POST sign up user
+[x] PATCH update user info
+[x] DELETE user by id, deactivate user
 
-[] Model data
+#### Model data
 
-- Model property
-- Model users
+[x] Model property
+[x] Model users
 
-[] Error handling middleware
+#### Error handling middleware
 
-- Invalid routes
+[] Invalid routes
 
-[] Authentication and security
+#### Authentication and security
 
-- Manage password
-- Authentication JWT
-- Sign up, Log in users
-- Protect Routes
-- Auth user roles
-- Forgot password and reset password
-- Update password
-- Update current user
-- Delete current user
-- Implement rate limiting
-- Implement maximum log in attempts
-- Data sanitization (mongoose-sanitize, xss-clean, hpp)
+[] Manage password
+[] Authentication JWT
+[] Sign up, Log in users
+[] Protect Routes
+[] Auth user roles
+[] Forgot password and reset password
+[] Update password
+[] Implement rate limiting
+[] Implement maximum log in attempts
+[] Data sanitization (mongoose-sanitize, xss-clean, hpp)

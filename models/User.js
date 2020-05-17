@@ -16,10 +16,11 @@ const UserSchema = mongoose.Schema({
     lowercase: true,
     validate: [validator.isEmail, 'Please provide a valid email.'],
   },
+  phoneNumber: String,
   photo: { type: String, default: 'default.jpg' },
   role: {
     type: String,
-    enum: ['user', 'agen', 'admin'],
+    enum: ['user', 'agent', 'admin'],
     default: 'user',
   },
   password: {
@@ -73,6 +74,7 @@ UserSchema.pre('save', function (next) {
 
 UserSchema.pre(/^find/, function (next) {
   // show only acounts that is active
+
   this.find({ active: { $ne: false } });
 
   next();

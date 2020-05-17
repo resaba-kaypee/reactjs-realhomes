@@ -27,7 +27,7 @@ exports.resizePhoto = catchAsync(async (req, res, next) => {
     .resize(500, 500)
     .toFormat('jpeg')
     .jpeg({ qulity: 90 })
-    .toFile(`./server-natours/public/img/users/${req.file.filename}`);
+    .toFile(`./public/img/users/${req.file.filename}`);
 
   next();
 });
@@ -69,7 +69,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     );
   }
   // 2.) Filtered out unwanted fields
-  const filterBody = filterObj(req.body, 'name', 'email');
+  const filterBody = filterObj(req.body, 'name', 'email', 'phoneNumber');
   // if there is a photo being uploaded (req.file)
   if (req.file) filterBody.photo = req.file.filename;
   // 3.) Update user document
