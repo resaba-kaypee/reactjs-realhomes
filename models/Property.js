@@ -60,30 +60,52 @@ const mongoose = require('mongoose');
 //   * Email
 //   * Image
 
-const requiredS = {
-  type: String,
-  required: true,
+const propertyType = {
+  category: {
+    type: String,
+    enum: ['commercial', 'residential'],
+  },
+  type: {
+    type: String,
+    enum: [
+      'office',
+      'retail',
+      'industrial',
+      'special purpose',
+      'Other',
+      'single-family home',
+      'condominium',
+      'townhouse',
+      'land',
+    ],
+  },
 };
 
-const type = {
+const propertyStatus = {
   type: String,
-  required: [true, 'A property must have atype'],
-  enum: ['Office', 'Retail', 'Industrial', 'Special purpose', 'Other'],
+  required: [true, 'A property must have a status!'],
+  enum: ['for sale', 'for rent', 'for lease'],
 };
 
 const PropertySchema = mongoose.Schema({
-  type: {
+  status: propertyStatus,
+  type: propertyType,
+  title: {
     type: String,
-    enum: [''],
+    required: [true, 'A property must have a title!'],
   },
-  status: type,
-  name: requiredS,
-  description: requiredS,
-  features: [Array],
+  description: {
+    type: String,
+    required: [true, 'A property must have a description!'],
+  },
+  features: [String],
   location: {
-    address: [String],
-    state: [String],
-    zipcode: [Number],
+    type: String,
+    default: 'Point',
+    enum: ['Point'],
+    coordinates: [Number], // longitude first then latitude
+    address: String,
+    day: Number,
   },
   information: {
     price: String, // 450$ per/mo
