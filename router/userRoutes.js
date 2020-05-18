@@ -20,7 +20,7 @@ const {
   logout,
   forgotPassword,
   resetPassword,
-  updatePassword,
+  updateMyPassword,
   protect,
   restrictTo,
 } = require('../controller/authController');
@@ -33,7 +33,7 @@ router.patch('/resetPassword/:token', resetPassword);
 
 // Protected routes after this middleware
 router.use(protect);
-router.patch('/updateMyPassword', updatePassword);
+router.patch('/updateMyPassword', updateMyPassword);
 router.get('/me', getMe, getUser);
 router.patch('/updateMe', uploadPhoto, resizePhoto, updateMe);
 router.delete('/deleteMe', deleteMe);

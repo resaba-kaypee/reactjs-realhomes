@@ -2,3 +2,4 @@ sections
 dev-data
 node_modules
 .cache
+config.env

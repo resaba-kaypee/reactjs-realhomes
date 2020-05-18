@@ -243,7 +243,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 // @route   Patch api/v1/users/updatePassword
 // @desc    Change current user's password
 // @access  Private
-exports.updatePassword = catchAsync(async (req, res, next) => {
+exports.updateMyPassword = catchAsync(async (req, res, next) => {
   // 1.) Get user from collection
   // Cannot use findByIdAndUpdate because validators and 'pre' middlewares wont work
   const user = await User.findById(req.user.id).select('+password');
