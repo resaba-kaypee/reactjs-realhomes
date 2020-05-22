@@ -77,6 +77,7 @@ const propertyType = {
       'special purpose',
       'Other',
       'single-family home',
+      'multi-family home',
       'villa',
       'condominium',
       'townhouse',
@@ -96,12 +97,13 @@ const PropertySchema = mongoose.Schema({
   //   type: mongoose.Schema.ObjectId,
   //   ref: 'user',
   // },
-  status: propertyStatus,
-  type: propertyType,
+  propertId: String,
   title: {
     type: String,
     required: [true, 'A property must have a title!'],
   },
+  status: propertyStatus,
+  type: propertyType,
   description: {
     type: String,
     required: [true, 'A property must have a description!'],
@@ -124,13 +126,15 @@ const PropertySchema = mongoose.Schema({
     required: [true, 'A property must have price!'],
   }, // 450$ per/mo
   slug: String,
-  areaSize: String, // 4500 sq.ft.
-  lotSize: String, // 4800 sq.ft.
+  areaSize: Number, // 4500 sq.ft.
+  lotSize: Number, // 4800 sq.ft.
   bedrooms: Number,
   bathrooms: Number,
   garage: Number,
+  imageCover: String,
   images: [String],
   video: String,
+  yearBuilt: Date,
   datePosted: {
     type: Date,
     default: Date.now(),
