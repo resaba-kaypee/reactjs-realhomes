@@ -50,11 +50,6 @@ exports.getMe = (req, res, next) => {
   next();
 };
 
-// @route   GET api/v1/users
-// @desc    Get all users
-// @access  Private
-exports.getAllUsers = getAll(User);
-
 // @route   Patch api/v1/users/updateMe
 // @desc    Update current user
 // @access  Private
@@ -95,6 +90,9 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
   });
 });
 
+
+// ROUTES RESTRICTED TO ADMIN ONLY
+
 // @route   POST api/v1/users
 // @desc    Inactive route
 // @access  Private (admin)
@@ -104,6 +102,11 @@ exports.createUser = (req, res) => {
     message: 'This route is not defined! Please use /signup instead',
   });
 };
+
+// @route   GET api/v1/users
+// @desc    Get all users
+// @access  Private (admin)
+exports.getAllUsers = getAll(User);
 
 // @route   GET api/v1/users/:id
 // @desc    Get user
@@ -116,6 +119,6 @@ exports.getUser = getOne(User);
 exports.updateUser = updateOne(User);
 
 // @route   DELETE api/v1/users/:id
-// @desc    delete user
+// @desc    permanently delete user
 // @access  Private (admin)
 exports.deleteUser = deleteOne(User);

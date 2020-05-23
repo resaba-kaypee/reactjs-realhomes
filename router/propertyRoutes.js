@@ -10,11 +10,16 @@ const {
   deleteProperty,
 } = require('../controller/propertyController');
 
-router.route('/').get(getAllProperty).post(createProperty);
+const { protect, restrictTo } = require('../controller/authController');
+
+router
+  .route('/')
+  .get(getAllProperty) // available for everyone
+  .post(protect, restrictTo('admin', 'agent'), createProperty);
 
 router
   .route('/:id')
-  .get(getProperty)
-  .patch(updateProperty)
-  .delete(deleteProperty);
+  .get(getProperty) // avalable for everyone
+  .patch(protect, restrictTo('admin', 'agent'), updateProperty)
+  .delete(protect, restrictTo('admin', 'agent'), deleteProperty);
 module.exports = router;

@@ -83,7 +83,7 @@ const propertyType = {
       'townhouse',
       'apartment',
       'land',
-      'mobile'
+      'mobile',
     ],
   },
 };
@@ -124,7 +124,7 @@ const PropertySchema = mongoose.Schema({
     zipcode: Number,
   },
   price: {
-    type: String,
+    type: Number,
     required: [true, 'A property must have price!'],
   }, // 450$ per/mo
   slug: String,
