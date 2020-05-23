@@ -75,13 +75,15 @@ const propertyType = {
       'retail',
       'industrial',
       'special purpose',
-      'Other',
+      'other',
       'single-family home',
       'multi-family home',
       'villa',
       'condominium',
       'townhouse',
+      'apartment',
       'land',
+      'mobile'
     ],
   },
 };
