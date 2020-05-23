@@ -40,10 +40,12 @@
 
 [] Manage password
 [x] Authentication JWT
-[x] Sign up, Log in users
+[x] Send welcome email for Sign up
+[x] Log in users
 [] Protect Routes
 [] Auth user roles
-[] Forgot password and reset password
+[x] Send password reset token in email for Forgot password
+[x] Reset password
 [x] Update password
 [] Implement rate limiting
 [] Implement maximum log in attempts
