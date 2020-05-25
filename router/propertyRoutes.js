@@ -8,6 +8,8 @@ const {
   getProperty,
   updateProperty,
   deleteProperty,
+  uploadImages,
+  resizeImages,
 } = require('../controller/propertyController');
 
 const { protect, restrictTo } = require('../controller/authController');
@@ -20,6 +22,12 @@ router
 router
   .route('/:id')
   .get(getProperty) // avalable for everyone
-  .patch(protect, restrictTo('admin', 'agent'), updateProperty)
+  .patch(
+    protect,
+    restrictTo('admin', 'agent'),
+    uploadImages,
+    resizeImages,
+    updateProperty
+  )
   .delete(protect, restrictTo('admin', 'agent'), deleteProperty);
 module.exports = router;

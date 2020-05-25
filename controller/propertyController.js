@@ -1,3 +1,7 @@
+const multer = require('multer');
+const sharp = require('sharp');
+const AppError = require('../utils/appError');
+const catchAsync = require('../utils/catchAsync');
 const Property = require('../models/Property');
 
 const {
@@ -7,6 +11,57 @@ const {
   updateOne,
   deleteOne,
 } = require('./handlerFactory');
+
+const multerStorage = multer.memoryStorage();
+
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true);
+  } else {
+    cb(new AppError('Not an image! Please upload only image.', 400), false);
+  }
+};
+
+const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
+
+exports.uploadImages = upload.fields([
+  { name: 'imageCover', maxCount: 1 },
+  { name: 'images', maxCount: 3 },
+]);
+
+exports.resizeImages = catchAsync(async (req, res, next) => {
+  if (!req.files) return next();
+
+  const property = await Property.findById(req.params.id).select('slug');
+
+  // 1.) Cover image
+  req.body.imageCover = `${property.slug}-cover.jpg`;
+
+  await sharp(req.files.imageCover[0].buffer)
+    .resize(2000, 1333)
+    .toFormat('jpeg')
+    .jpeg({ qulity: 90 })
+    .toFile(`./public/property/${req.body.imageCover}`);
+
+  // 2.) Images
+  req.body.images = [];
+
+  await Promise.all(
+    req.files.images.map(async (file, i) => {
+      const filename = `${property.slug}-${i + 1}.jpg`;
+
+      await sharp(file.buffer)
+        .resize(2000, 1333)
+        .toFormat('jpeg')
+        .jpeg({ qulity: 90 })
+        .toFile(`./public/property/${filename}`);
+
+      req.body.images.push(filename);
+    })
+  );
+
+  next();
+});
 
 exports.getProperty = getOne(Property);
 
