@@ -17,7 +17,7 @@
 
 [x] GET proptery by id
 [x] POST create new property doc
-[x] PATCH update property, [] upload property images
+[x] PATCH update property, [x] upload property images
 [x] DELETE property
 
 #### Initialize CRUD routes for USER

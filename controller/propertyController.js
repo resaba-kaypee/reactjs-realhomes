@@ -63,6 +63,23 @@ exports.resizeImages = catchAsync(async (req, res, next) => {
   next();
 });
 
+exports.checkIfNew = catchAsync(async (req, res, next) => {
+  const properties = await Property.find({
+    newTagDateExpires: {
+      $lt: Date.now(),
+    },
+  }).select('newTag');
+
+  // if newTagDateExpires set newTag to false
+  if (properties)
+    properties.forEach(async function (property) {
+      property.newTag = false;
+      await property.save();
+    });
+
+  next();
+});
+
 exports.getProperty = getOne(Property);
 
 exports.getAllProperty = getAll(Property);

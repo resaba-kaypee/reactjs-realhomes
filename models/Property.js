@@ -99,7 +99,7 @@ const PropertySchema = mongoose.Schema({
   //   type: mongoose.Schema.ObjectId,
   //   ref: 'user',
   // },
-  propertId: String,
+  propertyId: String,
   title: {
     type: String,
     required: [true, 'A property must have a title!'],
@@ -137,6 +137,14 @@ const PropertySchema = mongoose.Schema({
   images: [String],
   video: String,
   yearBuilt: Date,
+  newTag: {
+    type: Boolean,
+    default: true,
+  },
+  newTagDateExpires: {
+    type: Date,
+    default: Date.now() + 7 * 86400000,
+  },
   datePosted: {
     type: Date,
     default: Date.now(),
@@ -144,7 +152,8 @@ const PropertySchema = mongoose.Schema({
 });
 
 PropertySchema.pre('save', function (next) {
-  this.slug = slugify(this.title, { lower: true });
+  if (this.newTagDateExpires > Date.now())
+    this.slug = slugify(this.title, { lower: true });
   next();
 });
 

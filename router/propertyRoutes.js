@@ -10,13 +10,14 @@ const {
   deleteProperty,
   uploadImages,
   resizeImages,
+  checkIfNew,
 } = require('../controller/propertyController');
 
 const { protect, restrictTo } = require('../controller/authController');
 
 router
   .route('/')
-  .get(getAllProperty) // available for everyone
+  .get(checkIfNew, getAllProperty) // available for everyone
   .post(protect, restrictTo('admin', 'agent'), createProperty);
 
 router
