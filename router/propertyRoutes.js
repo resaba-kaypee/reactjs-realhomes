@@ -15,9 +15,11 @@ const {
 
 const { protect, restrictTo } = require('../controller/authController');
 
+router.use(checkIfNew)
+
 router
   .route('/')
-  .get(checkIfNew, getAllProperty) // available for everyone
+  .get(getAllProperty) // available for everyone
   .post(protect, restrictTo('admin', 'agent'), createProperty);
 
 router

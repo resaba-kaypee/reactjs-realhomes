@@ -34,16 +34,16 @@
 
 #### Error handling middleware
 
-[] Invalid routes
+[x] Invalid routes 404
 
 #### Authentication and security
 
-[] Manage password
+[x] Manage password
 [x] Authentication JWT
 [x] Send welcome email for Sign up
 [x] Log in users
-[] Protect Routes
-[] Auth user roles
+[x] Protect Routes
+[x] Auth user roles
 [x] Send password reset token in email for Forgot password
 [x] Reset password
 [x] Update password

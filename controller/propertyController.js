@@ -74,6 +74,7 @@ exports.checkIfNew = catchAsync(async (req, res, next) => {
   if (properties)
     properties.forEach(async function (property) {
       property.newTag = false;
+      property.newTagDateExpires = undefined;
       await property.save();
     });
 
