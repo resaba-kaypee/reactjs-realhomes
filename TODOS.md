@@ -30,6 +30,7 @@
 #### Model data
 
 [x] Model property
+[] Improve reading performance by indexing property model
 [x] Model users
 
 #### Error handling middleware
@@ -38,15 +39,15 @@
 
 #### Authentication and security
 
-[x] Manage password
+[x] Encrypt password
 [x] Authentication JWT
 [x] Send welcome email for Sign up
-[x] Log in users
-[x] Protect Routes
+[x] Authrnticate logging in users
+[x] Protect Routes for not logged in users
 [x] Auth user roles
 [x] Send password reset token in email for Forgot password
-[x] Reset password
-[x] Update password
+[x] Reset password link to email if forgot password
+[x] Confirm old password when updating password
 [] Implement rate limiting
 [] Implement maximum log in attempts
 [] Data sanitization (mongoose-sanitize, xss-clean, hpp)

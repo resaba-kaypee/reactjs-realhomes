@@ -151,6 +151,11 @@ const PropertySchema = mongoose.Schema({
   },
 });
 
+
+PropertySchema.index({ price: 1});
+PropertySchema.index({ slug: 1 });
+PropertySchema.index({ location: '2dsphere' });
+
 PropertySchema.pre('save', function (next) {
   if (this.newTagDateExpires > Date.now())
     this.slug = slugify(this.title, { lower: true });
