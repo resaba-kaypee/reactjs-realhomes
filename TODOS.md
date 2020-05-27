@@ -48,6 +48,8 @@
 [x] Send password reset token in email for Forgot password
 [x] Reset password link to email if forgot password
 [x] Confirm old password when updating password
-[] Implement rate limiting
+[x] Implement rate limiting
+[x] Prevent parameter pollution (hpp)
+[x] Prevent cross site scripting (xss-clean)
+[x] Prevent NoSql injection (mongoose-sanitize)
 [] Implement maximum log in attempts
-[] Data sanitization (mongoose-sanitize, xss-clean, hpp)

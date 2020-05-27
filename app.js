@@ -53,6 +53,18 @@ app.use(mongoSanitize());
 app.use(xss());
 
 // Prevent parameter pollution
+app.use(
+  hpp({
+    whitelist: [
+      'price',
+      'areaSize',
+      'lotSize',
+      'bedrooms',
+      'bathrooms',
+      'garage',
+    ],
+  })
+);
 
 //=====================================>> TEST MIDDLEWARE
 app.use((req, res, next) => {
