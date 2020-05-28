@@ -1,3 +1,8 @@
+### Frontend
+
+[] Set up react
+[] Set up tailwind
+
 ### Backend
 
 #### Setup server
@@ -30,7 +35,7 @@
 #### Model data
 
 [x] Model property
-[] Improve reading performance by indexing property model
+[x] Improve reading performance by indexing property model
 [x] Model users
 
 #### Error handling middleware
@@ -52,4 +57,5 @@
 [x] Prevent parameter pollution (hpp)
 [x] Prevent cross site scripting (xss-clean)
 [x] Prevent NoSql injection (mongoose-sanitize)
-[] Implement maximum log in attempts
+[x] Implement maximum log in attempts
+
