@@ -60,9 +60,54 @@ exports.login = catchAsync(async (req, res, next) => {
   // 2.) Check if user exist && password is correct
   const user = await User.findOne({ email }).select('+password'); // include password in output
 
-  if (!user || !(await user.correctPassword(password, user.password))) {
-    return next(new AppError('Incorrect email or password.', 401));
+  if (!user) return next(new AppError('Incorrect email.', 400));
+
+  if (user.loginAttemptsExpires < Date.now()) {
+    user.loginAttempts = 0;
+    user.loginAttemptsExpires = undefined;
   }
+
+  // iit block the user from logging in ultil date expires and stops from setting a new expire date
+  if (user.loginAttemptsExpires > Date.now()) {
+    return next(
+      new AppError(
+        `Maximum login attempts exceeded, Please try again in ${Math.ceil(
+          (user.loginAttemptsExpires - Date.now()) / 1000
+        )} seconds.`,
+        400
+      )
+    );
+  }
+
+  if (!(await user.correctPassword(password, user.password))) {
+    // if password is incorrect increment login attempts
+    user.loginAttempts += 1;
+
+    // if login attempts is greater than allowed attempts set a date to be able to log in again
+    if (user.loginAttempts > 5) {
+      user.loginAttempts = 0;
+      user.loginAttemptsExpires = Date.now() + 5 * 60 * 1000;
+      user.save({ validateBeforeSave: false });
+
+      return next(
+        new AppError(
+          `Maximum login attempts exceeded, Please try again in ${Math.ceil(
+            (user.loginAttemptsExpires - Date.now()) / 1000
+          )} seconds.`,
+          400
+        )
+      );
+    }
+
+    user.save({ validateBeforeSave: false });
+    return next(
+      new AppError(
+        `Incorrect password. Attempts ${user.loginAttempts} out of 2`,
+        400
+      )
+    );
+  }
+
   // 3.) If everything is ok, send token to client
   createAndSendToken(user, 200, res);
 });

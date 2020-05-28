@@ -2,4 +2,5 @@ sections
 dev-data
 node_modules
 .cache
-*.env
+config.env
+test.js
