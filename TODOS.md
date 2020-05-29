@@ -35,7 +35,11 @@
 #### Model data
 
 [x] Model property
+<<<<<<< HEAD
 [x] Improve reading performance by indexing property model
+=======
+[] Improve reading performance by indexing property model
+>>>>>>> 9eec20ac6ef59241691449e467205eafe9fde52f
 [x] Model users
 
 #### Error handling middleware
@@ -57,5 +61,9 @@
 [x] Prevent parameter pollution (hpp)
 [x] Prevent cross site scripting (xss-clean)
 [x] Prevent NoSql injection (mongoose-sanitize)
+<<<<<<< HEAD
 [x] Implement maximum log in attempts
 
+=======
+[] Implement maximum log in attempts
+>>>>>>> 9eec20ac6ef59241691449e467205eafe9fde52f
