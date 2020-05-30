@@ -44,10 +44,7 @@
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
-<<<<<<< HEAD
     "concurrently": "^5.2.0",
-=======
->>>>>>> 9eec20ac6ef59241691449e467205eafe9fde52f
     "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
