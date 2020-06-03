@@ -1,11 +1,12 @@
 import React from 'react';
+import Navbar from './components/layout/Navbar';
 
-function App() {
-<<<<<<< HEAD
-  return <div>Meow!!</div>;
-=======
-  return <div>Hello</div>;
->>>>>>> 9eec20ac6ef59241691449e467205eafe9fde52f
-}
+const App = () => {
+  return (
+    <div className="w-screen h-screen bg-gray-300">
+      <Navbar />
+    </div>
+  );
+};
 
 export default App;
