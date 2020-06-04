@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
+import SignInButton from '../forms/SignInButton';
+import SignUpButton from '../forms/SignUpButton';
+import SignUp from '../forms/SignUp';
 
 const AccountDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,44 +20,26 @@ const AccountDropdown = () => {
   }, []);
 
   return (
-    <div className="relative block md:hidden">
-      <button
-        className="relative z-10 block w-12 h-12 overflow-hidden border-2 border-white border-gray-600 rounded-full focus:border-white focus:outline-none"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <img
-          src={require('../../assets/img/default.jpg')}
-          alt="your avatar"
-          className="object-cover w-full h-full"
-        />
-      </button>
-      {isOpen && (
+    <Fragment>
+      <div className="relative block md:hidden">
         <button
-          tabIndex="-1"
-          className="fixed inset-0 right-0 w-full h-full bg-black opacity-25 cursor-default"
-          onClick={() => setIsOpen(false)}
-        ></button>
-      )}
-      <div
-        className={
-          (isOpen ? 'block ' : 'hidden ') +
-          'absolute left-0 w-56 py-2 mt-2 text-gray-700 bg-white rounded-lg shadow-xl mt-7'
-        }
-      >
-        <a
-          href="!#"
-          className="block px-4 py-2 hover:bg-gray-400 hover:text-gray-900"
+          className="relative z-10 block w-12 h-12 overflow-hidden border-2 border-white border-gray-600 rounded-full focus:border-white focus:outline-none"
+          onClick={() => setIsOpen(!isOpen)}
         >
-          Sign in
-        </a>
-        <a
-          href="!#"
-          className="block px-4 py-2 hover:bg-gray-400 hover:text-gray-900"
-        >
-          Sign up
-        </a>
+          <img
+            src={require('../../assets/img/default.jpg')}
+            alt="your avatar"
+            className="object-cover w-full h-full"
+          />
+        </button>
+        {isOpen && <SignUp setIsOpen={setIsOpen} />}
       </div>
-    </div>
+      <div className="flex hidden text-gray-700 rounded-lg md:block md:order-last">
+        <SignInButton />
+        <span className="border-2 border-gray-300"></span>
+        <SignUpButton />
+      </div>
+    </Fragment>
   );
 };
 
