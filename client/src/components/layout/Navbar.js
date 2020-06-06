@@ -1,13 +1,13 @@
 import React from 'react';
-import AccountDropdown from './AccountDropdown';
+import AccountButton from './AccountButton';
 import MenuButton from './MenuButton';
 
 const Navbar = () => {
   return (
     <div>
       <header className="bg-gray-900 md:flex md:items-center md:justify-between md:px-4 md:py-2">
-        <nav className="relative flex items-center justify-between w-full px-4 py-4 md:p-0">
-          <AccountDropdown />
+        <nav className="flex items-center justify-between w-full px-4 py-4 md:p-0">
+          <AccountButton />
           <div className="flex items-center justify-center">
             <svg className="w-12 h-12 " viewBox="0 0 236.5 318.1">
               <path

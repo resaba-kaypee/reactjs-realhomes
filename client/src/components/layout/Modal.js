@@ -7,7 +7,7 @@ const Modal = ({ children }) => {
   if (!elRef.current) {
     const div = document.createElement('div');
     elRef.current = div;
-    div.className = 'absolute';
+    div.className = 'fixed';
   }
 
   useEffect(() => {

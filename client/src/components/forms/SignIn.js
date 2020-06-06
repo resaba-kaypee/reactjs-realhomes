@@ -5,7 +5,7 @@ const SignIn = ({ setIsOpen }) => {
   return (
     <Modal>
       <div className="flex items-center justify-center w-screen h-screen">
-        <div className="w-full max-w-xs lg:mt-20 sm:max-w-sm">
+        <div className="w-full max-w-xs sm:max-w-sm">
           <button
             // OVERLAY BUTTON
             tabIndex="-1"

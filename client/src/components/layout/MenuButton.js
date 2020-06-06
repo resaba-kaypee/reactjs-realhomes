@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const MenuButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="">
+    <div>
       <div className="md:hidden">
         <button
           type="button"
@@ -25,7 +25,7 @@ const MenuButton = () => {
       <div
         className={
           (isOpen ? 'block ' : 'hidden ') +
-          'absolute w-full md:relative right-0 mt-1 px-4 pt-2 pb-4 text-md lg:text-lg md:flex md:p-0 bg-gray-900'
+          'absolute w-full md:static right-0 mt-1 px-4 pt-2 pb-4 text-md lg:text-lg md:flex md:p-0 bg-gray-900'
         }
       >
         <a
