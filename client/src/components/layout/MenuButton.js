@@ -6,6 +6,7 @@ const MenuButton = () => {
     <div>
       <div className="md:hidden">
         <button
+          // BURGER MENU BUTTON
           type="button"
           className="block text-white"
           onClick={() => setIsOpen(!isOpen)}

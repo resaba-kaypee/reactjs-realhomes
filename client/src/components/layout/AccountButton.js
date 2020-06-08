@@ -21,6 +21,7 @@ const AccountButton = () => {
 
   return (
     <div className="md:order-last">
+      {/* IMAGE BUTTON */}
       <div className="relative block md:hidden">
         <button
           className="relative z-10 block w-12 h-12 overflow-hidden border-2 border-white border-gray-600 rounded-full focus:border-white focus:outline-none"
@@ -34,6 +35,8 @@ const AccountButton = () => {
         </button>
         {isOpen && <SignUp setIsOpen={setIsOpen} />}
       </div>
+
+      {/* INLINE BUTTON */}
       <div className="flex hidden text-gray-700 rounded-lg md:block">
         <SignInButton />
         <span className="border-2 border-gray-300"></span>
