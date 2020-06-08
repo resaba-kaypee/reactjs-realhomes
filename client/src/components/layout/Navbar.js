@@ -4,7 +4,7 @@ import MenuButton from './MenuButton';
 
 const Navbar = () => {
   return (
-    <header className="fixed w-full bg-gray-900 md:flex md:items-center md:justify-between md:px-4 md:py-2">
+    <header className="fixed z-20 w-full bg-gray-900 md:flex md:items-center md:justify-between md:px-4 md:py-2">
       <nav className="flex items-center justify-between w-full px-4 py-4 md:p-0">
         <AccountButton />
         <div className="flex items-center justify-center">
