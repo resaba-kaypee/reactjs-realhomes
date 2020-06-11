@@ -5,3 +5,4 @@ node_modules
 config.env
 test.js
 TOFIX.md
+client/src/assets/img/
