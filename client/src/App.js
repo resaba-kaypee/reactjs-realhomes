@@ -4,6 +4,7 @@ import Navbar from './components/layout/Navbar';
 import Background from './components/layout/Background';
 import PropertyCards from './components/card/PropertyCards';
 import WhyChooseUs from './components/sections/WhyChooseUs';
+import CallToAction from './components/sections/CallToAction';
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Background />
       <PropertyCards />
       <WhyChooseUs />
+      <CallToAction />
     </div>
   );
 };
