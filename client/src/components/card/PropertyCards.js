@@ -2,7 +2,7 @@ import React from 'react';
 import PropertyCard from './PropertyCard';
 
 const PropertyCards = () => {
-  const properties = ['1', '2', '3', '4', '5', '6', '7', '8'];
+  const properties = ['1', '2', '3', '4', '5', '6'];
   const loading = false;
 
   return (

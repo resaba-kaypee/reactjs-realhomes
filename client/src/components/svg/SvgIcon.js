@@ -16,6 +16,12 @@ const getViewBox = (name) => {
       return '0 0 302 302';
     case 'ruler':
       return '0 0 60 60';
+    case 'c-card':
+      return '0 0 20 20';
+    case 'search':
+      return '0 0 20 20';
+    case 'train':
+      return '0 0 20 20';
     default:
       return '0 0 32 32';
   }
@@ -61,6 +67,18 @@ const getPath = (name, props) => {
           {...props}
           d="M19 0H0v60h16V19h3v-3h41V0H19zm-5 23h-3a1 1 0 100 2h3v4H8a1 1 0 100 2h6v4h-3a1 1 0 100 2h3v4H8a1 1 0 100 2h6v4h-3a1 1 0 100 2h3v4H8a1 1 0 100 2h6v3H2V19h12v4zm3-6H2V2h15v15zm41-3h-3V8a1 1 0 10-2 0v6h-4v-3a1 1 0 10-2 0v3h-4V8a1 1 0 10-2 0v6h-4v-3a1 1 0 10-2 0v3h-4V8a1 1 0 10-2 0v6h-4v-3a1 1 0 10-2 0v3h-4V2h39v12z"
         />
+      );
+    case 'c-card':
+      return (
+        <path d="M18 6V4H2v2h16zm0 4H2v6h16v-6zM0 4c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm4 8h4v2H4v-2z" />
+      );
+    case 'search':
+      return (
+        <path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z" />
+      );
+    case 'train':
+      return (
+        <path d="M12 18H8l-2 2H3l2-2a2 2 0 0 1-2-2V2c0-1.1.9-2 2-2h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2l2 2h-3l-2-2zM5 5v6h10V5H5zm1.5 11a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm7 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM8 2v1h4V2H8z" />
       );
     default:
       return <path />;
