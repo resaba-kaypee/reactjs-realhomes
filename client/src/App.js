@@ -5,15 +5,17 @@ import Background from './components/layout/Background';
 import PropertyCards from './components/card/PropertyCards';
 import WhyChooseUs from './components/sections/WhyChooseUs';
 import CallToAction from './components/sections/CallToAction';
+import Blog from './components/sections/Blog';
 
 const App = () => {
   return (
     <div className="relative w-screen h-screen font-sans bg-gray-100">
-      <Navbar />
+      {/* <Navbar />
       <Background />
       <PropertyCards />
       <WhyChooseUs />
-      <CallToAction />
+      <CallToAction /> */}
+      <Blog />
     </div>
   );
 };
