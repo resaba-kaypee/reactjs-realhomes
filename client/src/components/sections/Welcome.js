@@ -1,8 +1,8 @@
 import React from 'react';
 import Home from '../../assets/img/home1.jpg';
-import Searchbar from './SearchBar';
+import Searchbar from '../layout/SearchBar';
 
-const Background = () => {
+const Welcome = () => {
   return (
     <section
       className="relative w-screen h-screen bg-center lg:bg-cover lg:bg-center"
@@ -15,4 +15,4 @@ const Background = () => {
   );
 };
 
-export default Background;
+export default Welcome;

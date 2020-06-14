@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import SignInButton from '../forms/SignInButton';
-import SignUpButton from '../forms/SignUpButton';
+import SignInButton from '../layout/SignInButton';
+import SignUpButton from '../layout/SignUpButton';
 import SignUp from '../forms/SignUp';
 
-const AccountButton = () => {
+const AccountMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleEscape = (e) => {
@@ -20,7 +20,7 @@ const AccountButton = () => {
   }, []);
 
   return (
-    <div className="md:order-last">
+    <div className="md:mr-12 md:order-last">
       {/* IMAGE BUTTON */}
       <div className="relative block md:hidden">
         <button
@@ -37,13 +37,21 @@ const AccountButton = () => {
       </div>
 
       {/* INLINE BUTTON */}
-      <div className="flex hidden text-gray-700 rounded-lg md:block">
-        <SignInButton />
-        <span className="border-2 border-gray-300"></span>
-        <SignUpButton />
+      <div className="hidden md:block">
+        <div className="flex items-center">
+          <SignInButton />
+          <SignUpButton />
+        </div>
       </div>
     </div>
   );
 };
+// <div className="hidden md:block">
+//   <div className="flex text-gray-700 rounded-lg">
+//     <SignInButton />
+//     {/* <span className="border-2 border-gray-300"></span> */}
+//     <SignUpButton />
+//   </div>
+// </div>
 
-export default AccountButton;
+export default AccountMenu;

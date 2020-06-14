@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-const MenuButton = () => {
+const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div>
+    <>
       <div className="md:hidden">
         <button
           // BURGER MENU BUTTON
@@ -26,7 +26,7 @@ const MenuButton = () => {
       <div
         className={
           (isOpen ? 'block ' : 'hidden ') +
-          'absolute w-full md:static right-0 mt-1 px-4 pt-2 pb-4 text-md lg:text-lg md:flex md:p-0 bg-gray-900'
+          'absolute md:flex md:justify-center w-full md:static right-0 top-0 mt-20 md:mt-0 px-4 pt-2 pb-4 text-md lg:text-lg md:flex md:p-0 bg-gray-900'
         }
       >
         <a
@@ -54,8 +54,8 @@ const MenuButton = () => {
           About
         </a>
       </div>
-    </div>
+    </>
   );
 };
 
-export default MenuButton;
+export default Menu;
