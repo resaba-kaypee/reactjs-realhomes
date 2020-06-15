@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FooterBg from '../../assets/img/footer.jpg';
 import SvgIcon from '../svg/SvgIcon';
 
 const Footer = () => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <footer className="w-full">
       <div
@@ -161,6 +162,61 @@ const Footer = () => {
                   </button>
                 </div>
               </form>
+            </div>
+          </div>
+        </div>
+
+        {/* COPYRIGHT */}
+        <div className="absolute w-full mt-8 bg-gray-900">
+          <div className="flex flex-col items-center md:flex-row md:justify-between md:w-full md:p-4">
+            <p className="flex flex-col items-center p-6 text-gray-200 md:w-1/2">
+              Copyright ©
+              <script>document.write(new Date().getFullYear());</script>
+              2020 All rights reserved{' '}
+              <a
+                href="!#"
+                target="_blank"
+                className="block text-center text-yellow-600"
+              >
+                realhome.io
+              </a>
+            </p>
+
+            {/* CHEVRON */}
+            <div className="p-4 text-white md:hidden">
+              <button
+                type="button"
+                className="px-2 py-1 border border-white rounded hover:border-yellow-600 hover:bg-yellow-600 focus:outline-none focus:border-yellow-600"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                <SvgIcon
+                  name={isOpen ? 'chevron-up' : 'chevron-down'}
+                  className="w-8 h-8 fill-current"
+                />
+              </button>
+            </div>
+
+            <div
+              className={
+                (isOpen ? 'block ' : 'hidden ') + 'md:block md:w-1/2 w-full'
+              }
+            >
+              <nav className="py-2">
+                <ul className="flex flex-col items-center md:flex-row">
+                  <li className="px-4 py-1 mt-1 font-semibold text-white rounded hover:bg-gray-800">
+                    <a href="!#">Home</a>
+                  </li>
+                  <li className="px-4 py-1 mt-1 font-semibold text-white rounded hover:bg-gray-800">
+                    <a href="!#">Listings</a>
+                  </li>
+                  <li className="px-4 py-1 mt-1 font-semibold text-white rounded hover:bg-gray-800">
+                    <a href="!#">My Home</a>
+                  </li>
+                  <li className="px-4 py-1 mt-1 font-semibold text-white rounded hover:bg-gray-800">
+                    <a href="!#">About</a>
+                  </li>
+                </ul>
+              </nav>
             </div>
           </div>
         </div>
