@@ -1,9 +1,22 @@
-### Frontend
+## Frontend
 
-- [] Set up react
-- [] Set up tailwind
+- [x] Set up react
+- [x] Set up tailwind
 
-### Backend front
+#### Landing page
+
+- [x] Navbar
+- [x] Welcome section
+- [x] Search bar
+- [x] Fetured property section
+- [x] Why choose us section
+- [x] Call to action section
+- [x] News blog section
+- [x] Footer section
+
+#### Property page
+
+## Backend
 
 #### Setup server
 
