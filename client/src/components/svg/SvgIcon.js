@@ -127,10 +127,10 @@ const getPath = (name, props) => {
   }
 };
 
-const SvgIcon = ({ name = '', className = '', fill = '#000' }) => {
+const SvgIcon = ({ name = '', className = '' }) => {
   return (
     <svg name={name} viewBox={getViewBox(name)} className={className}>
-      {getPath(name, { fill })}
+      {getPath(name, {})}
     </svg>
   );
 };
