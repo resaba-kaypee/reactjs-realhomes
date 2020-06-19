@@ -18,14 +18,14 @@ const Slide = ({ cover, images }) => {
 
   return (
     <div>
-      <div className="relative">
+      <div className="relative overflow-hidden rounded sm:rounded-lg">
         <Carousel
           value={state.value}
           slides={state.slides}
           onChange={onChange}
         />
       </div>
-      <div className="relative -mt-20">
+      <div className="relative -mt-20 lg:-mt-24 lg:p-12">
         <Dots
           number={state.thumbnails.length}
           thumbnails={state.thumbnails}

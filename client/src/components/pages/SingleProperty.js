@@ -52,179 +52,225 @@ const SingleProperty = () => {
     photo: 'agent.png',
   };
   return (
-    <section className="w-full">
-      <div className="w-full mb-32">
-        {/* INFORATION */}
-        <div className="relative w-full px-4 pt-12 pb-24 bg-gray-900">
-          {/* --TITLE-- */}
-          <h4 className="pt-5 text-2xl font-semibold leading-tight text-center text-white">
-            {property.title}
-          </h4>
-          <div className="pt-4 pb-2">
-            <div className="flex justify-between">
-              <div className="flex items-center text-yellow-600">
-                <SvgIcon name="marker" className="w-6 h-6 fill-current" />
-                <p className="text-white truncate">
-                  {' '}
-                  {property.location.address}
-                </p>
-              </div>
+    <section className="w-full mt-16">
+      {/* INFORATION */}
+      <div className="relative w-full h-full bg-gray-900">
+        <div className="flex justify-center">
+          <div className="w-full max-w-5xl sm:px-12">
+            <div className="px-4 pt-12 pb-24">
+              {/* --TITLE-- */}
+              <h4 className="pt-5 text-2xl font-semibold leading-tight text-center text-white sm:text-3xl">
+                {property.title}
+              </h4>
+              <div className="pt-4 pb-2">
+                <div className="flex justify-between">
+                  <div className="flex items-center text-yellow-600">
+                    <SvgIcon
+                      name="marker"
+                      className="w-6 h-6 mr-1 fill-current"
+                    />
+                    <p className="text-white truncate sm:text-lg">
+                      {property.location.address}
+                    </p>
+                  </div>
 
-              <div className="flex items-center text-yellow-600">
-                <SvgIcon name="map" className="w-6 h-6 fill-current" />
-                <p className="text-white"> {property.location.state}</p>
+                  <div className="flex items-center text-yellow-600">
+                    <SvgIcon name="map" className="w-6 h-6 mr-1 fill-current" />
+                    <p className="text-white sm:text-lg">
+                      {property.location.state}
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          {/* --INFO-- */}
-          <div className="px-2 pt-3 mt-4 border-t-2 border-gray-400">
-            <div className="flex flex-wrap">
-              <p className="flex justify-between w-1/2 p-3">
-                <span className="text-yellow-600">
-                  <SvgIcon
-                    name="bed"
-                    className="inline w-6 h-6 mr-1 fill-current"
-                  />
-                </span>
-                <span className="text-white">{property.bedrooms} Beds</span>
-              </p>
-              <p className="flex justify-between w-1/2 p-3">
-                <span className="text-yellow-600">
-                  <SvgIcon
-                    name="bath"
-                    className="inline w-6 h-6 mr-1 fill-current"
-                  />
-                </span>
-                <span className="text-white">{property.bathrooms} Baths</span>
-              </p>
-              <p className="flex justify-between w-1/2 p-3">
-                <span className="text-yellow-600">
-                  <SvgIcon
-                    name="ruler"
-                    className="inline w-6 h-6 mr-1 fill-current"
-                  />
-                </span>
-                <span className="text-white">{property.lotSize} sqft.</span>
-              </p>
-              <p className="flex justify-between w-1/2 p-3">
-                <span className="text-yellow-600">
-                  <SvgIcon
-                    name="garage"
-                    className="inline w-6 h-6 mr-1 fill-current"
-                  />
-                </span>
-                <span className="text-white">{property.garage} Garage</span>
-              </p>
+              {/* --INFO-- */}
+              <div className="px-2 pt-3 mt-4 border-t-2 border-gray-400">
+                <div className="flex flex-wrap">
+                  <p className="flex justify-between w-1/2 p-3">
+                    <span className="text-yellow-600">
+                      <SvgIcon
+                        name="bed"
+                        className="inline w-6 h-6 mr-1 fill-current"
+                      />
+                    </span>
+                    <span className="text-white sm:text-lg">
+                      {property.bedrooms} Beds
+                    </span>
+                  </p>
+                  <p className="flex justify-between w-1/2 p-3">
+                    <span className="text-yellow-600">
+                      <SvgIcon
+                        name="bath"
+                        className="inline w-6 h-6 mr-1 fill-current"
+                      />
+                    </span>
+                    <span className="text-white sm:text-lg">
+                      {property.bathrooms} Baths
+                    </span>
+                  </p>
+                  <p className="flex justify-between w-1/2 p-3">
+                    <span className="text-yellow-600">
+                      <SvgIcon
+                        name="ruler"
+                        className="inline w-6 h-6 mr-1 fill-current"
+                      />
+                    </span>
+                    <span className="text-white sm:text-lg">
+                      {property.lotSize} sqft.
+                    </span>
+                  </p>
+                  <p className="flex justify-between w-1/2 p-3">
+                    <span className="text-yellow-600">
+                      <SvgIcon
+                        name="garage"
+                        className="inline w-6 h-6 mr-1 fill-current"
+                      />
+                    </span>
+                    <span className="text-white sm:text-lg">
+                      {property.garage} Garage
+                    </span>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="relative w-full px-4 -mt-12">
-          {/* IMAGE SLIDE */}
-          <div className="overflow-hidden rounded">
-            <Slide cover={property.imageCover} images={property.images} />
-          </div>
-
-          {/* FEATURES */}
-          <div className="mt-8">
-            <h2 className="text-lg font-bold text-gray-800 underline">
-              Property Features
-            </h2>
-
-            <ul className="p-4 mt-2 bg-gray-300 rounded">
-              {property.features.map((feature) => (
-                <li className="p-1 font-semibold capitalize">✔ {feature}</li>
-              ))}
-            </ul>
-          </div>
-
-          {/* --DESCRIPTION-- */}
-          <div className="mt-8">
-            <h2 className="text-lg font-bold text-gray-800 underline">
-              House Description
-            </h2>
-            <p className="px-2 mt-2 text-xs text-center text-gray-700">
-              {property.description}
-            </p>
-          </div>
-
-          {/* --DETAILS-- */}
-          <div className="mt-8">
-            <h2 className="text-lg font-bold text-gray-800 underline">
-              Property Details
-            </h2>
-            <ul className="flex flex-col p-2 mt-2 bg-gray-300 rounded">
-              <li className="flex justify-between p-2">
-                <span className="font-semibold">Property ID</span>
-                <span className="capitalize">{property.propertyId}</span>
-              </li>
-              <li className="flex justify-between p-2">
-                <span className="font-semibold">Property Type</span>
-                <span className="capitalize">{property.type.type}</span>
-              </li>
-              <li className="flex justify-between p-2">
-                <span className="font-semibold">Status</span>
-                <span className="capitalize">{property.status}</span>
-              </li>
-              <li className="flex justify-between p-2">
-                <span className="font-semibold">Price</span>
-                <span className="capitalize">$ {property.price}</span>
-              </li>
-              <li className="flex justify-between p-2">
-                <span className="font-semibold">Bedrooms</span>
-                <span className="capitalize">{property.bedrooms}</span>
-              </li>
-              <li className="flex justify-between p-2">
-                <span className="font-semibold">Bathrooms</span>
-                <span className="capitalize">{property.bathrooms}</span>
-              </li>
-              <li className="flex justify-between p-2">
-                <span className="font-semibold">Garage</span>
-                <span className="capitalize">{property.garage}</span>
-              </li>
-              <li className="flex justify-between p-2">
-                <span className="font-semibold">Lot size</span>
-                <span className="capitalize">{property.lotSize} sqft.</span>
-              </li>
-              <li className="flex justify-between p-2">
-                <span className="font-semibold">Area size</span>
-                <span className="capitalize">{property.areaSize} sqft.</span>
-              </li>
-              <li className="flex justify-between p-2">
-                <span className="font-semibold">Year Built</span>
-                <span className="capitalize">{property.yearBuilt}</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* AGENT INFO */}
-          <div className="mt-8">
-            <h2 className="text-lg font-bold text-gray-800 underline">
-              Agent Information
-            </h2>
-            <div className="flex mt-2 bg-gray-300 rounded">
-              <div className="p-2 overflow-hidden rounded">
-                <img
-                  className="object-contain object-center w-20 h-20"
-                  src={require(`../../assets/img/user/${user.photo}`)}
-                  alt="agent"
-                />
+      <div className="relative w-full">
+        <div className="flex justify-center">
+          <div className="w-full max-w-5xl">
+            <div className="px-4 -mt-12 sm:px-12">
+              {/* IMAGE SLIDE */}
+              <div className="">
+                <Slide cover={property.imageCover} images={property.images} />
               </div>
-              <ul className="w-full p-2">
-                <li>
-                  <h2 className="text-lg font-semibold text-gray-800 capitalize">
-                    {user.name}
-                  </h2>
-                </li>
-                <li className="flex justify-between">
-                  <span className="font-semibold">Phone:</span>
-                  <span className="text-sm">{user.phoneNumber}</span>
-                </li>
-                <li className="flex justify-between">
-                  <span className="font-semibold">Email:</span>
-                  <span className="text-sm">{user.email}</span>
-                </li>
-              </ul>
+
+              {/* FEATURES */}
+              <div className="mt-12">
+                <h2 className="text-lg font-bold text-gray-800 underline sm:text-2xl">
+                  Property Features
+                </h2>
+
+                <ul className="p-4 mt-6 bg-gray-300 rounded">
+                  {property.features.map((feature) => (
+                    <li className="p-1 font-semibold capitalize">
+                      ✔ {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* VIRTUAL TOUR */}
+              <div className="mt-12">
+                <h2 className="text-lg font-bold text-gray-800 underline sm:text-2xl">
+                  Virtual Tour
+                </h2>
+                <div className="relative mt-6 overflow-hidden pt-9/16">
+                  <iframe
+                    className="absolute top-0 left-0 w-full h-full"
+                    src="https://www.youtube.com/embed/yl3i6z8vi8w"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </div>
+
+              {/* --DESCRIPTION-- */}
+              <div className="mt-12">
+                <h2 className="text-lg font-bold text-gray-800 underline sm:text-2xl">
+                  House Description
+                </h2>
+                <p className="px-2 mt-6 text-xs text-center text-gray-700 sm:text-lg">
+                  {property.description}
+                </p>
+              </div>
+
+              {/* --DETAILS-- */}
+              <div className="mt-12">
+                <h2 className="text-lg font-bold text-gray-800 underline sm:text-2xl">
+                  Property Details
+                </h2>
+                <ul className="flex flex-col p-2 mt-6 bg-gray-300 rounded">
+                  <li className="flex justify-between p-2">
+                    <span className="font-semibold sm:text-lg">
+                      Property ID
+                    </span>
+                    <span className="capitalize">{property.propertyId}</span>
+                  </li>
+                  <li className="flex justify-between p-2">
+                    <span className="font-semibold sm:text-lg">
+                      Property Type
+                    </span>
+                    <span className="capitalize">{property.type.type}</span>
+                  </li>
+                  <li className="flex justify-between p-2">
+                    <span className="font-semibold sm:text-lg">Status</span>
+                    <span className="capitalize">{property.status}</span>
+                  </li>
+                  <li className="flex justify-between p-2">
+                    <span className="font-semibold sm:text-lg">Price</span>
+                    <span className="capitalize">$ {property.price}</span>
+                  </li>
+                  <li className="flex justify-between p-2">
+                    <span className="font-semibold sm:text-lg">Bedrooms</span>
+                    <span className="capitalize">{property.bedrooms}</span>
+                  </li>
+                  <li className="flex justify-between p-2">
+                    <span className="font-semibold sm:text-lg">Bathrooms</span>
+                    <span className="capitalize">{property.bathrooms}</span>
+                  </li>
+                  <li className="flex justify-between p-2">
+                    <span className="font-semibold sm:text-lg">Garage</span>
+                    <span className="capitalize">{property.garage}</span>
+                  </li>
+                  <li className="flex justify-between p-2">
+                    <span className="font-semibold sm:text-lg">Lot size</span>
+                    <span className="capitalize">{property.lotSize} sqft.</span>
+                  </li>
+                  <li className="flex justify-between p-2">
+                    <span className="font-semibold sm:text-lg">Area size</span>
+                    <span className="capitalize">
+                      {property.areaSize} sqft.
+                    </span>
+                  </li>
+                  <li className="flex justify-between p-2">
+                    <span className="font-semibold sm:text-lg">Year Built</span>
+                    <span className="capitalize">{property.yearBuilt}</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* AGENT INFO */}
+              <div className="mt-12">
+                <h2 className="text-lg font-bold text-gray-800 underline sm:text-2xl">
+                  Agent Information
+                </h2>
+                <div className="flex mt-6 bg-gray-300 rounded">
+                  <div className="p-2 overflow-hidden rounded">
+                    <img
+                      className="object-contain object-center w-20 h-20 sm:w-24 sm:h-24"
+                      src={require(`../../assets/img/user/${user.photo}`)}
+                      alt="agent"
+                    />
+                  </div>
+                  <ul className="w-full p-2">
+                    <li>
+                      <h2 className="text-lg font-semibold text-gray-800 capitalize sm:text-xl">
+                        {user.name}
+                      </h2>
+                    </li>
+                    <li className="flex justify-between">
+                      <span className="font-semibold sm:text-lg">Phone:</span>
+                      <span className="text-sm sm:text-lg">
+                        {user.phoneNumber}
+                      </span>
+                    </li>
+                    <li className="flex justify-between">
+                      <span className="font-semibold sm:text-lg">Email:</span>
+                      <span className="text-sm sm:text-lg">{user.email}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
