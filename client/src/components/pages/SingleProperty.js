@@ -44,6 +44,13 @@ const SingleProperty = () => {
     video: '#',
     yearBuilt: '2000-05-17T14:35:37.889+00:00',
   };
+
+  const user = {
+    name: 'Sam Smith',
+    email: 'sam@gmail.com',
+    phoneNumber: '111-1111',
+    photo: 'agent.png',
+  };
   return (
     <section className="w-full">
       <div className="w-full mb-32">
@@ -120,7 +127,7 @@ const SingleProperty = () => {
 
           {/* FEATURES */}
           <div className="mt-8">
-            <h2 className="text-lg font-bold text-gray-800">
+            <h2 className="text-lg font-bold text-gray-800 underline">
               Property Features
             </h2>
 
@@ -133,7 +140,7 @@ const SingleProperty = () => {
 
           {/* --DESCRIPTION-- */}
           <div className="mt-8">
-            <h2 className="text-lg font-bold text-gray-800">
+            <h2 className="text-lg font-bold text-gray-800 underline">
               House Description
             </h2>
             <p className="px-2 mt-2 text-xs text-center text-gray-700">
@@ -143,7 +150,7 @@ const SingleProperty = () => {
 
           {/* --DETAILS-- */}
           <div className="mt-8">
-            <h2 className="text-lg font-bold text-gray-800">
+            <h2 className="text-lg font-bold text-gray-800 underline">
               Property Details
             </h2>
             <ul className="flex flex-col p-2 mt-2 bg-gray-300 rounded">
@@ -188,6 +195,37 @@ const SingleProperty = () => {
                 <span className="capitalize">{property.yearBuilt}</span>
               </li>
             </ul>
+          </div>
+
+          {/* AGENT INFO */}
+          <div className="mt-8">
+            <h2 className="text-lg font-bold text-gray-800 underline">
+              Agent Information
+            </h2>
+            <div className="flex mt-2 bg-gray-300 rounded">
+              <div className="p-2 overflow-hidden rounded">
+                <img
+                  className="object-contain object-center w-20 h-20"
+                  src={require(`../../assets/img/user/${user.photo}`)}
+                  alt="agent"
+                />
+              </div>
+              <ul className="w-full p-2">
+                <li>
+                  <h2 className="text-lg font-semibold text-gray-800 capitalize">
+                    {user.name}
+                  </h2>
+                </li>
+                <li className="flex justify-between">
+                  <span className="font-semibold">Phone:</span>
+                  <span className="text-sm">{user.phoneNumber}</span>
+                </li>
+                <li className="flex justify-between">
+                  <span className="font-semibold">Email:</span>
+                  <span className="text-sm">{user.email}</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
