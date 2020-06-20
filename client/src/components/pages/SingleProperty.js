@@ -1,6 +1,7 @@
 import React from 'react';
 import Slide from '../carousel/Slide';
 import SvgIcon from '../svg/SvgIcon';
+import Map from '../layout/Map';
 
 const SingleProperty = () => {
   const property = {
@@ -182,6 +183,19 @@ const SingleProperty = () => {
                 <p className="px-2 mt-6 text-xs text-center text-gray-700 sm:text-lg">
                   {property.description}
                 </p>
+              </div>
+
+              {/* --MAP-- */}
+              <div className="mt-12">
+                <h2 className="text-lg font-bold text-gray-800 underline sm:text-2xl">
+                  Map
+                </h2>
+                <div className="mt-6">
+                  <Map
+                    longitude={property.location.coordinates[0]}
+                    latitude={property.location.coordinates[1]}
+                  />
+                </div>
               </div>
 
               {/* --DETAILS-- */}
