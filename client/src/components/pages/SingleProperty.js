@@ -1,5 +1,6 @@
 import React from 'react';
 import Slide from '../carousel/Slide';
+import SlideSimple from '../carousel/SlideSimple';
 import SvgIcon from '../svg/SvgIcon';
 import Map from '../layout/Map';
 
@@ -154,7 +155,7 @@ const SingleProperty = () => {
 
                 <ul className="p-4 mt-6 bg-gray-300 rounded">
                   {property.features.map((feature) => (
-                    <li className="p-1 font-semibold capitalize">
+                    <li key={feature} className="p-1 font-semibold capitalize">
                       ✔ {feature}
                     </li>
                   ))}
@@ -283,6 +284,16 @@ const SingleProperty = () => {
                       <span className="text-sm sm:text-lg">{user.email}</span>
                     </li>
                   </ul>
+                </div>
+              </div>
+
+              {/* SIMIlAR SLIDE */}
+              <div className="mt-12">
+                <h2 className="text-lg font-bold text-gray-800 underline sm:text-2xl">
+                  Similar Properties
+                </h2>
+                <div className="mt-6">
+                  <SlideSimple />
                 </div>
               </div>
             </div>
