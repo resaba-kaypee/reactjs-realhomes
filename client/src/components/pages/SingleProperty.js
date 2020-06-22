@@ -4,6 +4,7 @@ import SlideSimple from '../carousel/SlideSimple';
 import SvgIcon from '../svg/SvgIcon';
 import Map from '../layout/Map';
 import AskQuestion from '../layout/AskQuestion';
+import PropertyDetails from '../layout/PropertyDetails';
 
 const SingleProperty = () => {
   const property = {
@@ -148,19 +149,21 @@ const SingleProperty = () => {
                 <Slide cover={property.imageCover} images={property.images} />
               </div>
 
-              {/* FEATURES */}
+              {/* PROPERTY DETAILS */}
               <div className="mt-12">
-                <h2 className="text-lg font-bold text-gray-800 underline sm:text-2xl">
-                  Property Features
-                </h2>
-
-                <ul className="p-4 mt-6 bg-gray-300 rounded">
-                  {property.features.map((feature) => (
-                    <li key={feature} className="p-1 font-semibold capitalize">
-                      ✔ {feature}
-                    </li>
-                  ))}
-                </ul>
+                <PropertyDetails
+                  features={property.features}
+                  id={property.propertyId}
+                  type={property.type.type}
+                  status={property.status}
+                  price={property.price}
+                  bedrooms={property.bedrooms}
+                  bathrooms={property.bathrooms}
+                  garage={property.garage}
+                  lot={property.lotSize}
+                  area={property.areaSize}
+                  year={property.yearBuilt}
+                />
               </div>
 
               {/* VIRTUAL TOUR */}
@@ -198,61 +201,6 @@ const SingleProperty = () => {
                     latitude={property.location.coordinates[1]}
                   />
                 </div>
-              </div>
-
-              {/* --DETAILS-- */}
-              <div className="mt-12">
-                <h2 className="text-lg font-bold text-gray-800 underline sm:text-2xl">
-                  Property Details
-                </h2>
-                <ul className="flex flex-col p-2 mt-6 bg-gray-300 rounded">
-                  <li className="flex justify-between p-2">
-                    <span className="font-semibold sm:text-lg">
-                      Property ID
-                    </span>
-                    <span className="capitalize">{property.propertyId}</span>
-                  </li>
-                  <li className="flex justify-between p-2">
-                    <span className="font-semibold sm:text-lg">
-                      Property Type
-                    </span>
-                    <span className="capitalize">{property.type.type}</span>
-                  </li>
-                  <li className="flex justify-between p-2">
-                    <span className="font-semibold sm:text-lg">Status</span>
-                    <span className="capitalize">{property.status}</span>
-                  </li>
-                  <li className="flex justify-between p-2">
-                    <span className="font-semibold sm:text-lg">Price</span>
-                    <span className="capitalize">$ {property.price}</span>
-                  </li>
-                  <li className="flex justify-between p-2">
-                    <span className="font-semibold sm:text-lg">Bedrooms</span>
-                    <span className="capitalize">{property.bedrooms}</span>
-                  </li>
-                  <li className="flex justify-between p-2">
-                    <span className="font-semibold sm:text-lg">Bathrooms</span>
-                    <span className="capitalize">{property.bathrooms}</span>
-                  </li>
-                  <li className="flex justify-between p-2">
-                    <span className="font-semibold sm:text-lg">Garage</span>
-                    <span className="capitalize">{property.garage}</span>
-                  </li>
-                  <li className="flex justify-between p-2">
-                    <span className="font-semibold sm:text-lg">Lot size</span>
-                    <span className="capitalize">{property.lotSize} sqft.</span>
-                  </li>
-                  <li className="flex justify-between p-2">
-                    <span className="font-semibold sm:text-lg">Area size</span>
-                    <span className="capitalize">
-                      {property.areaSize} sqft.
-                    </span>
-                  </li>
-                  <li className="flex justify-between p-2">
-                    <span className="font-semibold sm:text-lg">Year Built</span>
-                    <span className="capitalize">{property.yearBuilt}</span>
-                  </li>
-                </ul>
               </div>
 
               {/* AGENT INFO */}
