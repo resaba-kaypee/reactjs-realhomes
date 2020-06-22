@@ -3,6 +3,7 @@ import Slide from '../carousel/Slide';
 import SlideSimple from '../carousel/SlideSimple';
 import SvgIcon from '../svg/SvgIcon';
 import Map from '../layout/Map';
+import AskQuestion from '../layout/AskQuestion';
 
 const SingleProperty = () => {
   const property = {
@@ -256,35 +257,7 @@ const SingleProperty = () => {
 
               {/* AGENT INFO */}
               <div className="mt-12">
-                <h2 className="text-lg font-bold text-gray-800 underline sm:text-2xl">
-                  Agent Information
-                </h2>
-                <div className="flex mt-6 bg-gray-300 rounded">
-                  <div className="p-2 overflow-hidden rounded">
-                    <img
-                      className="object-contain object-center w-20 h-20 sm:w-24 sm:h-24"
-                      src={require(`../../assets/img/user/${user.photo}`)}
-                      alt="agent"
-                    />
-                  </div>
-                  <ul className="w-full p-2">
-                    <li>
-                      <h2 className="text-lg font-semibold text-gray-800 capitalize sm:text-xl">
-                        {user.name}
-                      </h2>
-                    </li>
-                    <li className="flex justify-between">
-                      <span className="font-semibold sm:text-lg">Phone:</span>
-                      <span className="text-sm sm:text-lg">
-                        {user.phoneNumber}
-                      </span>
-                    </li>
-                    <li className="flex justify-between">
-                      <span className="font-semibold sm:text-lg">Email:</span>
-                      <span className="text-sm sm:text-lg">{user.email}</span>
-                    </li>
-                  </ul>
-                </div>
+                <AskQuestion user={user} />
               </div>
 
               {/* SIMIlAR SLIDE */}
