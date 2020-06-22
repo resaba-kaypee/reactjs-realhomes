@@ -4,7 +4,7 @@ import SvgIcon from '../svg/SvgIcon';
 const AskQuestion = ({ user }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div>
+    <>
       <button
         className="w-full p-2 border-b focus:outline-none"
         type="button"
@@ -150,7 +150,7 @@ const AskQuestion = ({ user }) => {
           </form>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
