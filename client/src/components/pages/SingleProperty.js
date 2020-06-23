@@ -5,6 +5,7 @@ import SvgIcon from '../svg/SvgIcon';
 import Map from '../layout/Map';
 import AskQuestion from '../layout/AskQuestion';
 import PropertyDetails from '../layout/PropertyDetails';
+import HouseDescription from '../layout/HouseDescription';
 
 const SingleProperty = () => {
   const property = {
@@ -149,6 +150,33 @@ const SingleProperty = () => {
                 <Slide cover={property.imageCover} images={property.images} />
               </div>
 
+              {/* VIRTUAL TOUR */}
+              <div className="mt-12">
+                <h2 className="text-lg font-bold text-gray-800 underline sm:text-2xl">
+                  Virtual Tour
+                </h2>
+                <div className="relative mt-6 overflow-hidden pt-9/16">
+                  <iframe
+                    className="absolute top-0 left-0 w-full h-full"
+                    src="https://www.youtube.com/embed/yl3i6z8vi8w"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </div>
+
+              {/* --MAP-- */}
+              <div className="mt-12">
+                <h2 className="text-lg font-bold text-gray-800 underline sm:text-2xl">
+                  Map
+                </h2>
+                <div className="mt-6">
+                  <Map
+                    longitude={property.location.coordinates[0]}
+                    latitude={property.location.coordinates[1]}
+                  />
+                </div>
+              </div>
+
               {/* PROPERTY DETAILS */}
               <div className="mt-12">
                 <PropertyDetails
@@ -166,44 +194,12 @@ const SingleProperty = () => {
                 />
               </div>
 
-              {/* VIRTUAL TOUR */}
-              <div className="mt-12">
-                <h2 className="text-lg font-bold text-gray-800 underline sm:text-2xl">
-                  Virtual Tour
-                </h2>
-                <div className="relative mt-6 overflow-hidden pt-9/16">
-                  <iframe
-                    className="absolute top-0 left-0 w-full h-full"
-                    src="https://www.youtube.com/embed/yl3i6z8vi8w"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-              </div>
-
               {/* --DESCRIPTION-- */}
               <div className="mt-12">
-                <h2 className="text-lg font-bold text-gray-800 underline sm:text-2xl">
-                  House Description
-                </h2>
-                <p className="px-2 mt-6 text-xs text-center text-gray-700 sm:text-lg">
-                  {property.description}
-                </p>
+                <HouseDescription description={property.description} />
               </div>
 
-              {/* --MAP-- */}
-              <div className="mt-12">
-                <h2 className="text-lg font-bold text-gray-800 underline sm:text-2xl">
-                  Map
-                </h2>
-                <div className="mt-6">
-                  <Map
-                    longitude={property.location.coordinates[0]}
-                    latitude={property.location.coordinates[1]}
-                  />
-                </div>
-              </div>
-
-              {/* AGENT INFO */}
+              {/* ASK QUESTION */}
               <div className="mt-12">
                 <AskQuestion user={user} />
               </div>
