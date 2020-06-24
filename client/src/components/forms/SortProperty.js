@@ -1,7 +1,7 @@
 import React from 'react';
 import SvgIcon from '../svg/SvgIcon';
 
-const FilterProperty = () => {
+const SortProperty = () => {
   return (
     <form action="">
       <div className="px-2 mb-3">
@@ -31,4 +31,4 @@ const FilterProperty = () => {
   );
 };
 
-export default FilterProperty;
+export default SortProperty;
