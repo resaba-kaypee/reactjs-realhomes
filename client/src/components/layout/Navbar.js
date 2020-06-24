@@ -4,7 +4,7 @@ import Menu from '../nav/Menu';
 
 const Navbar = () => {
   return (
-    <header className="fixed top-0 z-20 flex justify-center w-full bg-gray-900 shadow-2xl">
+    <header className="fixed top-0 z-20 flex justify-center w-full bg-gray-900">
       <div className="relative w-full max-w-6xl px-8 py-2 xl:px-0">
         <nav className="flex items-center justify-between py-4">
           <AccountMenu />
