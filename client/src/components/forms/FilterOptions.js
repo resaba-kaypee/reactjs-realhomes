@@ -1,39 +1,12 @@
 import React from 'react';
 import SvgIcon from '../svg/SvgIcon';
 
-const SearchBar = () => {
+const FilterOptions = () => {
   return (
     <form action="" className="w-full max-w-6xl px-8">
       <div className="flex justify-evenly">
         <div className="flex flex-col w-full pt-6 pb-3 md:flex-row">
           <div className="md:w-1/2">
-            {/***** STATE *****/}
-            <div className="px-2 mb-3 ">
-              <label
-                className="block mb-1 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                htmlFor="state"
-              >
-                State
-              </label>
-              <div className="relative">
-                <select
-                  className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
-                  id="state"
-                >
-                  <option>Florida</option>
-                  <option>New York</option>
-                  <option>Texas</option>
-                  <option>Seattle</option>
-                </select>
-                <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
-                  <SvgIcon
-                    name="chevron-down"
-                    className="w-5 h-5 fill-current"
-                  />
-                </div>
-              </div>
-            </div>
-
             {/***** CITY *****/}
             <div className="px-2 mb-3 ">
               <label
@@ -247,4 +220,4 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+export default FilterOptions;
