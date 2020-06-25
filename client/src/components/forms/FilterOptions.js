@@ -17,7 +17,7 @@ const FilterOptions = () => {
               </label>
               <div className="relative">
                 <select
-                  className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
+                  className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
                   id="city"
                 >
                   <option value="01">All City</option>
@@ -46,7 +46,7 @@ const FilterOptions = () => {
               </label>
               <div className="relative">
                 <select
-                  className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
+                  className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
                   id="category"
                 >
                   <option value="all-types">All</option>
@@ -73,7 +73,7 @@ const FilterOptions = () => {
               </label>
               <div className="relative">
                 <select
-                  className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
+                  className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
                   id="category"
                 >
                   <option value="all-types">All</option>
@@ -105,7 +105,7 @@ const FilterOptions = () => {
               <div className="flex justify-between">
                 <div className="relative w-2/5">
                   <select
-                    className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
+                    className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
                     id="price"
                   >
                     <option value="01">Any</option>
@@ -125,7 +125,7 @@ const FilterOptions = () => {
                 <div className="self-end w-1/5 text-center">to</div>
                 <div className="relative w-2/5">
                   <select
-                    className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
+                    className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
                     id="price"
                   >
                     <option value="01">Any</option>
@@ -156,7 +156,7 @@ const FilterOptions = () => {
                 </label>
                 <div className="relative">
                   <select
-                    className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
+                    className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
                     id="beds"
                   >
                     <option value="01">01</option>
@@ -185,7 +185,7 @@ const FilterOptions = () => {
                 </label>
                 <div className="relative">
                   <select
-                    className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
+                    className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
                     id="baths"
                   >
                     <option value="01">01</option>
