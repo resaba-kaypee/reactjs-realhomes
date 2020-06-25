@@ -26,13 +26,13 @@ const PropertyCard = () => {
   };
 
   return (
-    <div className="w-full overflow-hidden bg-gray-200 rounded-lg shadow-xl md:mx-2">
+    <div className="w-full overflow-hidden bg-gray-200 rounded-lg shadow-xl">
       <div className="border">
         <div className="relative border-b-2 border-gray-100 pb-4/5">
           <a href="!#">
             <img
               className="absolute object-cover object-center w-full h-full"
-              src={require(`../../assets/img/${property.imageCover}`)}
+              src={require(`../../assets/img/property/${property.imageCover}`)}
               alt="property card"
             />
           </a>
@@ -43,7 +43,7 @@ const PropertyCard = () => {
           <div className="flex items-baseline justify-between p-4">
             <div className="w-16 h-16 mr-5 overflow-hidden border-2 border-gray-100 rounded-full">
               <img
-                src={require('../../assets/img/agent.png')}
+                src={require('../../assets/img/user/agent.png')}
                 alt="agent avatar"
                 className="object-cover w-full h-full"
               />
