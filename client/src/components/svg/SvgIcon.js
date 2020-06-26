@@ -22,6 +22,10 @@ const getViewBox = (name) => {
       return '0 0 20 20';
     case 'train':
       return '0 0 20 20';
+    case 'filter':
+      return '0 0 20 20';
+    case 'list':
+      return '0 0 20 20';
     case 'pinterest':
       return '0 0 510 510';
     case 'twitter':
@@ -43,6 +47,14 @@ const getViewBox = (name) => {
 
 const getPath = (name, props) => {
   switch (name) {
+    case 'list':
+      return (
+        <path d="M1 4h2v2H1V4zm4 0h14v2H5V4zM1 9h2v2H1V9zm4 0h14v2H5V9zm-4 5h2v2H1v-2zm4 0h14v2H5v-2z" />
+      );
+    case 'filter':
+      return (
+        <path d="M2.3 7.7A1 1 0 0 1 2 7V3a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v4a1 1 0 0 1-.3.7L15 14.42V17a1 1 0 0 1-.3.7l-4 4A1 1 0 0 1 9 21v-6.59l-6.7-6.7zM4 4v2.59l6.7 6.7a1 1 0 0 1 .3.71v4.59l2-2V14a1 1 0 0 1 .3-.7L20 6.58V4H4z" />
+      );
     case 'map':
       return (
         <path d="M14 5.62l-4 2v10.76l4-2V5.62zm2 0v10.76l4 2V7.62l-4-2zm-8 2l-4-2v10.76l4 2V7.62zm7 10.5L9.45 20.9a1 1 0 0 1-.9 0l-6-3A1 1 0 0 1 2 17V4a1 1 0 0 1 1.45-.9L9 5.89l5.55-2.77a1 1 0 0 1 .9 0l6 3A1 1 0 0 1 22 7v13a1 1 0 0 1-1.45.89L15 18.12z" />
