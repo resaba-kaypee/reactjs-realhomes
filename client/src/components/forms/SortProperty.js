@@ -4,7 +4,7 @@ import SvgIcon from '../svg/SvgIcon';
 const SortProperty = () => {
   return (
     <form action="">
-      <div className="px-2 mb-3">
+      <div className="px-2">
         <label
           className="inline-block mb-1 text-xs font-bold tracking-wide text-gray-700"
           htmlFor="sort"
@@ -13,7 +13,7 @@ const SortProperty = () => {
         </label>
         <div className="relative inline-block ml-4">
           <select
-            className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
+            className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
             id="state"
           >
             <option value="">Newest Property</option>
