@@ -24,6 +24,8 @@ const getViewBox = (name) => {
       return '0 0 20 20';
     case 'filter':
       return '0 0 20 20';
+    case 'circle':
+      return '0 0 100 100';
     case 'list':
       return '0 0 20 20';
     case 'pinterest':
@@ -47,6 +49,17 @@ const getViewBox = (name) => {
 
 const getPath = (name, props) => {
   switch (name) {
+    case 'circle':
+      return (
+        <circle
+          cx="50"
+          cy="50"
+          r="40"
+          stroke="white"
+          stroke-width="12"
+          fill="red"
+        />
+      );
     case 'list':
       return (
         <path d="M1 4h2v2H1V4zm4 0h14v2H5V4zM1 9h2v2H1V9zm4 0h14v2H5V9zm-4 5h2v2H1v-2zm4 0h14v2H5v-2z" />
