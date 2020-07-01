@@ -198,10 +198,10 @@ const FilterOptions = () => {
 
           {/* FILTER BUTTON */}
           <div className="flex items-end justify-center mb-3 md:flex-grow">
-            <button className="w-full max-w-lg py-3 font-bold text-white align-middle transition duration-500 ease-in-out bg-gray-800 rounded-full hover:bg-yellow-600 hover:border-yellow-600">
+            <button className="w-full max-w-lg py-3 font-semibold text-white align-middle transition duration-500 ease-in-out bg-gray-800 rounded-full hover:bg-yellow-600 hover:border-yellow-600">
               <SvgIcon
                 name="filter"
-                className="inline-block w-6 h-6 mr-2 fill-current"
+                className="inline-block w-5 h-5 mr-2 fill-current"
               />
               Filter
             </button>
