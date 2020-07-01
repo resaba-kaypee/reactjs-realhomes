@@ -56,7 +56,7 @@ const getPath = (name, props) => {
           cy="50"
           r="40"
           stroke="white"
-          stroke-width="12"
+          strokeWidth="12"
           fill="red"
         />
       );
