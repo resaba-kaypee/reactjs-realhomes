@@ -24,7 +24,7 @@ const MapListing = ({ properties }) => {
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       mapStyle="mapbox://styles/lightning-27/ck8xzwdai3vgc1inqyav9cvei"
       scrollZoom={false}
-      className="relative"
+      className="relative rounded"
     >
       {properties.map((property) => (
         <Fragment key={property.propertyId}>
