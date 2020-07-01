@@ -3,7 +3,7 @@ import SvgIcon from '../svg/SvgIcon';
 
 const Search = () => {
   return (
-    <form action="">
+    <form action="" className="relative">
       <div className="flex">
         <input
           className="w-full px-4 py-3 leading-tight text-gray-700 border border-r-0 border-gray-500 rounded rounded-r-none appearance-none focus:outline-none focus:bg-white focus:border-purple-500"
