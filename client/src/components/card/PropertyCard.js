@@ -1,30 +1,7 @@
 import React from 'react';
 import SvgIcon from '../svg/SvgIcon';
 
-const PropertyCard = () => {
-  const property = {
-    title: 'Single family home in 3725 Shawn Circle',
-    status: 'for sale',
-    type: {
-      category: 'residential',
-      type: 'single-family home',
-    },
-    location: {
-      type: 'Point',
-      coordinates: [-81.169915, 28.599849],
-      address: '3725 Shawn Cir',
-      state: 'Orlando, FL',
-      zipcode: 32826,
-    },
-    price: 285000,
-    areaSize: 1952,
-    lotSize: 5663,
-    bedrooms: 4,
-    bathrooms: 2,
-    garage: 2,
-    imageCover: 'single-family-house-in-3725-shawn-circle-cover.jpg',
-  };
-
+const PropertyCard = ({ property }) => {
   return (
     <div className="w-full overflow-hidden bg-gray-200 rounded-lg shadow-xl">
       <div className="border">
@@ -39,11 +16,11 @@ const PropertyCard = () => {
         </div>
 
         {/* AGENT */}
-        <div className="relative -mt-10 text-right">
+        <div className="relative -mt-10 text-right lg:-mt-16">
           <div className="flex items-baseline justify-between p-4">
-            <div className="w-16 h-16 mr-5 overflow-hidden border-2 border-gray-100 rounded-full">
+            <div className="w-16 h-16 mr-5 overflow-hidden border-2 border-gray-100 rounded-full lg:w-24 lg:h-24">
               <img
-                src={require('../../assets/img/user/agent.png')}
+                src={require(`../../assets/img/user/${property.user.photo}`)}
                 alt="agent avatar"
                 className="object-cover w-full h-full"
               />
@@ -65,7 +42,7 @@ const PropertyCard = () => {
           </h4>
           <div className="pb-2">
             <div className="flex justify-between py-2">
-              <div className="flex items-center text-yellow-600">
+              <div className="flex items-center w-1/2 text-yellow-600">
                 <SvgIcon name="marker" className="w-6 h-6 fill-current" />
                 <p className="text-black truncate">
                   {property.location.address}
