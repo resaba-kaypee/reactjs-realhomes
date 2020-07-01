@@ -3,11 +3,11 @@ import SvgIcon from '../svg/SvgIcon';
 
 const FilterOptions = () => {
   return (
-    <form action="" className="w-full max-w-6xl">
-      <div className="flex flex-col w-full pt-6 pb-3">
+    <form action="" className="w-full">
+      <div className="flex flex-col w-full pt-6 pb-3 xl:flex-row">
         <div className="w-full md:flex md:justify-between">
           {/***** CITY *****/}
-          <div className="px-2 mb-3 md:flex-grow">
+          <div className="px-2 mb-3 md:w-1/3">
             <label
               className="block mb-1 text-xs font-bold tracking-wide text-gray-700 uppercase"
               htmlFor="city"
@@ -33,7 +33,7 @@ const FilterOptions = () => {
           </div>
 
           {/***** CATEGORY *****/}
-          <div className="px-2 mb-3 md:flex-grow">
+          <div className="px-2 mb-3 md:w-1/3">
             <label
               className="block mb-1 text-xs font-bold tracking-wide text-gray-700 uppercase"
               htmlFor="category"
@@ -56,7 +56,7 @@ const FilterOptions = () => {
           </div>
 
           {/***** TYPES *****/}
-          <div className="px-2 mb-3 md:flex-grow">
+          <div className="px-2 mb-3 md:w-1/3">
             <label
               className="block mb-1 text-xs font-bold tracking-wide text-gray-700 uppercase"
               htmlFor="type"
@@ -197,16 +197,14 @@ const FilterOptions = () => {
           </div>
 
           {/* FILTER BUTTON */}
-          <div className="px-2 py-5 md:flex-grow">
-            <div className="flex items-center justify-center">
-              <button className="w-full max-w-lg py-2 font-bold text-white align-middle bg-blue-500 border-b-4 border-blue-700 rounded-full hover:bg-blue-400 hover:border-blue-500">
-                Search
-                <SvgIcon
-                  name="search"
-                  className="inline-block w-6 h-6 ml-4 fill-current"
-                />
-              </button>
-            </div>
+          <div className="flex items-end justify-center mb-3 md:flex-grow">
+            <button className="w-full max-w-lg py-3 font-bold text-white align-middle transition duration-500 ease-in-out bg-gray-800 rounded-full hover:bg-yellow-600 hover:border-yellow-600">
+              <SvgIcon
+                name="filter"
+                className="inline-block w-6 h-6 mr-2 fill-current"
+              />
+              Filter
+            </button>
           </div>
         </div>
       </div>
