@@ -68,7 +68,7 @@ const AskQuestion = ({ user }) => {
               <div className="md:w-1/3">
                 <label
                   className="block pr-4 mb-1 font-bold text-gray-500 md:text-right md:mb-0"
-                  for="inline-full-name"
+                  htmlFor="inline-full-name"
                 >
                   Full Name
                 </label>
@@ -86,7 +86,7 @@ const AskQuestion = ({ user }) => {
               <div className="md:w-1/3">
                 <label
                   className="block pr-4 mb-1 font-bold text-gray-500 md:text-right md:mb-0"
-                  for="inline-phone"
+                  htmlFor="inline-phone"
                 >
                   Phone
                 </label>
@@ -104,7 +104,7 @@ const AskQuestion = ({ user }) => {
               <div className="md:w-1/3">
                 <label
                   className="block pr-4 mb-1 font-bold text-gray-500 md:text-right md:mb-0"
-                  for="inline-email"
+                  htmlFor="inline-email"
                 >
                   Email
                 </label>
@@ -122,7 +122,7 @@ const AskQuestion = ({ user }) => {
               <div className="md:w-1/3">
                 <label
                   className="block pr-4 mb-1 font-bold text-gray-500 md:text-right md:mb-0"
-                  for="inline-text-area"
+                  htmlFor="inline-text-area"
                 >
                   Message
                 </label>
