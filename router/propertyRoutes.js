@@ -11,16 +11,22 @@ const {
   uploadImages,
   resizeImages,
   checkIfNew,
+  setPropertyUserIds,
 } = require('../controller/propertyController');
 
 const { protect, restrictTo } = require('../controller/authController');
 
-router.use(checkIfNew)
+router.use(checkIfNew);
 
 router
   .route('/')
   .get(getAllProperty) // available for everyone
-  .post(protect, restrictTo('admin', 'agent'), createProperty);
+  .post(
+    protect,
+    restrictTo('admin', 'agent'),
+    setPropertyUserIds,
+    createProperty
+  );
 
 router
   .route('/:id')
