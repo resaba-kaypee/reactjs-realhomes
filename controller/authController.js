@@ -102,7 +102,7 @@ exports.login = catchAsync(async (req, res, next) => {
     user.save({ validateBeforeSave: false });
     return next(
       new AppError(
-        `Incorrect password. Attempts ${user.loginAttempts} out of 2`,
+        `Incorrect password. Attempts ${user.loginAttempts} out of 5`,
         400
       )
     );
