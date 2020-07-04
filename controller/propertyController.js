@@ -35,26 +35,26 @@ exports.resizeImages = catchAsync(async (req, res, next) => {
   const property = await Property.findById(req.params.id).select('slug');
 
   // 1.) Cover image
-  req.body.imageCover = `${property.slug}-cover.jpg`;
+  req.body.imageCover = `${property.slug}-${Date.now()}-cover.jpg`;
 
   await sharp(req.files.imageCover[0].buffer)
     .resize(2000, 1333)
     .toFormat('jpeg')
     .jpeg({ qulity: 90 })
-    .toFile(`./public/property/${req.body.imageCover}`);
+    .toFile(`client/src/assets/img/property/${req.body.imageCover}`);
 
   // 2.) Images
   req.body.images = [];
 
   await Promise.all(
     req.files.images.map(async (file, i) => {
-      const filename = `${property.slug}-${i + 1}.jpg`;
+      const filename = `${property.slug}-${Date.now()}-${i + 1}.jpg`;
 
       await sharp(file.buffer)
         .resize(2000, 1333)
         .toFormat('jpeg')
         .jpeg({ qulity: 90 })
-        .toFile(`./public/property/${filename}`);
+        .toFile(`client/src/assets/img/property/${filename}`);
 
       req.body.images.push(filename);
     })
@@ -80,6 +80,12 @@ exports.checkIfNew = catchAsync(async (req, res, next) => {
 
   next();
 });
+
+exports.setPropertyUserIds = (req, res, next) => {
+  if (!req.body.user) req.body.user = req.user.id;
+  console.log(req.body.user);
+  next();
+};
 
 exports.getProperty = getOne(Property);
 

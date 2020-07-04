@@ -27,7 +27,7 @@ exports.resizePhoto = catchAsync(async (req, res, next) => {
     .resize(500, 500)
     .toFormat('jpeg')
     .jpeg({ qulity: 90 })
-    .toFile(`public/users/${req.file.filename}`);
+    .toFile(`client/src/assets/img/user/${req.file.filename}`);
 
   next();
 });
@@ -89,7 +89,6 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
     data: null,
   });
 });
-
 
 // ROUTES RESTRICTED TO ADMIN ONLY
 
