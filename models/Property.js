@@ -95,10 +95,10 @@ const propertyStatus = {
 };
 
 const PropertySchema = mongoose.Schema({
-  // user: {
-  //   type: mongoose.Schema.ObjectId,
-  //   ref: 'user',
-  // },
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'user',
+  },
   propertyId: String,
   title: {
     type: String,
@@ -151,8 +151,7 @@ const PropertySchema = mongoose.Schema({
   },
 });
 
-
-PropertySchema.index({ price: 1});
+PropertySchema.index({ price: 1 });
 PropertySchema.index({ slug: 1 });
 PropertySchema.index({ location: '2dsphere' });
 
