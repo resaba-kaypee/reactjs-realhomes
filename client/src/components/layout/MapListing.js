@@ -23,7 +23,7 @@ const MapListing = ({ properties }) => {
       onViewportChange={setViewport}
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       mapStyle="mapbox://styles/lightning-27/ck8xzwdai3vgc1inqyav9cvei"
-      scrollZoom={false}
+      scrollZoom={true}
       className="relative rounded"
     >
       {properties.map((property) => (
