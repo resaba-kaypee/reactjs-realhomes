@@ -1,13 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+
+import PropertyContext from '../../context/property/propertyContext';
 import FilterOptions from '../forms/FilterOptions';
 import SvgIcon from '../svg/SvgIcon';
 import PropertyCard from '../card/PropertyCard';
 import SortProperty from '../forms/SortProperty';
 import Search from '../forms/Search';
 import MapListings from '../layout/MapListing';
-import properties from '../../data';
+// import properties from '../../data';
 
 const Listings = () => {
+  const propertyContext = useContext(PropertyContext);
+  const { getProperties, properties, loading } = propertyContext;
+
+  useEffect(() => {
+    getProperties();
+  }, []);
+
+  const data = properties && !loading ? properties : null;
+  console.log('from listings', data);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const [isListActive, setIsListActive] = useState(true);
@@ -106,21 +118,27 @@ const Listings = () => {
           }
         >
           <div className="w-11/12 px-2">
-            <MapListings properties={properties} />
+            {properties !== null && !loading ? (
+              <MapListings properties={properties} />
+            ) : null}
           </div>
         </div>
       </section>
       <section>
         <div className="flex flex-row justify-center w-full">
           <div className="flex flex-col md:flex-row md:flex-wrap max-w-11/12">
-            {properties.map((property) => (
-              <div
-                key={property.propertyId}
-                className="p-2 mt-2 md:w-1/2 lg:w-1/3"
-              >
-                <PropertyCard property={property} />
-              </div>
-            ))}
+            {properties !== null && !loading ? (
+              properties.map((property) => (
+                <div
+                  key={property.propertyId}
+                  className="p-2 mt-2 md:w-1/2 lg:w-1/3"
+                >
+                  <PropertyCard property={property} />
+                </div>
+              ))
+            ) : (
+              <h1>SPINNER</h1>
+            )}
           </div>
         </div>
       </section>
