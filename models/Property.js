@@ -97,7 +97,7 @@ const propertyStatus = {
 const PropertySchema = mongoose.Schema({
   user: {
     type: mongoose.Schema.ObjectId,
-    ref: 'user',
+    ref: 'User',
   },
   propertyId: String,
   title: {
@@ -120,6 +120,7 @@ const PropertySchema = mongoose.Schema({
     },
     coordinates: [Number], // longitude first then latitude
     address: String,
+    city: String,
     state: String,
     zipcode: Number,
   },
@@ -158,6 +159,14 @@ PropertySchema.index({ location: '2dsphere' });
 PropertySchema.pre('save', function (next) {
   if (this.newTagDateExpires > Date.now())
     this.slug = slugify(this.title, { lower: true });
+  next();
+});
+
+PropertySchema.pre(/^find/, function (next) {
+  this.populate({
+    path: 'user',
+    select: 'name email phoneNumber, photo',
+  });
   next();
 });
 
