@@ -83,7 +83,6 @@ exports.checkIfNew = catchAsync(async (req, res, next) => {
 
 exports.setPropertyUserIds = (req, res, next) => {
   if (!req.body.user) req.body.user = req.user.id;
-  console.log(req.body.user);
   next();
 };
 
