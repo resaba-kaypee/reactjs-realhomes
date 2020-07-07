@@ -12,11 +12,14 @@ const {
   resizeImages,
   checkIfNew,
   setPropertyUserIds,
+  featuredProperties,
 } = require('../controller/propertyController');
 
 const { protect, restrictTo } = require('../controller/authController');
 
 router.use(checkIfNew);
+
+router.route('/featured-properties').get(featuredProperties, getAllProperty);
 
 router
   .route('/')

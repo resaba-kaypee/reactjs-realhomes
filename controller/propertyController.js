@@ -86,6 +86,12 @@ exports.setPropertyUserIds = (req, res, next) => {
   next();
 };
 
+exports.featuredProperties = (req, res, next) => {
+  req.query.limit = 6;
+  req.query.sort = '-price';
+  next();
+};
+
 exports.getProperty = getOne(Property);
 
 exports.getAllProperty = getAll(Property);
