@@ -7,7 +7,7 @@ const PropertyCard = ({ property }) => {
     <div className="w-full overflow-hidden bg-gray-200 rounded-lg shadow-xl">
       <div className="border">
         <div className="relative border-b-2 border-gray-100 pb-4/5">
-          <NavLink to={`/${property._id}/${property.slug}/`}>
+          <NavLink to={`/property/${property.slug}`}>
             <img
               className="absolute object-cover object-center w-full h-full"
               src={require(`../../assets/img/property/${property.imageCover}`)}
