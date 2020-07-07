@@ -7,9 +7,10 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
-    "full": "concurrently \"npm run server\" \"npm run client\"",
-    "dev": "nodemon server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "prod": "cross-env NODE_ENV=production nodemon server.js",
+    "imp-prop": "node ./dev-data/import-dev-data.js --import",
+    "del-prop": "node ./dev-data/import-dev-data.js --delete",
     "debug": "ndb server.js"
   },
   "author": "Kaypee",

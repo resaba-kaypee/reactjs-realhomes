@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import SvgIcon from '../svg/SvgIcon';
 
 const PropertyCard = ({ property }) => {
@@ -6,13 +7,13 @@ const PropertyCard = ({ property }) => {
     <div className="w-full overflow-hidden bg-gray-200 rounded-lg shadow-xl">
       <div className="border">
         <div className="relative border-b-2 border-gray-100 pb-4/5">
-          <a href="!#">
+          <NavLink to={`/${property._id}/${property.slug}/`}>
             <img
               className="absolute object-cover object-center w-full h-full"
               src={require(`../../assets/img/property/${property.imageCover}`)}
               alt="property card"
             />
-          </a>
+          </NavLink>
         </div>
 
         {/* AGENT */}

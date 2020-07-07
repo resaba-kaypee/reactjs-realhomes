@@ -5,6 +5,8 @@ import propertyReducer from './propertyReducer';
 
 import {
   GET_PROPERTIES,
+  GET_PROPERTIES_BY_LOCATION,
+  GET_FEATURED_PROPERTIES,
   GET_PROPERTY,
   CREATE_PROPERTY,
   UPDATE_PROPERTY,
@@ -25,9 +27,33 @@ const PropertyState = (props) => {
   // Get all properties
   const getProperties = async () => {
     try {
-      const res = await axios.get('api/v1/properties');
+      const res = await axios.get(`api/v1/properties`);
       console.log('from state', res.data);
       dispatch({ type: GET_PROPERTIES, payload: res.data });
+    } catch (err) {
+      dispatch({ type: ERROR, payload: err });
+    }
+  };
+
+  // Get all properties by city
+  const getPropertiesByLocation = async (location) => {
+    try {
+      const res = await axios.get(
+        `api/v1/properties?location[state]=${location}`
+      );
+      console.log('from state', res);
+      dispatch({ type: GET_PROPERTIES_BY_LOCATION, payload: res.data });
+    } catch (err) {
+      dispatch({ type: ERROR, payload: err });
+    }
+  };
+
+  // Get featured properties
+  const getFeaturedProperties = async () => {
+    try {
+      const res = await axios.get(`api/v1/properties/featured-properties`);
+      console.log('from state', res);
+      dispatch({ type: GET_PROPERTIES_BY_LOCATION, payload: res.data });
     } catch (err) {
       dispatch({ type: ERROR, payload: err });
     }
@@ -50,6 +76,8 @@ const PropertyState = (props) => {
         error: state.error,
         loading: state.loading,
         getProperties,
+        getPropertiesByLocation,
+        getFeaturedProperties,
         getProperty,
         createPropety,
         updatePropety,

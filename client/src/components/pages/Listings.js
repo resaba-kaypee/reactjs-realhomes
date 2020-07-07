@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 
 import PropertyContext from '../../context/property/propertyContext';
 import FilterOptions from '../forms/FilterOptions';
@@ -11,14 +12,13 @@ import MapListings from '../layout/MapListing';
 
 const Listings = () => {
   const propertyContext = useContext(PropertyContext);
-  const { getProperties, properties, loading } = propertyContext;
+  const { properties, loading } = propertyContext;
 
-  useEffect(() => {
-    getProperties();
-  }, []);
+  // useEffect(() => {
+  //   getPropertiesByLocation();
+  // }, []);
 
-  const data = properties && !loading ? properties : null;
-  console.log('from listings', data);
+  const { state, city } = useParams();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -61,7 +61,7 @@ const Listings = () => {
 
         <div className="px-8 mt-6">
           <h2 className="text-xl font-bold leading-8 text-gray-800">
-            Orlando, FL Real Estate & Homes for Sale
+            {city}, {state} Real Estate & Homes for Sale or Rent
           </h2>
           <div className="flex items-end justify-between mt-4">
             <span className="text-gray-900 underline">3,500 Homes</span>

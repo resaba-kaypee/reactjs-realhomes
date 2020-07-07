@@ -3,6 +3,5 @@ node_modules
 .cache
 config.env
 test.js
-TODOS.md
-TOFIX.md
+*.md
 client/src/assets/img/

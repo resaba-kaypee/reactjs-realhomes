@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
+import PropertyContext from '../../context/property/propertyContext';
 import PropertyCard from '../card/PropertyCard';
-import properties from '../../data';
 
 const FeaturedProperty = () => {
-  const loading = false;
+  const propertyContext = useContext(PropertyContext);
+  const { getFeaturedProperties, properties, loading } = propertyContext;
+
+  useEffect(() => {
+    getFeaturedProperties();
+  }, []);
 
   return (
     <section className="relative z-10">
@@ -15,14 +20,15 @@ const FeaturedProperty = () => {
       </div>
       <div className="flex flex-row justify-center w-full">
         <div className="flex flex-col md:flex-row md:flex-wrap max-w-11/12">
-          {properties.map((property) => (
-            <div
-              key={property.propertyId}
-              className="p-2 mt-2 md:w-1/2 lg:w-1/3"
-            >
-              <PropertyCard property={property} />
-            </div>
-          ))}
+          {properties !== null && !loading ? (
+            properties.map((property) => (
+              <div key={property._id} className="p-2 mt-2 md:w-1/2 lg:w-1/3">
+                <PropertyCard property={property} />
+              </div>
+            ))
+          ) : (
+            <h1>SPINNER</h1>
+          )}
         </div>
       </div>
     </section>
