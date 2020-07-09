@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
 import PropertyContext from '../../context/property/propertyContext';
 import FilterOptions from '../forms/FilterOptions';
@@ -11,14 +11,16 @@ import MapListings from '../layout/MapListing';
 // import properties from '../../data';
 
 const Listings = () => {
+  const location = useLocation();
+
   const propertyContext = useContext(PropertyContext);
-  const { properties, loading } = propertyContext;
+  const { getPropertiesByLocation, properties, loading } = propertyContext;
 
-  // useEffect(() => {
-  //   getPropertiesByLocation();
-  // }, []);
+  let query = location.search;
 
-  const { state, city } = useParams();
+  useEffect(() => {
+    getPropertiesByLocation(query);
+  }, []);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -61,10 +63,12 @@ const Listings = () => {
 
         <div className="px-8 mt-6">
           <h2 className="text-xl font-bold leading-8 text-gray-800">
-            {city}, {state} Real Estate & Homes for Sale or Rent
+            Real Estate & Homes for Sale or Rent in {query.split('=')[1]}
           </h2>
           <div className="flex items-end justify-between mt-4">
-            <span className="text-gray-900 underline">3,500 Homes</span>
+            <span className="text-gray-900 underline">
+              {properties && properties.length} Homes
+            </span>
             {/* SORT SEARCH FORM */}
             <SortProperty />
 
@@ -129,10 +133,7 @@ const Listings = () => {
           <div className="flex flex-col md:flex-row md:flex-wrap max-w-11/12">
             {properties !== null && !loading ? (
               properties.map((property) => (
-                <div
-                  key={property.propertyId}
-                  className="p-2 mt-2 md:w-1/2 lg:w-1/3"
-                >
+                <div key={property._id} className="p-2 mt-2 md:w-1/2 lg:w-1/3">
                   <PropertyCard property={property} />
                 </div>
               ))
