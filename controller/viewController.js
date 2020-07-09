@@ -1,6 +1,7 @@
 const Property = require('../models/Property');
 
 const catchAsync = require('../utils/catchAsync');
+const convertJsonToDot = require('../utils/jsonToDot');
 const AppError = require('../utils/appError');
 
 const { getAll } = require('./handlerFactory');
@@ -44,5 +45,7 @@ exports.getProperty = catchAsync(async (req, res, next) => {
     data: property,
   });
 });
+
+exports.getPropertiesByLocation = getAll(Property);
 
 exports.getAllProperty = getAll(Property);
