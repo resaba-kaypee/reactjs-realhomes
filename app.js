@@ -11,8 +11,8 @@ const cookieParser = require('cookie-parser');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controller/errorController');
 
+const viewRoutes = require('./router/viewRoutes');
 const userRoutes = require('./router/userRoutes');
-
 const propertyRoutes = require('./router/propertyRoutes');
 
 const app = express();
@@ -73,6 +73,7 @@ app.use((req, res, next) => {
 });
 
 //=====================================>> SERVER ROUTES
+app.use('/api', viewRoutes);
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/properties', propertyRoutes);
 
