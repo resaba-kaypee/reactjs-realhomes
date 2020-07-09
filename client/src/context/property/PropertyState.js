@@ -4,7 +4,6 @@ import PropertyContext from './propertyContext';
 import propertyReducer from './propertyReducer';
 
 import {
-  GET_PROPERTIES,
   GET_PROPERTIES_BY_LOCATION,
   GET_FEATURED_PROPERTIES,
   GET_PROPERTY,
@@ -24,43 +23,37 @@ const PropertyState = (props) => {
 
   const [state, dispatch] = useReducer(propertyReducer, initialState);
 
-  // Get all properties
-  const getProperties = async () => {
-    try {
-      const res = await axios.get(`api/v1/properties`);
-      console.log('from state', res.data);
-      dispatch({ type: GET_PROPERTIES, payload: res.data });
-    } catch (err) {
-      dispatch({ type: ERROR, payload: err });
-    }
-  };
-
   // Get all properties by city
-  const getPropertiesByLocation = async (location) => {
+  const getPropertiesByLocation = async (query) => {
     try {
-      const res = await axios.get(
-        `api/v1/properties?location[state]=${location}`
-      );
+      const res = await axios.get(`api/properties/search${query}`);
       console.log('from state', res);
       dispatch({ type: GET_PROPERTIES_BY_LOCATION, payload: res.data });
     } catch (err) {
-      dispatch({ type: ERROR, payload: err });
+      dispatch({ type: ERROR, payload: err.response.data });
     }
   };
 
   // Get featured properties
   const getFeaturedProperties = async () => {
     try {
-      const res = await axios.get(`api/v1/properties/featured-properties`);
-      console.log('from state', res);
+      const res = await axios.get(`/api/featured-properties`);
       dispatch({ type: GET_PROPERTIES_BY_LOCATION, payload: res.data });
     } catch (err) {
-      dispatch({ type: ERROR, payload: err });
+      dispatch({ type: ERROR, payload: err.response.data });
     }
   };
 
-  // Get property
-  const getProperty = () => {};
+  // Get property by id
+  const getProperty = async (slug) => {
+    try {
+      const res = await axios.get(`/api/property/${slug}`);
+      dispatch({ type: GET_PROPERTY, payload: res.data });
+    } catch (err) {
+      dispatch({ type: ERROR, payload: err.response.data });
+    }
+  };
+
   // Create property
   const createPropety = () => {};
   // Update property
@@ -75,7 +68,6 @@ const PropertyState = (props) => {
         property: state.property,
         error: state.error,
         loading: state.loading,
-        getProperties,
         getPropertiesByLocation,
         getFeaturedProperties,
         getProperty,
