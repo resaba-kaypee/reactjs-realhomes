@@ -8,6 +8,7 @@ const FeaturedProperty = () => {
 
   useEffect(() => {
     getFeaturedProperties();
+    // eslint-disable-next-line
   }, []);
 
   return (
