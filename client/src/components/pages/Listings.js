@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import PropertyContext from '../../context/property/propertyContext';
 import FilterOptions from '../forms/FilterOptions';
@@ -19,7 +19,8 @@ const Listings = () => {
   let query = location.search;
 
   useEffect(() => {
-    getPropertiesByLocation(query);
+    getPropertiesByLocation();
+    // eslint-disable-next-line
   }, []);
 
   const [isOpen, setIsOpen] = useState(false);

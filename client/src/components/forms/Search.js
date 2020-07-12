@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import {
-  withRouter,
-  useLocation,
-  useHistory,
-} from 'react-router-dom';
+import { withRouter, useLocation, useHistory } from 'react-router-dom';
 import PropertyContext from '../../context/property/propertyContext';
 import SvgIcon from '../svg/SvgIcon';
 import { useContext } from 'react';
@@ -15,10 +11,13 @@ const Search = () => {
   const propertyContext = useContext(PropertyContext);
   const { getPropertiesByLocation } = propertyContext;
 
-  const [value, setValue] = useState('FL');
+  const [value, setValue] = useState('');
   const [query, setQuery] = useState('');
 
-  location.search = `?location[state]=${value}`;
+  const makeQuery = () => {
+    location.search = `?location[state]=${value}`;
+    setQuery(location.search);
+  };
 
   const redirectTo = () => {
     history.push(`/search${query}`);
@@ -26,7 +25,7 @@ const Search = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    getPropertiesByLocation(query);
+    getPropertiesByLocation();
     redirectTo();
   };
 
@@ -43,7 +42,7 @@ const Search = () => {
         <button
           type="submit"
           className="px-4 py-3 text-gray-200 transition duration-500 ease-in-out bg-gray-800 border border-l-0 border-gray-800 rounded rounded-l-none hover:bg-yellow-600 hover:border-yellow-600"
-          onClick={() => setQuery(location.search)}
+          onClick={() => makeQuery()}
         >
           <SvgIcon name="search" className="w-5 h-5 fill-current" />
         </button>
