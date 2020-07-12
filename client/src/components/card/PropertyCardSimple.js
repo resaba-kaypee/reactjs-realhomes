@@ -1,16 +1,17 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const PropertyCardSimple = ({ property }) => {
   return (
-    <div key={property.propertyId} className="p-2 overflow-hidden">
+    <div className="p-2 overflow-hidden">
       <div className="relative">
-        <a href="!#">
+        <NavLink to={`/property/${property.slug}`}>
           <img
             className="object-cover object-center rounded"
             src={require(`../../assets/img/property/${property.imageCover}`)}
             alt={property.propertyId}
           />
-        </a>
+        </NavLink>
       </div>
       <div className="relative px-2 -mt-10">
         <p className="text-xl font-bold leading-10 text-white">
