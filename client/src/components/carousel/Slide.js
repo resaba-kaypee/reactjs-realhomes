@@ -5,7 +5,10 @@ const Slide = ({ cover, images }) => {
   const imgs = [cover, ...images];
 
   const slides = imgs.map((img) => (
-    <img src={require(`../../assets/img/property/${img}`)} />
+    <img
+      src={require(`../../assets/img/property/${img}`)}
+      alt="property cover"
+    />
   ));
 
   const [state, setState] = useState({
