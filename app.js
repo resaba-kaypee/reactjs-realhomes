@@ -56,6 +56,7 @@ app.use(xss());
 app.use(
   hpp({
     whitelist: [
+      'location',
       'price',
       'areaSize',
       'lotSize',

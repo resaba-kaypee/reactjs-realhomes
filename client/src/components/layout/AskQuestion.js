@@ -79,6 +79,7 @@ const AskQuestion = ({ user }) => {
                   id="inline-full-name"
                   type="text"
                   value="Your full name..."
+                  readOnly
                 />
               </div>
             </div>

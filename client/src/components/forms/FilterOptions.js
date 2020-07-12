@@ -2,8 +2,11 @@ import React from 'react';
 import SvgIcon from '../svg/SvgIcon';
 
 const FilterOptions = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
-    <form action="" className="w-full">
+    <form className="w-full" onSubmit={onsubmit}>
       <div className="flex flex-col w-full pt-6 pb-3 xl:flex-row">
         <div className="w-full md:flex md:justify-between">
           {/***** CITY *****/}
@@ -16,11 +19,12 @@ const FilterOptions = () => {
             </label>
             <div className="relative">
               <select
-                className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
                 id="city"
+                name="city"
+                className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
               >
-                <option value="01">All City</option>
-                <option value="02">London</option>
+                <option value="">All City</option>
+                <option value="miami">London</option>
                 <option value="03">Dhaka</option>
                 <option value="04">Singapore</option>
                 <option value="05">Comilla</option>
@@ -42,10 +46,11 @@ const FilterOptions = () => {
             </label>
             <div className="relative">
               <select
-                className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
                 id="category"
+                name="category"
+                className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
               >
-                <option value="all-types">All</option>
+                <option value="">All</option>
                 <option value="commercial">Commercial</option>
                 <option value="residential">Residential</option>
               </select>
@@ -65,8 +70,9 @@ const FilterOptions = () => {
             </label>
             <div className="relative">
               <select
+                id="type"
+                name='type'
                 className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
-                id="category"
               >
                 <option value="all-types">All</option>
                 <option value="single-family home">Single-family Home</option>
@@ -96,10 +102,10 @@ const FilterOptions = () => {
             <div className="flex justify-between">
               <div className="relative w-2/5">
                 <select
-                  className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
                   id="price"
+                  className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
                 >
-                  <option value="01">Any</option>
+                  <option value="01">Min</option>
                   <option value="02">02</option>
                   <option value="03">03</option>
                   <option value="04">04</option>
@@ -116,10 +122,10 @@ const FilterOptions = () => {
               <div className="self-end w-1/5 text-center text-gray-700">to</div>
               <div className="relative w-2/5">
                 <select
-                  className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
                   id="price"
+                  className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
                 >
-                  <option value="01">Any</option>
+                  <option value="01">Max</option>
                   <option value="02">02</option>
                   <option value="03">03</option>
                   <option value="04">04</option>
@@ -198,7 +204,10 @@ const FilterOptions = () => {
 
           {/* FILTER BUTTON */}
           <div className="flex items-end justify-center mb-3 md:flex-grow">
-            <button className="w-full max-w-lg py-3 font-semibold text-white align-middle transition duration-500 ease-in-out bg-gray-800 rounded-full hover:bg-yellow-600 hover:border-yellow-600">
+            <button
+              type="submit"
+              className="w-full max-w-lg py-3 font-semibold text-white align-middle transition duration-500 ease-in-out bg-gray-800 rounded-full hover:bg-yellow-600 hover:border-yellow-600"
+            >
               <SvgIcon
                 name="filter"
                 className="inline-block w-5 h-5 mr-2 fill-current"
