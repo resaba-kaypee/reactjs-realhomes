@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams, useLocation } from 'react-router-dom';
 import PropertyContext from '../../context/property/propertyContext';
 import Slide from '../carousel/Slide';
 import SlideSimple from '../carousel/SlideSimple';
@@ -10,17 +10,39 @@ import PropertyDetails from '../layout/PropertyDetails';
 import HouseDescription from '../layout/HouseDescription';
 
 const SingleProperty = () => {
-  const propertyContext = useContext(PropertyContext);
-  const { getProperty, property, loading } = propertyContext;
   const { slug } = useParams();
+  const location = useLocation();
+
+  const propertyContext = useContext(PropertyContext);
+  const {
+    getProperty,
+    getSimilarProperties,
+    property,
+    properties,
+    loading,
+  } = propertyContext;
+
+  const [type, setType] = useState('');
+
+  location.search = `?type[type]=${type}`;
 
   useEffect(() => {
     getProperty(slug);
+    // eslint-disable-next-line
   }, [slug]);
 
-  const data = property !== null && !loading ? property : null;
+  useEffect(() => {
+    if (property !== null && !loading) {
+      setType(property.type.type);
+    }
+  }, [property, loading]);
 
-  console.log(data);
+  useEffect(() => {
+    if (location.search !== null) {
+      getSimilarProperties();
+    }
+    // eslint-disable-next-line
+  }, [location.search]);
 
   return (
     <section className="w-full mt-16">
@@ -131,6 +153,7 @@ const SingleProperty = () => {
                     </h2>
                     <div className="relative mt-6 overflow-hidden pt-9/16">
                       <iframe
+                        title={property.title}
                         className="absolute top-0 left-0 w-full h-full"
                         src="https://www.youtube.com/embed/yl3i6z8vi8w"
                         allowFullScreen
@@ -183,7 +206,11 @@ const SingleProperty = () => {
                     <h2 className="text-lg font-bold text-gray-800 underline sm:text-2xl">
                       Similar Properties
                     </h2>
-                    <div className="mt-6">{/* <SlideSimple /> */}</div>
+                    <div className="mt-6">
+                      {properties !== null && !loading ? (
+                        <SlideSimple properties={properties} />
+                      ) : null}
+                    </div>
                   </div>
                 </div>
               </div>
