@@ -6,10 +6,12 @@ import {
   UPDATE_PROPERTY,
   DELETE_PROPERTY,
   ERROR,
+  GET_SIMILAR_PROPERTIES,
 } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
+    case GET_SIMILAR_PROPERTIES:
     case GET_PROPERTIES_BY_LOCATION:
     case GET_FEATURED_PROPERTIES:
       return {

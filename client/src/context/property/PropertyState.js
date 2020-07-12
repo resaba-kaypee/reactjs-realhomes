@@ -1,9 +1,11 @@
 import React, { useReducer } from 'react';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import PropertyContext from './propertyContext';
 import propertyReducer from './propertyReducer';
 
 import {
+  GET_SIMILAR_PROPERTIES,
   GET_PROPERTIES_BY_LOCATION,
   GET_FEATURED_PROPERTIES,
   GET_PROPERTY,
@@ -14,6 +16,8 @@ import {
 } from '../types';
 
 const PropertyState = (props) => {
+  const location = useLocation();
+
   const initialState = {
     properties: null,
     property: null,
@@ -23,12 +27,21 @@ const PropertyState = (props) => {
 
   const [state, dispatch] = useReducer(propertyReducer, initialState);
 
-  // Get all properties by city
-  const getPropertiesByLocation = async (query) => {
+  // Get all properties by state
+  const getPropertiesByLocation = async () => {
     try {
-      const res = await axios.get(`api/properties/search${query}`);
-      console.log('from state', res);
+      const res = await axios.get(`api/properties/search${location.search}`);
       dispatch({ type: GET_PROPERTIES_BY_LOCATION, payload: res.data });
+    } catch (err) {
+      dispatch({ type: ERROR, payload: err.response.data });
+    }
+  };
+
+  // Get similar properties
+  const getSimilarProperties = async (type) => {
+    try {
+      const res = await axios.get(`/api/properties/search${location.search}`);
+      dispatch({ type: GET_SIMILAR_PROPERTIES, payload: res.data });
     } catch (err) {
       dispatch({ type: ERROR, payload: err.response.data });
     }
@@ -70,6 +83,7 @@ const PropertyState = (props) => {
         loading: state.loading,
         getPropertiesByLocation,
         getFeaturedProperties,
+        getSimilarProperties,
         getProperty,
         createPropety,
         updatePropety,
