@@ -1,7 +1,6 @@
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 const APIFeatures = require('../utils/apiFeatures');
-const convertJsonToDot = require('../utils/jsonToDot');
 
 exports.deleteOne = (Model) =>
   catchAsync(async (req, res, next) => {
@@ -64,7 +63,7 @@ exports.getOne = (Model, options) =>
 
 exports.getAll = (Model) =>
   catchAsync(async (req, res, next) => {
-    const features = new APIFeatures(Model.find(), convertJsonToDot(req.query))
+    const features = new APIFeatures(Model.find(), req.query)
       .filter()
       .sort()
       .limitFields()

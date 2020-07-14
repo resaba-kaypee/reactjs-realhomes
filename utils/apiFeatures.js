@@ -1,3 +1,5 @@
+const convertNestedQuery = require('./convertNestedQuery');
+
 class APIFeatures {
   constructor(query, queryString) {
     this.query = query;
@@ -11,8 +13,8 @@ class APIFeatures {
 
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(/\b(gte|lte|gt|lt)\b/g, (match) => `$${match}`);
-
-    this.query = this.query.find(JSON.parse(queryStr));
+    
+    this.query = this.query.find(convertNestedQuery(JSON.parse(queryStr)));
 
     return this;
   }
