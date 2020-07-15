@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
+import PropertyContext from '../../context/property/propertyContext';
 import SvgIcon from '../svg/SvgIcon';
 
 const FilterOptions = () => {
   const location = useLocation();
   console.log(location);
+
+  const propertyContext = useContext(PropertyContext);
+
+  const { getPropertiesByLocation } = propertyContext;
 
   const [filterObj, setFilterObj] = useState({});
 
@@ -28,21 +33,17 @@ const FilterOptions = () => {
 
   const queryStr = Object.keys(filterObj)
     .filter((key) => filterObj[key] !== null && filterObj[key] !== '')
-    .map(
-      (key) =>
-        `${encodeURIComponent(key)}=${encodeURIComponent(filterObj[key])}`
-    )
+    .map((key) => `${key}=${filterObj[key]}`)
     .join('&');
 
   const filterSearch = () => {
     location.search = location.search + '&' + queryStr;
-    console.log(filterObj);
-    console.log(queryStr);
-    console.log(location.search);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
+    filterSearch();
+    getPropertiesByLocation();
   };
 
   return (
@@ -322,7 +323,6 @@ const FilterOptions = () => {
           <div className="flex items-end justify-center mb-3 md:flex-grow">
             <button
               type="submit"
-              onClick={() => filterSearch()}
               className="w-full max-w-lg py-3 font-semibold text-white align-middle transition duration-500 ease-in-out bg-gray-800 rounded-full hover:bg-yellow-600 hover:border-yellow-600"
             >
               <SvgIcon
