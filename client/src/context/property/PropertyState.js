@@ -1,5 +1,4 @@
 import React, { useReducer } from 'react';
-import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import PropertyContext from './propertyContext';
 import propertyReducer from './propertyReducer';
@@ -9,6 +8,8 @@ import {
   GET_PROPERTIES_BY_LOCATION,
   GET_FEATURED_PROPERTIES,
   GET_PROPERTY,
+  SET_STATE_SEARCH,
+  SET_HISTORY_SEARCH,
   CREATE_PROPERTY,
   UPDATE_PROPERTY,
   DELETE_PROPERTY,
@@ -16,21 +17,31 @@ import {
 } from '../types';
 
 const PropertyState = (props) => {
-  const location = useLocation();
-
   const initialState = {
     properties: null,
+    featured: null,
+    state_search: null,
+    history_search: null,
     property: null,
+    similar: null,
     error: null,
     loading: true,
   };
 
   const [state, dispatch] = useReducer(propertyReducer, initialState);
 
+  // Load history
+  const loadHistorySearch = () => {
+    if (localStorage.history) {
+      getPropertiesByLocation(localStorage.history);
+      setStateSearch(localStorage.state);
+    }
+  };
+
   // Get all properties by state
-  const getPropertiesByLocation = async () => {
+  const getPropertiesByLocation = async (queryStr) => {
     try {
-      const res = await axios.get(`api/properties/search${location.search}`);
+      const res = await axios.get(`api/properties/search?${queryStr}`);
       dispatch({ type: GET_PROPERTIES_BY_LOCATION, payload: res.data });
     } catch (err) {
       dispatch({ type: ERROR, payload: err.response.data });
@@ -38,20 +49,20 @@ const PropertyState = (props) => {
   };
 
   // Get similar properties
-  const getSimilarProperties = async (type) => {
-    try {
-      const res = await axios.get(`/api/properties/search${location.search}`);
-      dispatch({ type: GET_SIMILAR_PROPERTIES, payload: res.data });
-    } catch (err) {
-      dispatch({ type: ERROR, payload: err.response.data });
-    }
+  const getSimilarProperties = async () => {
+    // try {
+    //   const res = await axios.get(`/api/properties/search${location.search}`);
+    //   dispatch({ type: GET_SIMILAR_PROPERTIES, payload: res.data });
+    // } catch (err) {
+    //   dispatch({ type: ERROR, payload: err.response.data });
+    // }
   };
 
   // Get featured properties
   const getFeaturedProperties = async () => {
     try {
       const res = await axios.get(`/api/featured-properties`);
-      dispatch({ type: GET_PROPERTIES_BY_LOCATION, payload: res.data });
+      dispatch({ type: GET_FEATURED_PROPERTIES, payload: res.data });
     } catch (err) {
       dispatch({ type: ERROR, payload: err.response.data });
     }
@@ -67,6 +78,16 @@ const PropertyState = (props) => {
     }
   };
 
+  // Set query string
+  const setStateSearch = (query) => {
+    dispatch({ type: SET_STATE_SEARCH, payload: query });
+  };
+
+  // Set history search
+  const setHistorySearch = (history) => {
+    dispatch({ type: SET_HISTORY_SEARCH, payload: history });
+  };
+
   // Create property
   const createPropety = () => {};
   // Update property
@@ -78,12 +99,19 @@ const PropertyState = (props) => {
     <PropertyContext.Provider
       value={{
         properties: state.properties,
+        featured: state.featured,
+        state_search: state.state_search,
+        history_search: state.history_search,
         property: state.property,
+        similar: state.similar,
         error: state.error,
         loading: state.loading,
         getPropertiesByLocation,
         getFeaturedProperties,
         getSimilarProperties,
+        setStateSearch,
+        setHistorySearch,
+        loadHistorySearch,
         getProperty,
         createPropety,
         updatePropety,
