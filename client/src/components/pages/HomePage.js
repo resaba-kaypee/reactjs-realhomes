@@ -5,7 +5,7 @@ import WhyChooseUs from '../sections/WhyChooseUs';
 import CallToAction from '../sections/CallToAction';
 import News from '../sections/News';
 
-const LandingPage = () => {
+const HomePage = () => {
   return (
     <>
       <Welcome />
@@ -17,4 +17,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default HomePage;
