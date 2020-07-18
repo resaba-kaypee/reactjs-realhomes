@@ -22,7 +22,7 @@ const SingleProperty = () => {
     loading,
   } = propertyContext;
 
-  const [type, setType] = useState('');
+  const [type, setType] = useState(null);
 
   location.search = `?type[type]=${type}`;
 
@@ -33,16 +33,15 @@ const SingleProperty = () => {
 
   useEffect(() => {
     if (property !== null && !loading) {
-      setType(property.type.type);
+      setType(`type[type]=${property.type.type}`);
     }
   }, [property, loading]);
 
   useEffect(() => {
-    if (location.search !== null) {
-      getSimilarProperties();
+    if (type !== null) {
+      getSimilarProperties(type);
     }
-    // eslint-disable-next-line
-  }, [location.search]);
+  }, [type]);
 
   return (
     <section className="w-full mt-16">
@@ -217,7 +216,9 @@ const SingleProperty = () => {
             </div>
           </div>
         </>
-      ) : null}
+      ) : (
+        <h1>SPINNER</h1>
+      )}
     </section>
   );
 };

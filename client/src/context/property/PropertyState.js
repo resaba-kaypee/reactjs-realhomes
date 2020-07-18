@@ -49,13 +49,13 @@ const PropertyState = (props) => {
   };
 
   // Get similar properties
-  const getSimilarProperties = async () => {
-    // try {
-    //   const res = await axios.get(`/api/properties/search${location.search}`);
-    //   dispatch({ type: GET_SIMILAR_PROPERTIES, payload: res.data });
-    // } catch (err) {
-    //   dispatch({ type: ERROR, payload: err.response.data });
-    // }
+  const getSimilarProperties = async (type) => {
+    try {
+      const res = await axios.get(`/api/properties/search?${type}`);
+      dispatch({ type: GET_SIMILAR_PROPERTIES, payload: res.data });
+    } catch (err) {
+      dispatch({ type: ERROR, payload: err.response.data });
+    }
   };
 
   // Get featured properties
