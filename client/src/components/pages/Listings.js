@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useLocation } from 'react-router-dom';
 
 import PropertyContext from '../../context/property/propertyContext';
 import FilterOptions from '../forms/FilterOptions';
@@ -8,20 +7,22 @@ import PropertyCard from '../card/PropertyCard';
 import SortProperty from '../forms/SortProperty';
 import Search from '../forms/Search';
 import MapListings from '../layout/MapListing';
-// import properties from '../../data';
 
 const Listings = () => {
-  const location = useLocation();
-
   const propertyContext = useContext(PropertyContext);
-  const { getPropertiesByLocation, properties, loading } = propertyContext;
-
-  let query = location.search;
+  const {
+    setHistorySearch,
+    history_search,
+    loadHistorySearch,
+    properties,
+    loading,
+  } = propertyContext;
 
   useEffect(() => {
-    getPropertiesByLocation();
+    loadHistorySearch();
+    setHistorySearch(history_search);
     // eslint-disable-next-line
-  }, []);
+  }, [history_search]);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -64,7 +65,7 @@ const Listings = () => {
 
         <div className="px-8 mt-6">
           <h2 className="text-xl font-bold leading-8 text-gray-800">
-            Real Estate & Homes for Sale or Rent in {query.split('=')[1]}
+            Real Estate & Homes for Sale or Rent
           </h2>
           <div className="flex items-end justify-between mt-4">
             <span className="text-gray-900 underline">

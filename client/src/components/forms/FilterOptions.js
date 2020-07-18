@@ -1,15 +1,14 @@
 import React, { useState, useContext } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import PropertyContext from '../../context/property/propertyContext';
 import SvgIcon from '../svg/SvgIcon';
 
 const FilterOptions = () => {
-  const location = useLocation();
-  console.log(location);
+  const history = useHistory();
 
   const propertyContext = useContext(PropertyContext);
 
-  const { getPropertiesByLocation } = propertyContext;
+  const { state_search, setHistorySearch } = propertyContext;
 
   const [filterObj, setFilterObj] = useState({});
 
@@ -36,14 +35,15 @@ const FilterOptions = () => {
     .map((key) => `${key}=${filterObj[key]}`)
     .join('&');
 
-  const filterSearch = () => {
-    location.search = location.search + '&' + queryStr;
-  };
+  const filterSearch =
+    state_search !== null && queryStr !== ''
+      ? state_search + '&' + queryStr
+      : state_search;
 
   const onSubmit = (e) => {
     e.preventDefault();
-    filterSearch();
-    getPropertiesByLocation();
+    setHistorySearch(filterSearch);
+    history.push(`/search?${filterSearch}`);
   };
 
   return (
