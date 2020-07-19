@@ -30,20 +30,21 @@ const FilterOptions = () => {
     bathroomsMax,
   } = filterObj;
 
-  const queryStr = Object.keys(filterObj)
+  const filterStr = Object.keys(filterObj)
     .filter((key) => filterObj[key] !== null && filterObj[key] !== '')
     .map((key) => `${key}=${filterObj[key]}`)
     .join('&');
 
-  const filterSearch =
-    state_search !== null && queryStr !== ''
-      ? state_search + '&' + queryStr
+  const queryStr =
+    state_search !== null && filterStr !== ''
+      ? state_search + '&' + filterStr
       : state_search;
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setHistorySearch(filterSearch);
-    history.push(`/search?${filterSearch}`);
+    setHistorySearch(queryStr);
+    console.log(filterObj);
+    history.push(`/search?${queryStr}`);
   };
 
   return (
