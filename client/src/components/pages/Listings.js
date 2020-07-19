@@ -11,16 +11,16 @@ import MapListings from '../layout/MapListing';
 const Listings = () => {
   const propertyContext = useContext(PropertyContext);
   const {
-    setHistorySearch,
-    history_search,
     loadHistorySearch,
+    getPropertiesByLocation,
+    history_search,
     properties,
     loading,
   } = propertyContext;
 
   useEffect(() => {
+    getPropertiesByLocation(history_search);
     loadHistorySearch();
-    setHistorySearch(history_search);
     // eslint-disable-next-line
   }, [history_search]);
 
