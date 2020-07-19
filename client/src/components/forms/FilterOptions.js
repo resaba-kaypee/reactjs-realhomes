@@ -43,7 +43,6 @@ const FilterOptions = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     setHistorySearch(queryStr);
-    console.log(filterObj);
     history.push(`/search?${queryStr}`);
   };
 
