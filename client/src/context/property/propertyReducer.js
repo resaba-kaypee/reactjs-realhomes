@@ -36,13 +36,13 @@ export default (state, action) => {
       localStorage.setItem('state', action.payload);
       return {
         ...state,
-        state_search: localStorage.getItem('state'),
+        state_search: action.payload,
       };
     case SET_HISTORY_SEARCH:
       localStorage.setItem('history', action.payload);
       return {
         ...state,
-        history_search: localStorage.getItem('history'),
+        history_search: action.payload,
       };
     case ERROR:
       return {
