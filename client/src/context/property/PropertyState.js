@@ -32,10 +32,8 @@ const PropertyState = (props) => {
 
   // Load history
   const loadHistorySearch = () => {
-    if (localStorage.history) {
-      getPropertiesByLocation(localStorage.history);
-      setStateSearch(localStorage.state);
-    }
+    setStateSearch(localStorage.state);
+    setHistorySearch(localStorage.history);
   };
 
   // Get all properties by state
