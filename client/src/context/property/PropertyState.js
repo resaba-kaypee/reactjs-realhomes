@@ -20,8 +20,8 @@ const PropertyState = (props) => {
   const initialState = {
     properties: null,
     featured: null,
-    state_search: null,
-    history_search: null,
+    state_search: localStorage.getItem('location') || null,
+    history_search: localStorage.getItem('history') || null,
     property: null,
     similar: null,
     error: null,
@@ -29,12 +29,6 @@ const PropertyState = (props) => {
   };
 
   const [state, dispatch] = useReducer(propertyReducer, initialState);
-
-  // Load history
-  const loadHistorySearch = () => {
-    setStateSearch(localStorage.state);
-    setHistorySearch(localStorage.history);
-  };
 
   // Get all properties by state
   const getPropertiesByLocation = async (queryStr) => {
@@ -77,8 +71,8 @@ const PropertyState = (props) => {
   };
 
   // Set query string
-  const setStateSearch = (query) => {
-    dispatch({ type: SET_STATE_SEARCH, payload: query });
+  const setLocationSearch = (location) => {
+    dispatch({ type: SET_STATE_SEARCH, payload: location });
   };
 
   // Set history search
@@ -107,9 +101,8 @@ const PropertyState = (props) => {
         getPropertiesByLocation,
         getFeaturedProperties,
         getSimilarProperties,
-        setStateSearch,
+        setLocationSearch,
         setHistorySearch,
-        loadHistorySearch,
         getProperty,
         createPropety,
         updatePropety,

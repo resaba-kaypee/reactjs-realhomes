@@ -33,7 +33,7 @@ export default (state, action) => {
         loading: false,
       };
     case SET_STATE_SEARCH:
-      localStorage.setItem('state', action.payload);
+      localStorage.setItem('location', action.payload);
       return {
         ...state,
         state_search: action.payload,

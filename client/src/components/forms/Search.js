@@ -1,12 +1,13 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import useStateWithLocalStorage from '../../utils/useStateWithLocalStorage';
 import PropertyContext from '../../context/property/propertyContext';
 import SvgIcon from '../svg/SvgIcon';
 
 const Search = () => {
   const history = useHistory();
   const propertyContext = useContext(PropertyContext);
-  const { setStateSearch, setHistorySearch } = propertyContext;
+  const { setLocationSearch, setHistorySearch } = propertyContext;
 
   const [params, setParams] = useState({});
 
@@ -21,7 +22,7 @@ const Search = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setStateSearch(queryStr);
+    setLocationSearch(queryStr);
     setHistorySearch(queryStr);
     history.push(`/search?${queryStr}`);
   };

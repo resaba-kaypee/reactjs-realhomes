@@ -20,7 +20,6 @@ const Listings = () => {
 
   useEffect(() => {
     getPropertiesByLocation(history_search);
-    loadHistorySearch();
     // eslint-disable-next-line
   }, [history_search]);
 
