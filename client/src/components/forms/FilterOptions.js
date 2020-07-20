@@ -20,7 +20,6 @@ const FilterOptions = () => {
 
   const {
     city,
-    category,
     type,
     priceMin,
     priceMax,
@@ -76,32 +75,6 @@ const FilterOptions = () => {
             </div>
           </div>
 
-          {/***** CATEGORY *****/}
-          <div className="px-2 mb-3 md:w-1/3">
-            <label
-              className="block mb-1 text-xs font-bold tracking-wide text-gray-700 uppercase"
-              htmlFor="category"
-            >
-              Category
-            </label>
-            <div className="relative">
-              <select
-                id="category"
-                name="type[category]"
-                value={category}
-                onChange={onChange}
-                className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
-              >
-                <option value="">All</option>
-                <option value="commercial">Commercial</option>
-                <option value="residential">Residential</option>
-              </select>
-              <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
-                <SvgIcon name="chevron-down" className="w-5 h-5 fill-current" />
-              </div>
-            </div>
-          </div>
-
           {/***** TYPES *****/}
           <div className="px-2 mb-3 md:w-1/3">
             <label
@@ -126,17 +99,21 @@ const FilterOptions = () => {
                 <option value="townhouse">Townhouse</option>
                 <option value="apartment">Apartment</option>
                 <option value="mobile">Mobile</option>
+                <option value="office">Office</option>
+                <option value="retail">Retail</option>
+                <option value="industrial">Industrial</option>
+                <option value="special purpose">Special Purpose</option>
+                <option value="land">Land</option>
+                <option value="other">Other</option>
               </select>
               <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
                 <SvgIcon name="chevron-down" className="w-5 h-5 fill-current" />
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="w-full md:flex md:justify-between">
           {/***** PRICE *****/}
-          <div className="px-2 mb-3 md:flex-grow">
+          <div className="px-2 mb-3 md:w-1/3">
             <label
               className="block mb-1 text-xs font-bold tracking-wide text-gray-700 uppercase"
               htmlFor="price"
@@ -193,7 +170,9 @@ const FilterOptions = () => {
               </div>
             </div>
           </div>
+        </div>
 
+        <div className="w-full md:flex md:justify-between">
           <div className="flex justify-between px-2 mb-3 md:flex-grow">
             {/***** BEDROOMS *****/}
             <div className="w-2/5 md:w-1/2">
