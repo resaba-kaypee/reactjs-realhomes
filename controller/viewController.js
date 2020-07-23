@@ -1,8 +1,8 @@
 const Property = require('../models/Property');
 
 const catchAsync = require('../utils/catchAsync');
-const convertJsonToDot = require('../utils/jsonToDot');
 const AppError = require('../utils/appError');
+const convertJsonToDot = require('../utils/convertJsonToDot');
 
 const { getAll } = require('./handlerFactory');
 
@@ -47,5 +47,25 @@ exports.getProperty = catchAsync(async (req, res, next) => {
 });
 
 exports.getPropertiesByLocation = getAll(Property);
+
+exports.getCitiesByCurrentLocation = catchAsync(async (req, res, next) => {
+  const cities = await Property.aggregate([
+    {
+      $match: convertJsonToDot(req.query),
+    },
+    {
+      // reshape docs
+      $project: {
+        _id: 0,
+        city: '$location.city',
+      },
+    },
+  ]);
+
+  res.status(200).json({
+    status: 'success',
+    data: [...new Set(cities.map((city) => city.city))],
+  });
+});
 
 exports.getAllProperty = getAll(Property);
