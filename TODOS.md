@@ -3,7 +3,7 @@
 - [x] Set up react
 - [x] Set up tailwind
 
-#### Landing page
+#### Page and components
 
 - [x] Navbar
 - [x] Welcome section
@@ -13,8 +13,19 @@
 - [x] Call to action section
 - [x] News blog section
 - [x] Footer section
+- [x] Listings
+- [x] Property details
+- [ ] User profile page
 
-#### Property page
+#### State Funtionality
+
+ - [x] Get featured properties
+ - [x] Get properties by location
+ - [x] Get property by id
+ - [x] Filter properties
+ - [ ] Sort properties
+ - [ ] Create property
+ - [ ] Update property
 
 ## Backend
 

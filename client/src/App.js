@@ -4,26 +4,28 @@ import PropertyState from './context/property/PropertyState';
 
 import Navbar from './components/layout/Navbar';
 import Footer from './components/sections/Footer';
-import LandingPage from './components/pages/LandingPage';
+import HomePage from './components/pages/HomePage';
 import NotFound from './components/pages/NotFound';
 import SingleProperty from './components/pages/SingleProperty';
 import Listings from './components/pages/Listings';
 
 const App = () => {
-  const { search } = useLocation();
+  const location = useLocation();
   return (
-    <PropertyState>
-      <div className="relative w-screen h-screen font-sans">
-        <Navbar />
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route path="/search" search={`${search}`} component={Listings} />
-          <Route path="/property/:slug" component={SingleProperty} />
-          <Route component={NotFound} />
-        </Switch>
-        <Footer />
-      </div>
-    </PropertyState>
+    <div className="relative w-screen h-screen font-sans">
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route
+          path="/search"
+          search={`${location.search}`}
+          component={Listings}
+        />
+        <Route path="/property/:slug" component={SingleProperty} />
+        <Route component={NotFound} />
+      </Switch>
+      <Footer />
+    </div>
   );
 };
 

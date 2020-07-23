@@ -4,7 +4,7 @@ import PropertyCard from '../card/PropertyCard';
 
 const FeaturedProperty = () => {
   const propertyContext = useContext(PropertyContext);
-  const { getFeaturedProperties, properties, loading } = propertyContext;
+  const { getFeaturedProperties, featured, loading } = propertyContext;
 
   useEffect(() => {
     getFeaturedProperties();
@@ -21,8 +21,8 @@ const FeaturedProperty = () => {
       </div>
       <div className="flex flex-row justify-center w-full">
         <div className="flex flex-col md:flex-row md:flex-wrap max-w-11/12">
-          {properties !== null && !loading ? (
-            properties.map((property) => (
+          {featured !== null && !loading ? (
+            featured.map((property) => (
               <div key={property._id} className="p-2 mt-2 md:w-1/2 lg:w-1/3">
                 <PropertyCard property={property} />
               </div>

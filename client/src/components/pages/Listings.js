@@ -11,17 +11,22 @@ import MapListings from '../layout/MapListing';
 const Listings = () => {
   const propertyContext = useContext(PropertyContext);
   const {
-    loadHistorySearch,
     getPropertiesByLocation,
+    getCitiesByCurrentLocation,
     history_search,
+    state_search,
+    location_state,
+    location_city,
     properties,
     loading,
   } = propertyContext;
 
   useEffect(() => {
     getPropertiesByLocation(history_search);
+    getCitiesByCurrentLocation(state_search);
     // eslint-disable-next-line
-  }, [history_search]);
+  }, [state_search, history_search]);
+
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -64,6 +69,16 @@ const Listings = () => {
 
         <div className="px-8 mt-6">
           <h2 className="text-xl font-bold leading-8 text-gray-800">
+            {location_state !== null && location_city !== null ? (
+              location_city.length > 1 ? (
+                <span>{location_state[0]}</span>
+              ) : (
+                <>
+                  <span className="capitalize">{location_city[0]}</span>{' '}
+                  <span>{location_state[0]}</span>{' '}
+                </>
+              )
+            ) : null}{' '}
             Real Estate & Homes for Sale or Rent
           </h2>
           <div className="flex items-end justify-between mt-4">
