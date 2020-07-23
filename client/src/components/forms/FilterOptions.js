@@ -8,7 +8,7 @@ const FilterOptions = () => {
 
   const propertyContext = useContext(PropertyContext);
 
-  const { state_search, setHistorySearch } = propertyContext;
+  const { state_search, setHistorySearch, cities } = propertyContext;
 
   const [filterObj, setFilterObj] = useState({});
 
@@ -66,8 +66,13 @@ const FilterOptions = () => {
                 className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
               >
                 <option value="">All City</option>
-                <option value="miami">Miami</option>
-                <option value="orlando">Orlando</option>
+                {cities !== null
+                  ? cities.map((city) => (
+                      <option key={city} value={city} className="capitalize">
+                        {city}
+                      </option>
+                    ))
+                  : null}
               </select>
               <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
                 <SvgIcon name="chevron-down" className="w-5 h-5 fill-current" />
