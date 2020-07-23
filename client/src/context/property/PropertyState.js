@@ -4,8 +4,9 @@ import PropertyContext from './propertyContext';
 import propertyReducer from './propertyReducer';
 
 import {
-  GET_SIMILAR_PROPERTIES,
   GET_PROPERTIES_BY_LOCATION,
+  GET_CITIES_BY_CURRENT_LOCATION,
+  GET_SIMILAR_PROPERTIES,
   GET_FEATURED_PROPERTIES,
   GET_PROPERTY,
   SET_STATE_SEARCH,
@@ -20,8 +21,11 @@ const PropertyState = (props) => {
   const initialState = {
     properties: null,
     featured: null,
+    location_state: null,
+    location_city: null,
     state_search: localStorage.getItem('location') || null,
     history_search: localStorage.getItem('history') || null,
+    cities: null,
     property: null,
     similar: null,
     error: null,
@@ -35,6 +39,16 @@ const PropertyState = (props) => {
     try {
       const res = await axios.get(`api/properties/search?${queryStr}`);
       dispatch({ type: GET_PROPERTIES_BY_LOCATION, payload: res.data });
+    } catch (err) {
+      dispatch({ type: ERROR, payload: err.response.data });
+    }
+  };
+
+  // Get all cities by state
+  const getCitiesByCurrentLocation = async (queryStr) => {
+    try {
+      const res = await axios.get(`api/properties/cities?${queryStr}`);
+      dispatch({ type: GET_CITIES_BY_CURRENT_LOCATION, payload: res.data });
     } catch (err) {
       dispatch({ type: ERROR, payload: err.response.data });
     }
@@ -91,14 +105,18 @@ const PropertyState = (props) => {
     <PropertyContext.Provider
       value={{
         properties: state.properties,
+        cities: state.cities,
         featured: state.featured,
         state_search: state.state_search,
         history_search: state.history_search,
+        location_city: state.location_city,
+        location_state: state.location_state,
         property: state.property,
         similar: state.similar,
         error: state.error,
         loading: state.loading,
         getPropertiesByLocation,
+        getCitiesByCurrentLocation,
         getFeaturedProperties,
         getSimilarProperties,
         setLocationSearch,
