@@ -1,3 +1,4 @@
+import sortBy from '../../utils/sortBy';
 import {
   GET_PROPERTIES_BY_LOCATION,
   GET_CITIES_BY_CURRENT_LOCATION,
@@ -6,6 +7,7 @@ import {
   GET_PROPERTY,
   SET_STATE_SEARCH,
   SET_HISTORY_SEARCH,
+  SORT_BY,
   CREATE_PROPERTY,
   UPDATE_PROPERTY,
   DELETE_PROPERTY,
@@ -59,6 +61,11 @@ export default (state, action) => {
       return {
         ...state,
         history_search: action.payload,
+      };
+    case SORT_BY:
+      return {
+        ...state,
+        properties: sortBy(state.properties, action.payload),
       };
     case ERROR:
       return {

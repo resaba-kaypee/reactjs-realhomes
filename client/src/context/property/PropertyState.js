@@ -11,6 +11,7 @@ import {
   GET_PROPERTY,
   SET_STATE_SEARCH,
   SET_HISTORY_SEARCH,
+  SORT_BY,
   CREATE_PROPERTY,
   UPDATE_PROPERTY,
   DELETE_PROPERTY,
@@ -94,6 +95,11 @@ const PropertyState = (props) => {
     dispatch({ type: SET_HISTORY_SEARCH, payload: history });
   };
 
+  // Sort properties by option
+  const sortBy = (option) => {
+    dispatch({ type: SORT_BY, payload: option });
+  };
+
   // Create property
   const createPropety = () => {};
   // Update property
@@ -122,6 +128,7 @@ const PropertyState = (props) => {
         setLocationSearch,
         setHistorySearch,
         getProperty,
+        sortBy,
         createPropety,
         updatePropety,
         deletePropety,
