@@ -26,33 +26,45 @@ const Menu = () => {
       <div
         className={
           (isOpen ? 'block ' : 'hidden ') +
-          'absolute md:flex md:justify-center w-full md:static right-0 top-0 mt-20 md:mt-0 px-4 pt-2 pb-4 text-md lg:text-lg md:flex md:p-0 bg-gray-900'
+          'absolute md:static md:block top-0 left-0 w-full mt-20 md:mt-0 bg-gray-900'
         }
       >
-        <a
-          href="!#"
-          className="block px-4 py-1 mt-1 font-semibold text-white rounded md:mt-0 md-ml-2 hover:bg-gray-800"
+        <div
+          className={
+            'md:justify-left md:items-center h-full md:mt-0 px-4 text-md lg:text-lg md:flex md:p-0'
+          }
         >
-          Home
-        </a>
-        <a
-          href="!#"
-          className="block px-4 py-1 mt-1 font-semibold text-white rounded md:mt-0 md-ml-2 hover:bg-gray-800"
-        >
-          Listings
-        </a>
-        <a
-          href="!#"
-          className="block px-4 py-1 mt-1 font-semibold text-white rounded md:mt-0 md-ml-2 hover:bg-gray-800"
-        >
-          My Home
-        </a>
-        <a
-          href="!#"
-          className="block px-4 py-1 mt-1 font-semibold text-white rounded md:mt-0 md-ml-2 hover:bg-gray-800"
-        >
-          About
-        </a>
+          <a
+            href="!#"
+            className="block px-4 py-1 mt-1 text-gray-200 border-b-4 border-gray-900 md:px-2 md:mt-0 md-ml-2 hover:border-gray-300"
+          >
+            Buy
+          </a>
+          <a
+            href="!#"
+            className="block px-4 py-1 mt-1 text-gray-200 border-b-4 border-gray-900 md:px-2 md:mt-0 md-ml-2 hover:border-gray-300"
+          >
+            Sell
+          </a>
+          <a
+            href="!#"
+            className="block px-4 py-1 mt-1 text-gray-200 border-b-4 border-gray-900 md:px-2 md:mt-0 md-ml-2 hover:border-gray-300"
+          >
+            Rent
+          </a>
+          <a
+            href="!#"
+            className="block px-4 py-1 mt-1 text-gray-200 border-b-4 border-gray-900 md:px-2 md:mt-0 md-ml-2 hover:border-gray-300"
+          >
+            My Home
+          </a>
+          <a
+            href="!#"
+            className="block px-4 py-1 mt-1 text-gray-200 border-b-4 border-gray-900 md:px-2 md:mt-0 md-ml-2 hover:border-gray-300"
+          >
+            About
+          </a>
+        </div>
       </div>
     </>
   );
