@@ -12,7 +12,7 @@ const FeaturedProperty = () => {
   }, []);
 
   return (
-    <section className="relative z-10">
+    <section className="relative z-10 mb-20">
       <div className="flex flex-col items-center my-10">
         <p className="font-bold tracking-widest text-gray-700 uppercase">
           The best deals
