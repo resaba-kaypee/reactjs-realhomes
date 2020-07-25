@@ -4,8 +4,6 @@ import SvgIcon from '../svg/SvgIcon';
 import PropertyCardSimple from '../card/PropertyCardSimple';
 
 const MapListing = ({ properties }) => {
-  const ids = properties.map((property) => property.propertyId);
-
   const [viewport, setViewport] = useState({
     latitude: 28.538336,
     longitude: -81.379234,
