@@ -8,12 +8,18 @@ const {
   getAllProperty,
   getPropertiesByLocation,
   getCitiesByCurrentLocation,
+  newest,
+  getAffordableProperties,
   featuredProperties,
 } = require('../controller/viewController');
 
 router.use(checkIfNew);
 
+router.route('/newest').get(newest, getAllProperty);
+
 router.route('/featured-properties').get(featuredProperties, getAllProperty);
+
+router.route('/affordable').get(getAffordableProperties, getAllProperty);
 
 router.route('/property/:slug').get(getProperty); // avalaible for everyone
 

@@ -24,9 +24,26 @@ exports.checkIfNew = catchAsync(async (req, res, next) => {
   next();
 });
 
+exports.newest = (req, res, next) => {
+  req.query = {
+    type: { type: 'single-family home' },
+    limit: 6,
+  };
+  next();
+};
+
 exports.featuredProperties = (req, res, next) => {
   req.query.limit = 6;
   req.query.sort = '-price';
+  next();
+};
+
+exports.getAffordableProperties = (req, res, next) => {
+  req.query = {
+    type: { type: 'single-family home' },
+    price: { lte: 300000 },
+    limit: 6,
+  };
   next();
 };
 
@@ -45,8 +62,6 @@ exports.getProperty = catchAsync(async (req, res, next) => {
     data: property,
   });
 });
-
-exports.getPropertiesByLocation = getAll(Property);
 
 exports.getCitiesByCurrentLocation = catchAsync(async (req, res, next) => {
   const cities = await Property.aggregate([
@@ -69,3 +84,5 @@ exports.getCitiesByCurrentLocation = catchAsync(async (req, res, next) => {
 });
 
 exports.getAllProperty = getAll(Property);
+
+exports.getPropertiesByLocation = getAll(Property);
