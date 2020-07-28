@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,36 +35,36 @@ const Menu = () => {
             'md:justify-left md:items-center h-full md:mt-0 px-4 text-md lg:text-lg md:flex md:p-0'
           }
         >
-          <a
-            href="!#"
+          <NavLink
+            to="/realstateforsale"
             className="block px-4 py-1 mt-1 text-gray-200 border-b-4 border-gray-900 md:px-2 md:mt-0 md-ml-2 hover:border-gray-300"
           >
             Buy
-          </a>
-          <a
-            href="!#"
+          </NavLink>
+          <NavLink
+            to="/sell"
             className="block px-4 py-1 mt-1 text-gray-200 border-b-4 border-gray-900 md:px-2 md:mt-0 md-ml-2 hover:border-gray-300"
           >
             Sell
-          </a>
-          <a
-            href="!#"
+          </NavLink>
+          <NavLink
+            to="/rentals"
             className="block px-4 py-1 mt-1 text-gray-200 border-b-4 border-gray-900 md:px-2 md:mt-0 md-ml-2 hover:border-gray-300"
           >
             Rent
-          </a>
-          <a
-            href="!#"
+          </NavLink>
+          <NavLink
+            to="/myhome"
             className="block px-4 py-1 mt-1 text-gray-200 border-b-4 border-gray-900 md:px-2 md:mt-0 md-ml-2 hover:border-gray-300"
           >
             My Home
-          </a>
-          <a
-            href="!#"
+          </NavLink>
+          <NavLink
+            to="/about"
             className="block px-4 py-1 mt-1 text-gray-200 border-b-4 border-gray-900 md:px-2 md:mt-0 md-ml-2 hover:border-gray-300"
           >
             About
-          </a>
+          </NavLink>
         </div>
       </div>
     </>
