@@ -8,6 +8,7 @@ import {
   GET_CITIES_BY_CURRENT_LOCATION,
   GET_SIMILAR_PROPERTIES,
   GET_FEATURED_PROPERTIES,
+  GET_ALL_PROPERTY,
   GET_PROPERTY,
   SET_STATE_SEARCH,
   SET_HISTORY_SEARCH,
@@ -16,12 +17,14 @@ import {
   UPDATE_PROPERTY,
   DELETE_PROPERTY,
   ERROR,
+  GET_AFFORDABLE_PROPERTIES,
 } from '../types';
 
 const PropertyState = (props) => {
   const initialState = {
     properties: null,
     featured: null,
+    affordable: null,
     location_state: null,
     location_city: null,
     state_search: localStorage.getItem('location') || null,
@@ -34,6 +37,16 @@ const PropertyState = (props) => {
   };
 
   const [state, dispatch] = useReducer(propertyReducer, initialState);
+
+  // Get all properties
+  const getAllProperty = async () => {
+    try {
+      const res = await axios.get('/api/newest');
+      dispatch({ type: GET_ALL_PROPERTY, payload: res.data });
+    } catch (err) {
+      dispatch({ type: ERROR, payload: err.response.data });
+    }
+  };
 
   // Get all properties by state
   const getPropertiesByLocation = async (queryStr) => {
@@ -70,6 +83,16 @@ const PropertyState = (props) => {
     try {
       const res = await axios.get(`/api/featured-properties`);
       dispatch({ type: GET_FEATURED_PROPERTIES, payload: res.data });
+    } catch (err) {
+      dispatch({ type: ERROR, payload: err.response.data });
+    }
+  };
+
+  // Get affordable properties
+  const getAffordableProperties = async () => {
+    try {
+      const res = await axios.get(`api/affordable`);
+      dispatch({ type: GET_AFFORDABLE_PROPERTIES, payload: res.data });
     } catch (err) {
       dispatch({ type: ERROR, payload: err.response.data });
     }
@@ -113,6 +136,7 @@ const PropertyState = (props) => {
         properties: state.properties,
         cities: state.cities,
         featured: state.featured,
+        affordable: state.affordable,
         state_search: state.state_search,
         history_search: state.history_search,
         location_city: state.location_city,
@@ -121,9 +145,11 @@ const PropertyState = (props) => {
         similar: state.similar,
         error: state.error,
         loading: state.loading,
+        getAllProperty,
         getPropertiesByLocation,
         getCitiesByCurrentLocation,
         getFeaturedProperties,
+        getAffordableProperties,
         getSimilarProperties,
         setLocationSearch,
         setHistorySearch,

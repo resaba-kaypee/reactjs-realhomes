@@ -4,6 +4,7 @@ import {
   GET_CITIES_BY_CURRENT_LOCATION,
   GET_FEATURED_PROPERTIES,
   GET_SIMILAR_PROPERTIES,
+  GET_ALL_PROPERTY,
   GET_PROPERTY,
   SET_STATE_SEARCH,
   SET_HISTORY_SEARCH,
@@ -12,10 +13,12 @@ import {
   UPDATE_PROPERTY,
   DELETE_PROPERTY,
   ERROR,
+  GET_AFFORDABLE_PROPERTIES,
 } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
+    case GET_ALL_PROPERTY:
     case GET_SIMILAR_PROPERTIES:
     case GET_PROPERTIES_BY_LOCATION:
       return {
@@ -43,6 +46,11 @@ export default (state, action) => {
         ...state,
         featured: action.payload.data,
         loading: false,
+      };
+    case GET_AFFORDABLE_PROPERTIES:
+      return {
+        ...state,
+        affordable: action.payload.data,
       };
     case GET_PROPERTY:
       return {
