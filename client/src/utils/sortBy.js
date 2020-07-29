@@ -9,7 +9,7 @@ module.exports = (arr, option) => {
     case 'price_desc':
       return arr.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
     case 'area_desc':
-      return arr.sort((a, b) => parseFloat(b.areaSize) - parseFloat(a.areSize));
+      return arr.sort((a, b) => parseFloat(b.areaSize) - parseFloat(a.areaSize));
     case 'lot_desc':
       return arr.sort((a, b) => parseFloat(b.lotSize) - parseFloat(a.lotSize));
     default:
