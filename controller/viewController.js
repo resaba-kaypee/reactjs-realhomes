@@ -2,8 +2,6 @@ const Property = require('../models/Property');
 
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
-const convertJsonToDot = require('../utils/convertJsonToDot');
-
 const { getAll } = require('./handlerFactory');
 
 exports.checkIfNew = catchAsync(async (req, res, next) => {
@@ -64,23 +62,13 @@ exports.getProperty = catchAsync(async (req, res, next) => {
 });
 
 exports.getCitiesByCurrentLocation = catchAsync(async (req, res, next) => {
-  const cities = await Property.aggregate([
-    {
-      $match: convertJsonToDot(req.query),
-    },
-    {
-      // reshape docs
-      $project: {
-        _id: 0,
-        city: '$location.city',
-      },
-    },
-  ]);
-
-  res.status(200).json({
-    status: 'success',
-    data: [...new Set(cities.map((city) => city.city))],
+  const properties = await Property.find({
+    'location.state': req.query.location.state,
   });
+  res.cities = [
+    ...new Set(properties.map((property) => property.location.city)),
+  ];
+  next();
 });
 
 exports.getAllProperty = getAll(Property);

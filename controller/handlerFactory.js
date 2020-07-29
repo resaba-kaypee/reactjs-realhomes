@@ -74,6 +74,7 @@ exports.getAll = (Model) =>
 
     res.status(200).json({
       status: 'success',
+      cities: res.cities,
       results: doc.length,
       data: doc,
     });

@@ -23,8 +23,6 @@ router.route('/affordable').get(getAffordableProperties, getAllProperty);
 
 router.route('/property/:slug').get(getProperty); // avalaible for everyone
 
-router.route('/properties/search').get(getPropertiesByLocation); // avalaible for everyone
-
-router.route('/properties/cities').get(getCitiesByCurrentLocation); // avalaible for everyone
+router.route('/properties/search').get(getCitiesByCurrentLocation, getPropertiesByLocation); // avalaible for everyone
 
 module.exports = router;
