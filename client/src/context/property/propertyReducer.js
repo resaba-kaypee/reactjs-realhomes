@@ -1,19 +1,17 @@
 import sortBy from '../../utils/sortBy';
 import {
-  GET_PROPERTIES_BY_LOCATION,
-  GET_CITIES_BY_CURRENT_LOCATION,
-  GET_FEATURED_PROPERTIES,
-  GET_SIMILAR_PROPERTIES,
   GET_ALL_PROPERTY,
+  GET_PROPERTIES_BY_LOCATION,
+  GET_FEATURED_PROPERTIES,
+  GET_AFFORDABLE_PROPERTIES,
   GET_PROPERTY,
-  SET_STATE_SEARCH,
+  GET_SIMILAR_PROPERTIES,
   SET_HISTORY_SEARCH,
   SORT_BY,
   CREATE_PROPERTY,
   UPDATE_PROPERTY,
   DELETE_PROPERTY,
   ERROR,
-  GET_AFFORDABLE_PROPERTIES,
 } from '../types';
 
 export default (state, action) => {
@@ -34,12 +32,8 @@ export default (state, action) => {
             action.payload.data.map((property) => property.location.city)
           ),
         ],
+        cities: action.payload.cities,
         loading: false,
-      };
-    case GET_CITIES_BY_CURRENT_LOCATION:
-      return {
-        ...state,
-        cities: action.payload.data,
       };
     case GET_FEATURED_PROPERTIES:
       return {
@@ -57,12 +51,6 @@ export default (state, action) => {
         ...state,
         property: action.payload.data,
         loading: false,
-      };
-    case SET_STATE_SEARCH:
-      localStorage.setItem('location', action.payload);
-      return {
-        ...state,
-        state_search: action.payload,
       };
     case SET_HISTORY_SEARCH:
       localStorage.setItem('history', action.payload);

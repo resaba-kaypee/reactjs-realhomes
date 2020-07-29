@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-
+import { useLocation } from 'react-router-dom';
 import PropertyContext from '../../context/property/propertyContext';
 import FilterOptions from '../forms/FilterOptions';
 import SvgIcon from '../svg/SvgIcon';
@@ -9,12 +9,10 @@ import Search from '../forms/Search';
 import MapListings from '../layout/MapListing';
 
 const Listings = () => {
+  const location = useLocation();
   const propertyContext = useContext(PropertyContext);
   const {
     getPropertiesByLocation,
-    getCitiesByCurrentLocation,
-    history_search,
-    state_search,
     location_state,
     location_city,
     properties,
@@ -22,11 +20,8 @@ const Listings = () => {
   } = propertyContext;
 
   useEffect(() => {
-    getPropertiesByLocation(history_search);
-    getCitiesByCurrentLocation(state_search);
-    // eslint-disable-next-line
-  }, [state_search, history_search]);
-
+    getPropertiesByLocation();
+  }, [location.search]);
 
   const [isOpen, setIsOpen] = useState(false);
 

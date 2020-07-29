@@ -1,14 +1,15 @@
 import React, { useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import PropertyContext from '../../context/property/propertyContext';
 import SvgIcon from '../svg/SvgIcon';
 
 const FilterOptions = () => {
   const history = useHistory();
+  const location = useLocation();
 
   const propertyContext = useContext(PropertyContext);
 
-  const { state_search, setHistorySearch, cities } = propertyContext;
+  const { history_search, cities } = propertyContext;
 
   const [filterObj, setFilterObj] = useState({});
 
@@ -35,14 +36,14 @@ const FilterOptions = () => {
     .join('&');
 
   const queryStr =
-    state_search !== null && filterStr !== ''
-      ? state_search + '&' + filterStr
-      : state_search;
+    history_search !== null && filterStr !== ''
+      ? history_search + '&' + filterStr
+      : history_search;
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setHistorySearch(queryStr);
-    history.push(`/search?${queryStr}`);
+    location.search = `?${queryStr}`;
+    history.push(`/search${location.search}`);
   };
 
   return (
@@ -135,12 +136,14 @@ const FilterOptions = () => {
                   className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
                 >
                   <option value="">Min</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
+                  <option value="50000">$50000</option>
+                  <option value="100000">$100000</option>
+                  <option value="150000">$150000</option>
+                  <option value="200000">$200000</option>
+                  <option value="250000">$250000</option>
+                  <option value="300000">$300000</option>
+                  <option value="400000">$400000</option>
+                  <option value="500000">$500000</option>
                 </select>
                 <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
                   <SvgIcon
@@ -159,12 +162,11 @@ const FilterOptions = () => {
                   className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
                 >
                   <option value="">Max</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
+                  <option value="500000">$500000</option>
+                  <option value="600000">$600000</option>
+                  <option value="700000">$700000</option>
+                  <option value="800000">$800000</option>
+                  <option value="900000">$900000</option>
                 </select>
                 <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
                   <SvgIcon

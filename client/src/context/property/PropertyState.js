@@ -1,33 +1,33 @@
 import React, { useReducer } from 'react';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import PropertyContext from './propertyContext';
 import propertyReducer from './propertyReducer';
 
 import {
-  GET_PROPERTIES_BY_LOCATION,
-  GET_CITIES_BY_CURRENT_LOCATION,
-  GET_SIMILAR_PROPERTIES,
-  GET_FEATURED_PROPERTIES,
   GET_ALL_PROPERTY,
+  GET_PROPERTIES_BY_LOCATION,
+  GET_FEATURED_PROPERTIES,
+  GET_AFFORDABLE_PROPERTIES,
   GET_PROPERTY,
-  SET_STATE_SEARCH,
+  GET_SIMILAR_PROPERTIES,
   SET_HISTORY_SEARCH,
   SORT_BY,
   CREATE_PROPERTY,
   UPDATE_PROPERTY,
   DELETE_PROPERTY,
   ERROR,
-  GET_AFFORDABLE_PROPERTIES,
 } from '../types';
 
 const PropertyState = (props) => {
+  const location = useLocation();
+
   const initialState = {
     properties: null,
     featured: null,
     affordable: null,
     location_state: null,
     location_city: null,
-    state_search: localStorage.getItem('location') || null,
     history_search: localStorage.getItem('history') || null,
     cities: null,
     property: null,
@@ -49,20 +49,10 @@ const PropertyState = (props) => {
   };
 
   // Get all properties by state
-  const getPropertiesByLocation = async (queryStr) => {
+  const getPropertiesByLocation = async () => {
     try {
-      const res = await axios.get(`api/properties/search?${queryStr}`);
+      const res = await axios.get(`api/properties/search${location.search}`);
       dispatch({ type: GET_PROPERTIES_BY_LOCATION, payload: res.data });
-    } catch (err) {
-      dispatch({ type: ERROR, payload: err.response.data });
-    }
-  };
-
-  // Get all cities by state
-  const getCitiesByCurrentLocation = async (queryStr) => {
-    try {
-      const res = await axios.get(`api/properties/cities?${queryStr}`);
-      dispatch({ type: GET_CITIES_BY_CURRENT_LOCATION, payload: res.data });
     } catch (err) {
       dispatch({ type: ERROR, payload: err.response.data });
     }
@@ -108,11 +98,6 @@ const PropertyState = (props) => {
     }
   };
 
-  // Set query string
-  const setLocationSearch = (location) => {
-    dispatch({ type: SET_STATE_SEARCH, payload: location });
-  };
-
   // Set history search
   const setHistorySearch = (history) => {
     dispatch({ type: SET_HISTORY_SEARCH, payload: history });
@@ -124,11 +109,11 @@ const PropertyState = (props) => {
   };
 
   // Create property
-  const createPropety = () => {};
+  const createProperty = () => {};
   // Update property
-  const updatePropety = () => {};
+  const updateProperty = () => {};
   // Delete property
-  const deletePropety = () => {};
+  const deleteProperty = () => {};
 
   return (
     <PropertyContext.Provider
@@ -137,7 +122,6 @@ const PropertyState = (props) => {
         cities: state.cities,
         featured: state.featured,
         affordable: state.affordable,
-        state_search: state.state_search,
         history_search: state.history_search,
         location_city: state.location_city,
         location_state: state.location_state,
@@ -147,17 +131,15 @@ const PropertyState = (props) => {
         loading: state.loading,
         getAllProperty,
         getPropertiesByLocation,
-        getCitiesByCurrentLocation,
         getFeaturedProperties,
         getAffordableProperties,
         getSimilarProperties,
-        setLocationSearch,
         setHistorySearch,
         getProperty,
         sortBy,
-        createPropety,
-        updatePropety,
-        deletePropety,
+        createProperty,
+        updateProperty,
+        deleteProperty,
       }}
     >
       {props.children}
