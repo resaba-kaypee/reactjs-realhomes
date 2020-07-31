@@ -53,7 +53,7 @@ const FilterOptions = () => {
           {/***** CITY *****/}
           <div className="px-2 mb-3 md:w-1/3">
             <label
-              className="block mb-1 text-xs font-bold tracking-wide text-gray-700 uppercase"
+              className="block mb-1 text-xs font-bold tracking-wide text-gray-400 uppercase"
               htmlFor="city"
             >
               City
@@ -84,7 +84,7 @@ const FilterOptions = () => {
           {/***** TYPES *****/}
           <div className="px-2 mb-3 md:w-1/3">
             <label
-              className="block mb-1 text-xs font-bold tracking-wide text-gray-700 uppercase"
+              className="block mb-1 text-xs font-bold tracking-wide text-gray-400 uppercase"
               htmlFor="type"
             >
               Type
@@ -121,7 +121,7 @@ const FilterOptions = () => {
           {/***** PRICE *****/}
           <div className="px-2 mb-3 md:w-1/3">
             <label
-              className="block mb-1 text-xs font-bold tracking-wide text-gray-700 uppercase"
+              className="block mb-1 text-xs font-bold tracking-wide text-gray-400 uppercase"
               htmlFor="price"
             >
               Price
@@ -152,7 +152,7 @@ const FilterOptions = () => {
                   />
                 </div>
               </div>
-              <div className="self-end w-1/5 text-center text-gray-700">to</div>
+              <div className="self-end w-1/5 text-center text-gray-400">to</div>
               <div className="relative w-2/5">
                 <select
                   id="priceMax"
@@ -184,7 +184,7 @@ const FilterOptions = () => {
             {/***** BEDROOMS *****/}
             <div className="w-2/5 md:w-1/2">
               <label
-                className="block mb-1 text-xs font-bold tracking-wide text-gray-700 uppercase"
+                className="block mb-1 text-xs font-bold tracking-wide text-gray-400 uppercase"
                 htmlFor="bedrooms"
               >
                 Bedrooms
@@ -213,7 +213,7 @@ const FilterOptions = () => {
                     />
                   </div>
                 </div>
-                <div className="self-end w-1/5 text-center text-gray-700">
+                <div className="self-end w-1/5 text-center text-gray-400">
                   to
                 </div>
                 <div className="relative w-2/5">
@@ -246,7 +246,7 @@ const FilterOptions = () => {
             {/***** BATHROOMS *****/}
             <div className="w-2/5 md:w-1/2">
               <label
-                className="block mb-1 text-xs font-bold tracking-wide text-gray-700 uppercase"
+                className="block mb-1 text-xs font-bold tracking-wide text-gray-400 uppercase"
                 htmlFor="bathrooms"
               >
                 Bathrooms
@@ -275,7 +275,7 @@ const FilterOptions = () => {
                     />
                   </div>
                 </div>
-                <div className="self-end w-1/5 text-center text-gray-700">
+                <div className="self-end w-1/5 text-center text-gray-400">
                   to
                 </div>
                 <div className="relative w-2/5">
