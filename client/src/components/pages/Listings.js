@@ -7,6 +7,7 @@ import PropertyCard from '../card/PropertyCard';
 import SortProperty from '../forms/SortProperty';
 import Search from '../forms/Search';
 import MapListings from '../layout/MapListing';
+import Listing from '../../assets/img/listings.jpg';
 
 const Listings = () => {
   const location = useLocation();
@@ -29,11 +30,16 @@ const Listings = () => {
   const [isMapActive, setIsMapActive] = useState(false);
 
   return (
-    <main className="w-full mt-24 lg:mt-32">
+    <main className="w-full mt-20 md:mt-12">
       <section>
-        <div className="px-8 py-5 shadow md:flex-col">
+        <div
+          className="px-8 py-8 bg-no-repeat bg-cover shadow md:flex-col"
+          style={{
+            backgroundImage: `url(${Listing})`,
+          }}
+        >
           {/* SEARCH STATE FORM */}
-          <div className="flex w-full px-2">
+          <div className="flex flex-col w-full px-2">
             <div className="w-full md:w-1/2">
               <Search />
             </div>
@@ -61,7 +67,8 @@ const Listings = () => {
             <FilterOptions />
           </div>
         </div>
-
+      </section>
+      <section>
         <div className="px-8 mt-6">
           <h2 className="text-xl font-bold leading-8 text-gray-800">
             {location_state !== null && location_city !== null ? (
