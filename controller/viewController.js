@@ -62,12 +62,32 @@ exports.getProperty = catchAsync(async (req, res, next) => {
 });
 
 exports.getCitiesByCurrentLocation = catchAsync(async (req, res, next) => {
-  const properties = await Property.find({
-    'location.state': req.query.location.state,
-  });
+  const { location } = req.query;
+
+  // if searching from all available city in a state
+  if (location !== undefined) {
+    if (Object.keys(location).length > 1 && location.city === 'all')
+      delete location.city;
+    else if (Object.keys(location).length === 1 && location.city === 'all') {
+      // if coming from buy page then search all city
+      req.query = {};
+    }
+  }
+
+  let query = {};
+
+  // get all available city in state
+  if (location && location.state) {
+    query = {
+      'location.state': location.state,
+    };
+  }
+
+  const properties = await Property.find(query);
   res.cities = [
     ...new Set(properties.map((property) => property.location.city)),
   ];
+
   next();
 });
 
