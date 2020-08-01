@@ -5,8 +5,6 @@ import Search from '../forms/Search';
 import SlideSimple from '../carousel/SlideSimple';
 import Listing from '../../assets/img/listings.jpg';
 
-import Properties from '../../data';
-
 const BuyPage = () => {
   const propertyContext = useContext(PropertyContext);
   const {
@@ -58,8 +56,11 @@ const BuyPage = () => {
             <h2 className="text-lg font-semibold text-gray-800 sm:text-2xl">
               Newest Listings
             </h2>
-            <NavLink to="" className="text-blue-500 hover:underline">
-              View All
+            <NavLink
+              to="/search?sort=-datePosted"
+              className="text-blue-500 hover:underline"
+            >
+              View All Newest Listings
             </NavLink>
           </div>
           <div className="mt-6">
@@ -75,8 +76,11 @@ const BuyPage = () => {
             <h2 className="text-lg font-semibold text-gray-800 sm:text-2xl">
               Featured Listings
             </h2>
-            <NavLink to="" className="text-blue-500 hover:underline">
-              View All
+            <NavLink
+              to="/search?limit=6&sort=-price"
+              className="text-blue-500 hover:underline"
+            >
+              View All Featured Listings
             </NavLink>
           </div>
           <div className="mt-6">
@@ -92,8 +96,11 @@ const BuyPage = () => {
             <h2 className="text-lg font-semibold text-gray-800 sm:text-2xl">
               Homes Around $300,000
             </h2>
-            <NavLink to="" className="text-blue-500 hover:underline">
-              View All
+            <NavLink
+              to="/search?price[lte]=300000&sort=-price"
+              className="text-blue-500 hover:underline"
+            >
+              View All Affordable Properties
             </NavLink>
           </div>
           <div className="mt-6">
