@@ -38,6 +38,8 @@ const FilterOptions = () => {
   const queryStr =
     history_search !== null && filterStr !== ''
       ? history_search + '&' + filterStr
+      : filterStr !== ''
+      ? filterStr
       : history_search;
 
   const onSubmit = (e) => {
@@ -66,7 +68,7 @@ const FilterOptions = () => {
                 onChange={onChange}
                 className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
               >
-                <option value="">All City</option>
+                <option value="all">All City</option>
                 {cities !== null
                   ? cities.map((city) => (
                       <option key={city} value={city} className="capitalize">
