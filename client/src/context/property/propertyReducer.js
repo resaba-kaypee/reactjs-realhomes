@@ -22,17 +22,17 @@ export default (state, action) => {
       return {
         ...state,
         properties: action.payload.data,
-        location_state: [
+        cities: action.payload.cities ? action.payload.cities : null,
+        location_states: [
           ...new Set(
             action.payload.data.map((property) => property.location.state)
           ),
         ],
-        location_city: [
+        location_cities: [
           ...new Set(
             action.payload.data.map((property) => property.location.city)
           ),
         ],
-        cities: action.payload.cities,
         loading: false,
       };
     case GET_FEATURED_PROPERTIES:
