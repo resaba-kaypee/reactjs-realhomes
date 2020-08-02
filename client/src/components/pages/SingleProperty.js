@@ -41,6 +41,7 @@ const SingleProperty = () => {
     if (type !== null) {
       getSimilarProperties(type);
     }
+    // eslint-disable-next-line
   }, [type]);
 
   return (
