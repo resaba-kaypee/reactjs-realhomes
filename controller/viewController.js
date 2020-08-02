@@ -91,6 +91,14 @@ exports.getCitiesByCurrentLocation = catchAsync(async (req, res, next) => {
   next();
 });
 
+exports.getAllApartment = (req, res, next) => {
+  req.query = {
+    type: { type: 'apartment' },
+    limit: 6,
+  };
+  next();
+};
+
 exports.getAllProperty = getAll(Property);
 
 exports.getPropertiesByLocation = getAll(Property);

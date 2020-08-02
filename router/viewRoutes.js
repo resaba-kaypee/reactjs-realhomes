@@ -8,6 +8,7 @@ const {
   getAllProperty,
   getPropertiesByLocation,
   getCitiesByCurrentLocation,
+  getAllApartment,
   newest,
   getAffordableProperties,
   featuredProperties,
@@ -23,6 +24,10 @@ router.route('/affordable').get(getAffordableProperties, getAllProperty);
 
 router.route('/property/:slug').get(getProperty); // avalaible for everyone
 
-router.route('/properties/search').get(getCitiesByCurrentLocation, getPropertiesByLocation); // avalaible for everyone
+router.route('/rentals').get(getAllApartment, getAllProperty);
+
+router
+  .route('/properties/search')
+  .get(getCitiesByCurrentLocation, getPropertiesByLocation); // avalaible for everyone
 
 module.exports = router;
