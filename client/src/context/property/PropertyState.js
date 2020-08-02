@@ -12,6 +12,7 @@ import {
   GET_PROPERTY,
   GET_SIMILAR_PROPERTIES,
   SET_HISTORY_SEARCH,
+  GET_ALL_APARTMENT,
   SORT_BY,
   CREATE_PROPERTY,
   UPDATE_PROPERTY,
@@ -32,6 +33,9 @@ const PropertyState = (props) => {
     history_search: localStorage.getItem('history') || null,
     property: null,
     similar: null,
+    apt_pools: null,
+    apt_laundry: null,
+    apt_pet: null,
     error: null,
     loading: true,
   };
@@ -98,6 +102,16 @@ const PropertyState = (props) => {
     }
   };
 
+  // Get all apartment
+  const getAllApartment = async () => {
+    try {
+      const res = await axios.get(`api/rentals`);
+      dispatch({ type: GET_ALL_APARTMENT, payload: res.data });
+    } catch (err) {
+      dispatch({ type: ERROR, payload: err.response.data });
+    }
+  };
+
   // Set history search
   const setHistorySearch = (history) => {
     dispatch({ type: SET_HISTORY_SEARCH, payload: history });
@@ -127,6 +141,9 @@ const PropertyState = (props) => {
         location_states: state.location_states,
         property: state.property,
         similar: state.similar,
+        apt_pools: state.apt_pools,
+        apt_laundry: state.apt_laundry,
+        apt_pet: state.apt_pet,
         error: state.error,
         loading: state.loading,
         getAllProperty,
@@ -136,6 +153,7 @@ const PropertyState = (props) => {
         getSimilarProperties,
         setHistorySearch,
         getProperty,
+        getAllApartment,
         sortBy,
         createProperty,
         updateProperty,

@@ -7,6 +7,7 @@ import {
   GET_PROPERTY,
   GET_SIMILAR_PROPERTIES,
   SET_HISTORY_SEARCH,
+  GET_ALL_APARTMENT,
   SORT_BY,
   CREATE_PROPERTY,
   UPDATE_PROPERTY,
@@ -50,6 +51,20 @@ export default (state, action) => {
       return {
         ...state,
         property: action.payload.data,
+        loading: false,
+      };
+    case GET_ALL_APARTMENT:
+      return {
+        ...state,
+        apt_pools: action.payload.data.filter((apartment) =>
+          apartment.features.includes('pool')
+        ),
+        apt_laundry: action.payload.data.filter((apartment) =>
+          apartment.features.includes('in-unit laundry')
+        ),
+        apt_pet: action.payload.data.filter((apartment) =>
+          apartment.features.includes('pets allowed')
+        ),
         loading: false,
       };
     case SET_HISTORY_SEARCH:
