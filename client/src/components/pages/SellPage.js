@@ -1,5 +1,6 @@
 import React from "react";
 import SvgIcon from "../svg/SvgIcon";
+import Listing from "../../assets/img/listings.jpg";
 
 const SellersText = () => (
   <>
@@ -182,30 +183,72 @@ const ToolsImage = () => (
   </div>
 );
 
+const AddressBar = () => (
+  <form className="relative shadow-xl">
+    <div className="flex">
+      <input
+        className="w-2/3 px-4 py-3 leading-tight text-gray-700 border border-r-0 border-gray-500 rounded rounded-r-none appearance-none focus:outline-none focus:bg-white focus:border-purple-500"
+        type="search"
+        placeholder="Enter your address..."
+      />
+      <button
+        type="submit"
+        className="w-1/3 px-4 py-3 text-lg font-semibold text-gray-200 transition duration-500 ease-in-out bg-gray-800 border border-l-0 border-gray-800 rounded rounded-l-none hover:bg-yellow-600 hover:border-yellow-600">
+        Get Started
+      </button>
+    </div>
+  </form>
+);
+
 const SellPage = () => {
   return (
-    <section className="relative mx-8 my-24 lg:mx-24">
-      <div className="flex flex-col items-center h-64 md:grid md:grid-cols-2 md:gap-4">
-        <div className="order-2 md:order-none">
-          <SellersText />
+    <>
+      <section
+        className="relative w-full bg-no-repeat h-2/3"
+        style={{
+          backgroundImage: `url(${Listing})`,
+        }}>
+        <div className="absolute bottom-0 w-full mb-32 ml-auto mr-auto lg:mb-24">
+          <div className="flex justify-center px-4 sm:px-8 lg:px-10">
+            <div className="relative w-full max-w-6xl p-8">
+              <div className="absolute"></div>
+              <div className="relative mb-4">
+                <h1 className="text-4xl font-semibold text-yellow-500">
+                  Sell Your Home
+                </h1>
+                <p className="mt-2 text-lg text-yellow-500">
+                  We analyze millions of home transactions to pair you with the
+                  right agent for free
+                </p>
+              </div>
+              <AddressBar />
+            </div>
+          </div>
         </div>
-        <div className="order-1 md:order-none">
-          <SellersImage />
+      </section>
+      <section className="relative mx-8 mb-16 lg:mx-24">
+        <div className="flex flex-col items-center md:grid md:grid-cols-2 md:gap-4">
+          <div className="order-2 md:order-none">
+            <SellersText />
+          </div>
+          <div className="order-1 md:order-none">
+            <SellersImage />
+          </div>
+          <div className="order-3 md:order-none">
+            <AgentsImage />
+          </div>
+          <div className="order-4 md:order-none">
+            <AgentsText />
+          </div>
+          <div className="order-6 md:order-none">
+            <ToolsText />
+          </div>
+          <div className="order-5 md:order-none">
+            <ToolsImage />
+          </div>
         </div>
-        <div className="order-3 md:order-none">
-          <AgentsImage />
-        </div>
-        <div className="order-4 md:order-none">
-          <AgentsText />
-        </div>
-        <div className="order-6 md:order-none">
-          <ToolsText />
-        </div>
-        <div className="order-5 md:order-none">
-          <ToolsImage />
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
