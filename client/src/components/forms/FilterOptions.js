@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
-import PropertyContext from '../../context/property/propertyContext';
-import SvgIcon from '../svg/SvgIcon';
+import React, { useState, useContext } from "react";
+import { useHistory, useLocation } from "react-router-dom";
+import PropertyContext from "../../context/property/propertyContext";
+import SvgIcon from "../svg/SvgIcon";
 
 const FilterOptions = () => {
   const history = useHistory();
@@ -31,14 +31,14 @@ const FilterOptions = () => {
   } = filterObj;
 
   const filterStr = Object.keys(filterObj)
-    .filter((key) => filterObj[key] !== null && filterObj[key] !== '')
+    .filter((key) => filterObj[key] !== null && filterObj[key] !== "")
     .map((key) => `${key}=${filterObj[key]}`)
-    .join('&');
+    .join("&");
 
   const queryStr =
-    history_search !== null && filterStr !== ''
-      ? history_search + '&' + filterStr
-      : filterStr !== ''
+    history_search !== null && filterStr !== ""
+      ? history_search + "&" + filterStr
+      : filterStr !== ""
       ? filterStr
       : history_search;
 
@@ -49,15 +49,14 @@ const FilterOptions = () => {
   };
 
   return (
-    <form className="w-full" onSubmit={onSubmit}>
+    <form className="w-full shadow-xl" onSubmit={onSubmit}>
       <div className="flex flex-col w-full pt-6 pb-3 xl:flex-row">
         <div className="w-full md:flex md:justify-between">
           {/***** CITY *****/}
           <div className="px-2 mb-3 md:w-1/3">
             <label
               className="block mb-1 text-xs font-bold tracking-wide text-gray-400 uppercase"
-              htmlFor="city"
-            >
+              htmlFor="city">
               City
             </label>
             <div className="relative">
@@ -66,8 +65,7 @@ const FilterOptions = () => {
                 name="location[city]"
                 value={city}
                 onChange={onChange}
-                className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
-              >
+                className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white">
                 <option value="all">All City</option>
                 {cities !== null
                   ? cities.map((city) => (
@@ -87,8 +85,7 @@ const FilterOptions = () => {
           <div className="px-2 mb-3 md:w-1/3">
             <label
               className="block mb-1 text-xs font-bold tracking-wide text-gray-400 uppercase"
-              htmlFor="type"
-            >
+              htmlFor="type">
               Type
             </label>
             <div className="relative">
@@ -97,8 +94,7 @@ const FilterOptions = () => {
                 name="type[type]"
                 value={type}
                 onChange={onChange}
-                className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
-              >
+                className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white">
                 <option value="">All</option>
                 <option value="single-family home">Single-family Home</option>
                 <option value="multi-family home">Multi-family Home</option>
@@ -124,8 +120,7 @@ const FilterOptions = () => {
           <div className="px-2 mb-3 md:w-1/3">
             <label
               className="block mb-1 text-xs font-bold tracking-wide text-gray-400 uppercase"
-              htmlFor="price"
-            >
+              htmlFor="price">
               Price
             </label>
             <div className="flex justify-between">
@@ -135,8 +130,7 @@ const FilterOptions = () => {
                   name="price[gte]"
                   value={priceMin}
                   onChange={onChange}
-                  className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
-                >
+                  className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white">
                   <option value="">Min</option>
                   <option value="50000">$50000</option>
                   <option value="100000">$100000</option>
@@ -161,8 +155,7 @@ const FilterOptions = () => {
                   name="price[lte]"
                   value={priceMax}
                   onChange={onChange}
-                  className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
-                >
+                  className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white">
                   <option value="">Max</option>
                   <option value="500000">$500000</option>
                   <option value="600000">$600000</option>
@@ -187,8 +180,7 @@ const FilterOptions = () => {
             <div className="w-2/5 md:w-1/2">
               <label
                 className="block mb-1 text-xs font-bold tracking-wide text-gray-400 uppercase"
-                htmlFor="bedrooms"
-              >
+                htmlFor="bedrooms">
                 Bedrooms
               </label>
               <div className="flex justify-between">
@@ -198,8 +190,7 @@ const FilterOptions = () => {
                     name="bedrooms[gte]"
                     value={bedroomsMin}
                     onChange={onChange}
-                    className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
-                  >
+                    className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white">
                     <option value="">Min</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -224,8 +215,7 @@ const FilterOptions = () => {
                     name="bedrooms[lte]"
                     value={bedroomsMax}
                     onChange={onChange}
-                    className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
-                  >
+                    className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white">
                     <option value="">Max</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -249,8 +239,7 @@ const FilterOptions = () => {
             <div className="w-2/5 md:w-1/2">
               <label
                 className="block mb-1 text-xs font-bold tracking-wide text-gray-400 uppercase"
-                htmlFor="bathrooms"
-              >
+                htmlFor="bathrooms">
                 Bathrooms
               </label>
               <div className="flex justify-between">
@@ -260,8 +249,7 @@ const FilterOptions = () => {
                     name="bathrooms[gte]"
                     value={bathroomsMin}
                     onChange={onChange}
-                    className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
-                  >
+                    className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white">
                     <option value="">Min</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -286,8 +274,7 @@ const FilterOptions = () => {
                     name="bathrooms[lte]"
                     value={bathroomsMax}
                     onChange={onChange}
-                    className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
-                  >
+                    className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white">
                     <option value="">Max</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -311,8 +298,7 @@ const FilterOptions = () => {
           <div className="flex items-end justify-center mb-3 md:flex-grow">
             <button
               type="submit"
-              className="w-full max-w-lg py-3 font-semibold text-white align-middle transition duration-500 ease-in-out bg-gray-800 rounded-full hover:bg-yellow-600 hover:border-yellow-600"
-            >
+              className="w-full max-w-lg py-3 font-semibold text-white align-middle transition duration-500 ease-in-out bg-gray-800 rounded-full hover:bg-yellow-600 hover:border-yellow-600">
               <SvgIcon
                 name="filter"
                 className="inline-block w-5 h-5 mr-2 fill-current"
