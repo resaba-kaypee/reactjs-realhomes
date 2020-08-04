@@ -45,7 +45,7 @@ const SingleProperty = () => {
   }, [type]);
 
   return (
-    <section className="w-full mt-16">
+    <section className="w-full">
       {property !== null && !loading ? (
         <>
           {/* INFORATION */}

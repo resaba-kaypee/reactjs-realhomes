@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import PropertyContext from '../../context/property/propertyContext';
 import SvgIcon from '../svg/SvgIcon';
 

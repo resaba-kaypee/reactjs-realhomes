@@ -22,6 +22,7 @@ const Listings = () => {
 
   useEffect(() => {
     getPropertiesByLocation();
+    // eslint-disable-next-line
   }, [location.search]);
 
   const [isOpen, setIsOpen] = useState(false);
