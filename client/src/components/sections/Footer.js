@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import FooterBg from '../../assets/img/footer.jpg';
-import SvgIcon from '../svg/SvgIcon';
+import React, { useState } from "react";
+import FooterBg from "../../assets/img/footer.jpg";
+import SvgIcon from "../svg/SvgIcon";
 
 const Footer = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <footer className="w-full">
+    <footer className="relative w-full">
       <div
-        className="relative pt-24 pb-12 mt-48 bg-center bg-no-repeat bg-cover"
+        className="relative pt-24 pb-12 bg-center bg-no-repeat bg-cover"
         style={{
           backgroundImage: `url(${FooterBg})`,
-        }}
-      >
+        }}>
         {/* OVERLAY */}
         <div className="absolute inset-0 bg-gray-900 opacity-75"></div>
 
@@ -61,20 +60,20 @@ const Footer = () => {
                 Get <span className="text-yellow-600">Info</span>
               </h1>
               <p className="mt-2 text-sm font-semibold text-white">
-                Phone:{' '}
-                <span className="font-hairline text-white text-gray-200">
+                Phone:{" "}
+                <span className="font-hairline text-gray-200">
                   (12) 345 6789
                 </span>
               </p>
               <p className="mt-2 text-sm font-semibold text-white">
-                Email:{' '}
-                <span className="font-hairline text-white text-gray-200">
+                Email:{" "}
+                <span className="font-hairline text-gray-200">
                   info.realhomes.io
                 </span>
               </p>
               <p className="mt-2 text-lg font-semibold text-white">
-                Address:{' '}
-                <span className="text-sm font-hairline text-white text-gray-200 sm:text-md">
+                Address:{" "}
+                <span className="text-sm font-hairline text-gray-200 sm:text-md">
                   Iris Watson, Box 283 8562 Fusce Rd, NY
                 </span>
               </p>
@@ -90,49 +89,49 @@ const Footer = () => {
                   <SvgIcon
                     name="marker"
                     className="inline w-6 h-6 fill-current"
-                  />{' '}
+                  />{" "}
                   <span className="text-sm text-gray-200">Denver</span>
                 </a>
                 <a href="#!" className="w-1/2 mb-3 text-yellow-600">
                   <SvgIcon
                     name="marker"
                     className="inline w-6 h-6 fill-current"
-                  />{' '}
+                  />{" "}
                   <span className="text-sm text-gray-200">New York</span>
                 </a>
                 <a href="#!" className="w-1/2 mb-3 text-yellow-600">
                   <SvgIcon
                     name="marker"
                     className="inline w-6 h-6 fill-current"
-                  />{' '}
+                  />{" "}
                   <span className="text-sm text-gray-200">San Francisco</span>
                 </a>
                 <a href="#!" className="w-1/2 mb-3 text-yellow-600">
                   <SvgIcon
                     name="marker"
                     className="inline w-6 h-6 fill-current"
-                  />{' '}
+                  />{" "}
                   <span className="text-sm text-gray-200">Los Angeles</span>
                 </a>
                 <a href="#!" className="w-1/2 mb-3 text-yellow-600">
                   <SvgIcon
                     name="marker"
                     className="inline w-6 h-6 fill-current"
-                  />{' '}
+                  />{" "}
                   <span className="text-sm text-gray-200">Dallas</span>
                 </a>
                 <a href="#!" className="w-1/2 mb-3 text-yellow-600">
                   <SvgIcon
                     name="marker"
                     className="inline w-6 h-6 fill-current"
-                  />{' '}
+                  />{" "}
                   <span className="text-sm text-gray-200">Washington DC</span>
                 </a>
                 <a href="#!" className="w-1/2 mb-3 text-yellow-600">
                   <SvgIcon
                     name="marker"
                     className="inline w-6 h-6 fill-current"
-                  />{' '}
+                  />{" "}
                   <span className="text-sm text-gray-200">Texas</span>
                 </a>
               </div>
@@ -148,7 +147,7 @@ const Footer = () => {
                 updates, count, etc.
               </p>
               <form className="w-full max-w-sm mt-6">
-                <div className="flex items-center py-2 border-b border-b-2 border-teal-500">
+                <div className="flex items-center py-2 border-b-2 border-teal-500">
                   <input
                     className="w-full px-2 py-1 mr-3 text-lg text-white bg-transparent border-none appearance-none focus:outline-none"
                     type="text"
@@ -156,8 +155,7 @@ const Footer = () => {
                   />
                   <button
                     className="p-3 text-white transition duration-500 ease-in-out border rounded-full hover:bg-yellow-600 hover:border-yellow-600"
-                    type="button"
-                  >
+                    type="button">
                     <SvgIcon name="plane" className="w-4 h-4 fill-current" />
                   </button>
                 </div>
@@ -172,12 +170,11 @@ const Footer = () => {
             <p className="flex flex-col items-center p-6 text-gray-200 md:w-1/2">
               Copyright ©
               <script>document.write(new Date().getFullYear());</script>
-              2020 All rights reserved{' '}
+              2020 All rights reserved{" "}
               <a
                 href="!#"
                 target="_blank"
-                className="block text-center text-yellow-600"
-              >
+                className="block text-center text-yellow-600">
                 realhome.io
               </a>
             </p>
@@ -187,10 +184,9 @@ const Footer = () => {
               <button
                 type="button"
                 className="px-2 py-1 border border-white rounded hover:border-yellow-600 hover:bg-yellow-600 focus:outline-none focus:border-yellow-600"
-                onClick={() => setIsOpen(!isOpen)}
-              >
+                onClick={() => setIsOpen(!isOpen)}>
                 <SvgIcon
-                  name={isOpen ? 'chevron-up' : 'chevron-down'}
+                  name={isOpen ? "chevron-up" : "chevron-down"}
                   className="w-8 h-8 fill-current"
                 />
               </button>
@@ -198,9 +194,8 @@ const Footer = () => {
 
             <div
               className={
-                (isOpen ? 'block ' : 'hidden ') + 'md:block md:w-1/2 w-full'
-              }
-            >
+                (isOpen ? "block " : "hidden ") + "md:block md:w-1/2 w-full"
+              }>
               <nav className="py-2">
                 <ul className="flex flex-col items-center md:flex-row">
                   <li className="px-4 py-1 mt-1 font-semibold text-white rounded hover:bg-gray-800">
