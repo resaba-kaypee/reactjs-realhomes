@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const News = () => {
   return (
@@ -20,7 +20,7 @@ const News = () => {
                 <div className="overflow-hidden rounded-lg shadow-lg">
                   <img
                     className="object-cover object-center w-full h-full"
-                    src={require('../../assets/img/blog/14.jpg')}
+                    src={require("../../assets/img/blog/14.jpg")}
                     alt="blog 1"
                   />
                 </div>
@@ -29,10 +29,10 @@ const News = () => {
                     Benjamin Franklin S Method Of Habit Formation
                   </h2>
                 </a>
+                <a className="pr-4" href="!#">
+                  By Polly Williams
+                </a>
                 <div className="flex flex-col mt-2 text-sm text-gray-600 md:flex-row md:justify-between">
-                  <a className="pr-4" href="!#">
-                    By Polly Williams
-                  </a>
                   <a className="pr-4" href="!#">
                     Aug 19, 2018
                   </a>
@@ -48,7 +48,7 @@ const News = () => {
                 <div className="overflow-hidden rounded-lg shadow-lg">
                   <img
                     className="object-cover object-center w-full h-full"
-                    src={require('../../assets/img/blog/15.jpg')}
+                    src={require("../../assets/img/blog/15.jpg")}
                     alt="blog 2"
                   />
                 </div>
@@ -57,10 +57,10 @@ const News = () => {
                     How to set your intentions that energize you
                   </h2>
                 </a>
+                <a className="pr-4" href="!#">
+                  By Matte Ramirez
+                </a>
                 <div className="flex flex-col mt-2 text-sm text-gray-600 md:flex-row md:justify-between">
-                  <a className="pr-4" href="!#">
-                    By Matte Ramirez
-                  </a>
                   <a className="pr-4" href="!#">
                     Oct 19, 2018
                   </a>
@@ -76,7 +76,7 @@ const News = () => {
                 <div className="overflow-hidden rounded-lg shadow-lg">
                   <img
                     className="object-cover object-center w-full h-full"
-                    src={require('../../assets/img/blog/16.jpg')}
+                    src={require("../../assets/img/blog/16.jpg")}
                     alt="blog 3"
                   />
                 </div>
@@ -85,10 +85,10 @@ const News = () => {
                     Burning desire golden key or red herring
                   </h2>
                 </a>
+                <a className="pr-4" href="!#">
+                  By Nicholas Brewer
+                </a>
                 <div className="flex flex-col mt-2 text-sm text-gray-600 md:flex-row md:justify-between">
-                  <a className="pr-4 truncate " href="!#">
-                    By Nicholas Brewer
-                  </a>
                   <a className="pr-4 " href="!#">
                     Nov 19, 2018
                   </a>
