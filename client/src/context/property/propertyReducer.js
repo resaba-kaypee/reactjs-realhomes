@@ -1,4 +1,4 @@
-import sortBy from '../../utils/sortBy';
+import sortBy from "../../utils/sortBy";
 import {
   GET_ALL_PROPERTY,
   GET_PROPERTIES_BY_LOCATION,
@@ -13,7 +13,7 @@ import {
   UPDATE_PROPERTY,
   DELETE_PROPERTY,
   ERROR,
-} from '../types';
+} from "../types";
 
 export default (state, action) => {
   switch (action.type) {
@@ -23,6 +23,7 @@ export default (state, action) => {
       return {
         ...state,
         properties: action.payload.data,
+        results: Number(action.payload.results),
         cities: action.payload.cities ? action.payload.cities : null,
         location_states: [
           ...new Set(
@@ -57,18 +58,18 @@ export default (state, action) => {
       return {
         ...state,
         apt_pools: action.payload.data.filter((apartment) =>
-          apartment.features.includes('pool')
+          apartment.features.includes("pool")
         ),
         apt_laundry: action.payload.data.filter((apartment) =>
-          apartment.features.includes('in-unit laundry')
+          apartment.features.includes("in-unit laundry")
         ),
         apt_pet: action.payload.data.filter((apartment) =>
-          apartment.features.includes('pets allowed')
+          apartment.features.includes("pets allowed")
         ),
         loading: false,
       };
     case SET_HISTORY_SEARCH:
-      localStorage.setItem('history', action.payload);
+      localStorage.setItem("history", action.payload);
       return {
         ...state,
         history_search: action.payload,

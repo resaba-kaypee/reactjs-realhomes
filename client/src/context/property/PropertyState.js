@@ -1,8 +1,8 @@
-import React, { useReducer } from 'react';
-import { useLocation } from 'react-router-dom';
-import axios from 'axios';
-import PropertyContext from './propertyContext';
-import propertyReducer from './propertyReducer';
+import React, { useReducer } from "react";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
+import PropertyContext from "./propertyContext";
+import propertyReducer from "./propertyReducer";
 
 import {
   GET_ALL_PROPERTY,
@@ -18,19 +18,20 @@ import {
   UPDATE_PROPERTY,
   DELETE_PROPERTY,
   ERROR,
-} from '../types';
+} from "../types";
 
 const PropertyState = (props) => {
   const location = useLocation();
 
   const initialState = {
     properties: null,
+    results: null,
     cities: null,
     featured: null,
     affordable: null,
     location_states: null,
     location_cities: null,
-    history_search: localStorage.getItem('history') || null,
+    history_search: localStorage.getItem("history") || null,
     property: null,
     similar: null,
     apt_pools: null,
@@ -45,7 +46,7 @@ const PropertyState = (props) => {
   // Get all properties
   const getAllProperty = async () => {
     try {
-      const res = await axios.get('/api/newest');
+      const res = await axios.get("/api/newest");
       dispatch({ type: GET_ALL_PROPERTY, payload: res.data });
     } catch (err) {
       dispatch({ type: ERROR, payload: err.response.data });
@@ -133,6 +134,7 @@ const PropertyState = (props) => {
     <PropertyContext.Provider
       value={{
         properties: state.properties,
+        results: state.results,
         cities: state.cities,
         featured: state.featured,
         affordable: state.affordable,
@@ -158,8 +160,7 @@ const PropertyState = (props) => {
         createProperty,
         updateProperty,
         deleteProperty,
-      }}
-    >
+      }}>
       {props.children}
     </PropertyContext.Provider>
   );
