@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import Carousel, { Dots } from '@brainhubeu/react-carousel';
+import React, { useState } from "react";
+import Carousel, { Dots } from "@brainhubeu/react-carousel";
 
 const Slide = ({ cover, images }) => {
   const imgs = [cover, ...images];
@@ -34,7 +34,6 @@ const Slide = ({ cover, images }) => {
           thumbnails={state.thumbnails}
           value={state.value}
           onChange={onChange}
-          number={state.slides.length}
         />
       </div>
     </div>
