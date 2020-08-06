@@ -1,52 +1,40 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
-import PropertyContext from '../../context/property/propertyContext';
-import Slide from '../carousel/Slide';
-import SlideSimple from '../carousel/SlideSimple';
-import SvgIcon from '../svg/SvgIcon';
-import Map from '../layout/Map';
-import AskQuestion from '../layout/AskQuestion';
-import PropertyDetails from '../layout/PropertyDetails';
-import HouseDescription from '../layout/HouseDescription';
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import PropertyContext from "../../context/property/propertyContext";
+import Slide from "../carousel/Slide";
+import SvgIcon from "../svg/SvgIcon";
+import Map from "../layout/Map";
+import AskQuestion from "../layout/AskQuestion";
+import PropertyDetails from "../layout/PropertyDetails";
+import HouseDescription from "../layout/HouseDescription";
+import SimilarProperties from "../layout/SimilarProperties";
 
 const SingleProperty = () => {
   const { slug } = useParams();
-  const location = useLocation();
 
   const propertyContext = useContext(PropertyContext);
-  const {
-    getProperty,
-    getSimilarProperties,
-    property,
-    properties,
-    loading,
-  } = propertyContext;
+  const { getProperty, property, loading } = propertyContext;
 
   const [type, setType] = useState(null);
-
-  location.search = `?type[type]=${type}`;
+  const [loaded, setLoaded] = useState(true);
 
   useEffect(() => {
     getProperty(slug);
+    setLoaded(true);
     // eslint-disable-next-line
   }, [slug]);
 
   useEffect(() => {
     if (property !== null && !loading) {
-      setType(`type[type]=${property.type.type}`);
+      setType(`${property.type.type}`);
+      setLoaded(false);
     }
   }, [property, loading]);
 
-  useEffect(() => {
-    if (type !== null) {
-      getSimilarProperties(type);
-    }
-    // eslint-disable-next-line
-  }, [type]);
-
   return (
     <section className="w-full">
-      {property !== null && !loading ? (
+      {loaded && <h1>SPINNER</h1>}
+      {property !== null && !loaded ? (
         <>
           {/* INFORATION */}
           <div className="relative w-full h-full bg-gray-900">
@@ -156,8 +144,7 @@ const SingleProperty = () => {
                         title={property.title}
                         className="absolute top-0 left-0 w-full h-full"
                         src="https://www.youtube.com/embed/yl3i6z8vi8w"
-                        allowFullScreen
-                      ></iframe>
+                        allowFullScreen></iframe>
                     </div>
                   </div>
 
@@ -203,23 +190,14 @@ const SingleProperty = () => {
 
                   {/* SIMIlAR SLIDE */}
                   <div className="mt-12">
-                    <h2 className="text-lg font-bold text-gray-800 underline sm:text-2xl">
-                      Similar Properties
-                    </h2>
-                    <div className="mt-6">
-                      {properties !== null && !loading ? (
-                        <SlideSimple properties={properties} />
-                      ) : null}
-                    </div>
+                    <SimilarProperties type={type} />
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </>
-      ) : (
-        <h1>SPINNER</h1>
-      )}
+      ) : null}
     </section>
   );
 };
