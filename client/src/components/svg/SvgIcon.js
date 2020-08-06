@@ -2,8 +2,6 @@ import React, { Fragment } from "react";
 
 const getViewBox = (name) => {
   switch (name) {
-    case "logo":
-      return "0 0 32 33";
     case "map":
       return "0 0 24 24";
     case "marker":
@@ -56,6 +54,8 @@ const getViewBox = (name) => {
       return "0 0 24 24";
     case "timer":
       return "0 0 24 24";
+    case "logo":
+      return "0 0 236.5 318.1";
     default:
       return "0 0 32 32";
   }
@@ -63,6 +63,19 @@ const getViewBox = (name) => {
 
 const getPath = (name, props) => {
   switch (name) {
+    case "logo":
+      return (
+        <>
+          <path
+            d="M236.5 318.1L0 317.4V119L119 0l117.5 117.5v200.6zM22 295.4l192.5.6V126.6L119 31.1l-97 97v167.3z"
+            fill="#c9d700"
+          />
+          <path
+            d="M177.4 270.9H57.9V151.3h119.6v119.6zm-97.5-22h75.6v-75.6H79.9v75.6z"
+            fill="#c9d700"
+          />
+        </>
+      );
     case "timer":
       return (
         <g fill="none" fill-rule="evenodd">
