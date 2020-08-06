@@ -18,9 +18,15 @@ const Footer = () => {
           <div className="relative flex flex-wrap max-w-6xl px-8 xl:px-0">
             {/* LOGO */}
             <div className="flex flex-col sm:w-1/2 sm:px-4 sm:pb-12">
-              <h1 className="text-3xl font-semibold text-white sm:text-2xl">
-                REAL<span className="text-yellow-600">HOMES</span>
-              </h1>
+              <div className="flex items-center md:mr-5">
+                <SvgIcon className="w-10 h-10" name="logo" />
+                <div className="p-2 mt-3">
+                  <span className="text-sm text-white md:text-xl">REAL</span>
+                  <span className="text-sm text-orange-500 md:text-xl">
+                    HOMES
+                  </span>
+                </div>
+              </div>
 
               <p className="mt-2 font-hairline leading-6 tracking-wider text-teal-200 sm:text-sm">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea
