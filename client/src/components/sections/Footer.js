@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import FooterBg from "../../assets/img/footer.jpg";
 import SvgIcon from "../svg/SvgIcon";
 
 const Footer = () => {
-  const [isOpen, setIsOpen] = useState(false);
   return (
     <footer className="relative w-full">
       <div
