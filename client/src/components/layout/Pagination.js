@@ -47,7 +47,9 @@ const Pagination = ({
             Showing
             <span className="px-2 font-semibold">{from + 1}</span>
             to
-            <span className="px-2 font-semibold">{to} </span>
+            <span className="px-2 font-semibold">
+              {to > totalItems ? totalItems : to}{" "}
+            </span>
             of
             <span className="px-2 font-semibold">{totalItems}</span>
             results
