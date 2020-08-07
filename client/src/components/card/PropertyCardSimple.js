@@ -1,5 +1,5 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import { NavLink } from "react-router-dom";
 
 const PropertyCardSimple = ({ property }) => {
   return (
@@ -16,7 +16,7 @@ const PropertyCardSimple = ({ property }) => {
         </div>
         <div className="relative px-2 -mt-10">
           <p className="text-xl font-bold leading-10 text-white">
-            ${property.price}
+            ${property.price.toLocaleString()}
           </p>
           <div className="flex flex-wrap text-sm">
             <p className="w-1/2">
@@ -29,7 +29,8 @@ const PropertyCardSimple = ({ property }) => {
               {property.garage} <span className="font-semibold">Garage</span>
             </p>
             <p className="w-1/2">
-              {property.areaSize} <span className="font-semibold">sqft.</span>
+              {property.areaSize && property.areaSize.toLocaleString()}{" "}
+              <span className="font-semibold">sqft.</span>
             </p>
           </div>
           <div className="w-full pb-2 text-sm font-bold truncate">

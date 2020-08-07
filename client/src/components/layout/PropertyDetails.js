@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import SvgIcon from '../svg/SvgIcon';
+import React, { useState } from "react";
+import SvgIcon from "../svg/SvgIcon";
 
 const PropertyDetails = ({
   features,
@@ -20,8 +20,7 @@ const PropertyDetails = ({
       <button
         className="w-full p-2 border-b focus:outline-none"
         type="button"
-        onClick={() => setIsOpen(!isOpen)}
-      >
+        onClick={() => setIsOpen(!isOpen)}>
         <div className="flex justify-between">
           <h2 className="text-2xl font-bold leading-8 text-gray-800">
             Property Details
@@ -39,11 +38,10 @@ const PropertyDetails = ({
       <div
         className={
           isOpen
-            ? 'block '
-            : 'hidden ' +
-              'flex flex-col items-center mt-6 md:flex-row md:justify-center'
-        }
-      >
+            ? "block "
+            : "hidden " +
+              "flex flex-col items-center mt-6 md:flex-row md:justify-center"
+        }>
         <div className="w-full mt-6">
           {/* FEATURES */}
           <h3 className="text-xl font-bold leading-8 text-gray-800 underline">
@@ -75,7 +73,7 @@ const PropertyDetails = ({
             </li>
             <li className="flex justify-between p-2">
               <span className="font-semibold sm:text-lg">Price</span>
-              <span className="capitalize">$ {price}</span>
+              <span className="capitalize">$ {price.toLocaleString()}</span>
             </li>
             <li className="flex justify-between p-2">
               <span className="font-semibold sm:text-lg">Bedrooms</span>
@@ -91,11 +89,11 @@ const PropertyDetails = ({
             </li>
             <li className="flex justify-between p-2">
               <span className="font-semibold sm:text-lg">Lot size</span>
-              <span className="capitalize">{lot} sqft.</span>
+              <span className="capitalize">{lot && lot.toLocaleString()} sqft.</span>
             </li>
             <li className="flex justify-between p-2">
               <span className="font-semibold sm:text-lg">Area size</span>
-              <span className="capitalize">{area} sqft.</span>
+              <span className="capitalize">{area && area.toLocaleString()} sqft.</span>
             </li>
             <li className="flex justify-between p-2">
               <span className="font-semibold sm:text-lg">Year Built</span>

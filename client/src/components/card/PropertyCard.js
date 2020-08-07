@@ -1,6 +1,6 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import SvgIcon from '../svg/SvgIcon';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import SvgIcon from "../svg/SvgIcon";
 
 const PropertyCard = ({ property }) => {
   return (
@@ -79,7 +79,7 @@ const PropertyCard = ({ property }) => {
                   name="ruler"
                   className="inline w-6 h-6 mr-1 fill-current"
                 />
-                {property.lotSize}{' '}
+                {property.lotSize && property.lotSize.toLocaleString()}{" "}
                 <span className="text-sm font-normal">sqft.</span>
               </p>
               <p className="w-1/2 pt-2 font-semibold text-right">
@@ -98,7 +98,7 @@ const PropertyCard = ({ property }) => {
             {property.status}
           </p>
           <p className="w-3/5 py-4 text-lg font-semibold text-center text-gray-100 bg-yellow-600">
-            ${property.price}
+            ${property.price.toLocaleString()}
           </p>
         </div>
       </div>
