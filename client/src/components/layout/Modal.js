@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import PropTypes from "prop-types";
 import { createPortal } from 'react-dom';
 
 const Modal = ({ children }) => {
@@ -22,5 +23,9 @@ const Modal = ({ children }) => {
     elRef.current
   );
 };
+
+Modal.propTypes = {
+  children: PropTypes.element,
+}
 
 export default Modal;

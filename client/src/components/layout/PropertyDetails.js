@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import SvgIcon from "../svg/SvgIcon";
 
 const PropertyDetails = ({
@@ -89,11 +90,15 @@ const PropertyDetails = ({
             </li>
             <li className="flex justify-between p-2">
               <span className="font-semibold sm:text-lg">Lot size</span>
-              <span className="capitalize">{lot && lot.toLocaleString()} sqft.</span>
+              <span className="capitalize">
+                {lot && lot.toLocaleString()} sqft.
+              </span>
             </li>
             <li className="flex justify-between p-2">
               <span className="font-semibold sm:text-lg">Area size</span>
-              <span className="capitalize">{area && area.toLocaleString()} sqft.</span>
+              <span className="capitalize">
+                {area && area.toLocaleString()} sqft.
+              </span>
             </li>
             <li className="flex justify-between p-2">
               <span className="font-semibold sm:text-lg">Year Built</span>
@@ -104,6 +109,20 @@ const PropertyDetails = ({
       </div>
     </>
   );
+};
+
+PropertyDetails.propTypes = {
+  features: PropTypes.array.isRequired,
+  id: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  bedrooms: PropTypes.number.isRequired,
+  bathrooms: PropTypes.number.isRequired,
+  garage: PropTypes.number,
+  lot: PropTypes.number,
+  area: PropTypes.number,
+  year: PropTypes.string.isRequired,
 };
 
 export default PropertyDetails;

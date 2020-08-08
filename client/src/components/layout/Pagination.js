@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 const Pagination = ({
   totalItems,
@@ -93,6 +94,14 @@ const Pagination = ({
       </nav>
     </>
   );
+};
+
+Pagination.propTypes = {
+  totalItems: PropTypes.number,
+  itemsPerPage: PropTypes.number,
+  onPaginate: PropTypes.func,
+  from: PropTypes.number,
+  to: PropTypes.number,
 };
 
 export default Pagination;

@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from "react";
+import PropTypes from "prop-types";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import { NavLink } from "react-router-dom";
 import SvgIcon from "../svg/SvgIcon";
@@ -31,7 +32,8 @@ const PropertyCardSimple = ({ property }) => {
               {property.garage} <span className="font-semibold">Garage</span>
             </p>
             <p className="w-1/2">
-              {property.areaSize && property.areaSize.toLocaleString()} <span className="font-semibold">sqft.</span>
+              {property.areaSize && property.areaSize.toLocaleString()}{" "}
+              <span className="font-semibold">sqft.</span>
             </p>
           </div>
           <p className="text-sm font-bold">{property.location.address}</p>
@@ -103,4 +105,9 @@ const MapListing = ({ properties }) => {
     </ReactMapGL>
   );
 };
+
+MapListing.propTypes = {
+  properties: PropTypes.array.isRequired,
+};
+
 export default MapListing;
