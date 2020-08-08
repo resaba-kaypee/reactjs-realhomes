@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import SvgIcon from "../svg/SvgIcon";
 
@@ -105,5 +106,9 @@ const PropertyCard = ({ property }) => {
     </div>
   );
 };
+
+PropertyCard.propTypes = {
+  property: PropTypes.object.isRequired,
+}
 
 export default PropertyCard;

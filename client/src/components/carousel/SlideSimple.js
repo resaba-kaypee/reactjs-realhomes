@@ -1,6 +1,7 @@
-import React from 'react';
-import Carousel from '@brainhubeu/react-carousel';
-import PropertyCardSimple from '../card/PropertyCardSimple';
+import React from "react";
+import PropTypes from "prop-types";
+import Carousel from "@brainhubeu/react-carousel";
+import PropertyCardSimple from "../card/PropertyCardSimple";
 
 const SlideSimple = ({ properties }) => {
   return (
@@ -18,13 +19,16 @@ const SlideSimple = ({ properties }) => {
         768: {
           slidesPerPage: 3,
         },
-      }}
-    >
+      }}>
       {properties.map((property) => (
         <PropertyCardSimple key={property._id} property={property} />
       ))}
     </Carousel>
   );
+};
+
+SlideSimple.protoTypes = {
+  properties: PropTypes.object.isRequired,
 };
 
 export default SlideSimple;

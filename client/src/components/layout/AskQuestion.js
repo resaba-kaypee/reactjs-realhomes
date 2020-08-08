@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import SvgIcon from '../svg/SvgIcon';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import SvgIcon from "../svg/SvgIcon";
 
 const AskQuestion = ({ user }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,8 +9,7 @@ const AskQuestion = ({ user }) => {
       <button
         className="w-full p-2 border-b focus:outline-none"
         type="button"
-        onClick={() => setIsOpen(!isOpen)}
-      >
+        onClick={() => setIsOpen(!isOpen)}>
         <div className="flex justify-between">
           <h2 className="text-2xl font-bold leading-8 text-gray-800">
             Ask A Question
@@ -27,11 +27,10 @@ const AskQuestion = ({ user }) => {
       <div
         className={
           isOpen
-            ? 'block '
-            : 'hidden ' +
-              'flex flex-col items-center mt-6 md:flex-row md:justify-center'
-        }
-      >
+            ? "block "
+            : "hidden " +
+              "flex flex-col items-center mt-6 md:flex-row md:justify-center"
+        }>
         <div className="w-full mt-6">
           <h3 className="text-xl font-bold leading-8 text-gray-800">
             Know more about this property
@@ -49,7 +48,7 @@ const AskQuestion = ({ user }) => {
             </div>
             <div className="self-center px-3 pt-2">
               <h3 className="text-lg font-semibold">
-                Hi I'am your agent{' '}
+                Hi I'am your agent{" "}
                 <span className="font-bold">{user.name}</span>
               </h3>
               <p className="text-sm">
@@ -68,8 +67,7 @@ const AskQuestion = ({ user }) => {
               <div className="md:w-1/3">
                 <label
                   className="block pr-4 mb-1 font-bold text-gray-500 md:text-right md:mb-0"
-                  htmlFor="inline-full-name"
-                >
+                  htmlFor="inline-full-name">
                   Full Name
                 </label>
               </div>
@@ -87,8 +85,7 @@ const AskQuestion = ({ user }) => {
               <div className="md:w-1/3">
                 <label
                   className="block pr-4 mb-1 font-bold text-gray-500 md:text-right md:mb-0"
-                  htmlFor="inline-phone"
-                >
+                  htmlFor="inline-phone">
                   Phone
                 </label>
               </div>
@@ -105,8 +102,7 @@ const AskQuestion = ({ user }) => {
               <div className="md:w-1/3">
                 <label
                   className="block pr-4 mb-1 font-bold text-gray-500 md:text-right md:mb-0"
-                  htmlFor="inline-email"
-                >
+                  htmlFor="inline-email">
                   Email
                 </label>
               </div>
@@ -123,8 +119,7 @@ const AskQuestion = ({ user }) => {
               <div className="md:w-1/3">
                 <label
                   className="block pr-4 mb-1 font-bold text-gray-500 md:text-right md:mb-0"
-                  htmlFor="inline-text-area"
-                >
+                  htmlFor="inline-text-area">
                   Message
                 </label>
               </div>
@@ -142,8 +137,7 @@ const AskQuestion = ({ user }) => {
               <div className="md:w-2/3">
                 <button
                   className="px-4 py-2 font-bold text-white bg-purple-500 rounded shadow hover:bg-purple-400 focus:shadow-outline focus:outline-none"
-                  type="button"
-                >
+                  type="button">
                   Email Agent
                 </button>
               </div>
@@ -153,6 +147,10 @@ const AskQuestion = ({ user }) => {
       </div>
     </>
   );
+};
+
+AskQuestion.propTypes = {
+  user: PropTypes.object.isRequired,
 };
 
 export default AskQuestion;
