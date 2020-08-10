@@ -2,8 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import Carousel from "@brainhubeu/react-carousel";
 import PropertyCardSimple from "../card/PropertyCardSimple";
+import Spinner from "../layout/Spinner";
 
-const SlideSimple = ({ properties }) => {
+const SpinnerCard = () => (
+  <div className="w-full h-56 m-2 bg-gray-200 rounded shadow">
+    <Spinner />
+  </div>
+);
+
+const SlideSimple = ({ properties, loading }) => {
   return (
     <Carousel
       slidesPerPage={4}
@@ -20,9 +27,13 @@ const SlideSimple = ({ properties }) => {
           slidesPerPage: 3,
         },
       }}>
-      {properties.map((property) => (
-        <PropertyCardSimple key={property._id} property={property} />
-      ))}
+      {properties !== null && !loading ? (
+        properties.map((property) => (
+          <PropertyCardSimple key={property._id} property={property} />
+        ))
+      ) : (
+        <SpinnerCard />
+      )}
     </Carousel>
   );
 };

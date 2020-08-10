@@ -1,6 +1,7 @@
-import React, { useEffect, useContext } from 'react';
-import PropertyContext from '../../context/property/propertyContext';
-import PropertyCard from '../card/PropertyCard';
+import React, { useEffect, useContext } from "react";
+import PropertyContext from "../../context/property/propertyContext";
+import PropertyCard from "../card/PropertyCard";
+import Spinner from "../layout/Spinner";
 
 const FeaturedProperty = () => {
   const propertyContext = useContext(PropertyContext);
@@ -28,7 +29,7 @@ const FeaturedProperty = () => {
               </div>
             ))
           ) : (
-            <h1>SPINNER</h1>
+            <Spinner />
           )}
         </div>
       </div>

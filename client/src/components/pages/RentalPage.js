@@ -1,9 +1,9 @@
-import React, { useEffect, useContext } from 'react';
-import { NavLink } from 'react-router-dom';
-import PropertyContext from '../../context/property/propertyContext';
-import Search from '../forms/Search';
-import SlideSimple from '../carousel/SlideSimple';
-import Listing from '../../assets/img/listings.jpg';
+import React, { useEffect, useContext } from "react";
+import { NavLink } from "react-router-dom";
+import PropertyContext from "../../context/property/propertyContext";
+import Search from "../forms/Search";
+import SlideSimple from "../carousel/SlideSimple";
+import Listing from "../../assets/img/listings.jpg";
 
 const RentalPage = () => {
   const propertyContext = useContext(PropertyContext);
@@ -26,8 +26,7 @@ const RentalPage = () => {
         className="relative w-full bg-no-repeat h-2/3"
         style={{
           backgroundImage: `url(${Listing})`,
-        }}
-      >
+        }}>
         <div className="absolute bottom-0 w-full mb-32 ml-auto mr-auto lg:mb-24">
           <div className="flex justify-center px-4 sm:px-8 lg:px-10">
             <div className="relative w-full max-w-6xl p-8">
@@ -53,15 +52,12 @@ const RentalPage = () => {
             </h2>
             <NavLink
               to="/search?type[type]=apartment&features=pool"
-              className="text-blue-500 hover:underline"
-            >
+              className="text-blue-500 hover:underline">
               View All with Pools
             </NavLink>
           </div>
           <div className="mt-6">
-            {apt_pools !== null && !loading ? (
-              <SlideSimple properties={apt_pools} />
-            ) : null}
+            <SlideSimple properties={apt_pools} loading={loading} />
           </div>
         </div>
       </section>
@@ -73,19 +69,16 @@ const RentalPage = () => {
             </h2>
             <NavLink
               to="/search?type[type]=apartment&features=in-unit laundry"
-              className="text-blue-500 hover:underline"
-            >
+              className="text-blue-500 hover:underline">
               View All with In-unit Laundry
             </NavLink>
           </div>
           <div className="mt-6">
-            {apt_laundry !== null && !loading ? (
-              <SlideSimple properties={apt_laundry} />
-            ) : null}
+            <SlideSimple properties={apt_laundry} loading={loading} />
           </div>
         </div>
       </section>
-      <section className="relative mt-12">
+      <section className="relative my-12">
         <div className="px-2 md:px-8">
           <div className="px-4">
             <h2 className="text-lg font-semibold text-gray-800 sm:text-2xl">
@@ -93,15 +86,12 @@ const RentalPage = () => {
             </h2>
             <NavLink
               to="/search?type[type]=apartment&features=pets allowed"
-              className="text-blue-500 hover:underline"
-            >
+              className="text-blue-500 hover:underline">
               View All Pet-friendly Rentals
             </NavLink>
           </div>
           <div className="mt-6">
-            {apt_pet !== null && !loading ? (
-              <SlideSimple properties={apt_pet} />
-            ) : null}
+            <SlideSimple properties={apt_pet} loading={loading} />
           </div>
         </div>
       </section>

@@ -9,6 +9,7 @@ import Search from "../forms/Search";
 import MapListings from "../layout/MapListing";
 import Pagination from "../layout/Pagination";
 import Listing from "../../assets/img/listings.jpg";
+import Spinner from "../layout/Spinner";
 
 const Listings = () => {
   const location = useLocation();
@@ -47,6 +48,18 @@ const Listings = () => {
   const paginate = (pageNumber) => {
     if (pageNumber !== currentPage) setCurrentPage(pageNumber);
   };
+
+  const SpinnerCards = [];
+
+  for (let i = 0; i < postPerPage; i++) {
+    SpinnerCards.push(
+      <div className="flex md:w-1/2 lg:w-1/3 h-1/2">
+        <div className="flex items-center justify-center w-full m-3 bg-gray-200 border rounded shadow">
+          <Spinner />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <main className="w-full mt-20 md:mt-12">
@@ -155,7 +168,11 @@ const Listings = () => {
       </section>
       <section>
         {loading ? (
-          <h1>Loading...</h1>
+          <div className="flex flex-row justify-center w-full">
+            <div className="flex flex-wrap w-full h-screen max-w-11/12">
+              {SpinnerCards}
+            </div>
+          </div>
         ) : (
           <>
             <div className="flex flex-row justify-center w-full">
