@@ -29,7 +29,7 @@ const PropertyCard = ({ property }) => {
             </div>
             <div>
               <a href="!#" className="text-yellow-600">
-                Sam Smith
+                {property.user.name}
               </a>
               , Agent
             </div>
@@ -109,6 +109,6 @@ const PropertyCard = ({ property }) => {
 
 PropertyCard.propTypes = {
   property: PropTypes.object.isRequired,
-}
+};
 
 export default PropertyCard;
