@@ -72,24 +72,30 @@ const MapListing = ({ properties }) => {
           <Marker
             latitude={property.location.coordinates[1]}
             longitude={property.location.coordinates[0]}
-            offsetLeft={-12}>
-            <div
+            offsetLeft={-16}>
+            <NavLink
+              to={`/property/${property.slug}`}
+              className="text-red-600 hover:text-red-800"
+              onClick={() => setShowProperty(!showProperty)}
               onMouseOver={() =>
                 setShowPopup({
                   [property._id]: true,
                 })
               }
-              onMouseOut={() => {
+              onMouseLeave={() => {
                 setShowProperty(false);
                 setShowPopup({});
-              }}
-              onClick={() => setShowProperty(!showProperty)}>
-              <SvgIcon name="circle" className="w-6 h-6 cursor-pointer" />
-            </div>
+              }}>
+              <SvgIcon
+                name="circle"
+                className="w-8 h-8 cursor-pointer fill-current"
+              />
+            </NavLink>
           </Marker>
           {showPopup[property._id] ? (
             <Popup
               tipSize={5}
+              offsetTop={24}
               anchor="bottom"
               closeButton={false}
               latitude={property.location.coordinates[1]}
