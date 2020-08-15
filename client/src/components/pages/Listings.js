@@ -70,10 +70,41 @@ const Listings = () => {
             backgroundImage: `url(${Listing})`,
           }}>
           {/* SEARCH STATE FORM */}
-          <div className="flex flex-col w-full px-2">
-            <div className="w-full md:w-1/2">
-              <Search />
+          <div className="relative w-full max-w-6xl p-8">
+            <div className="absolute"></div>
+            <div className="relative mb-4">
+              <h1 className="text-4xl font-semibold text-yellow-500">
+                Discover Your Perfect Home
+              </h1>
+              <p className="mt-2 text-lg text-yellow-500">
+                With the most complete source of homes for sale & real estate
+                near you
+              </p>
             </div>
+            <Search />
+          </div>
+        </div>
+      </section>
+      <section>
+        <div className="px-8 mt-6">
+          <h2 className="text-xl font-bold leading-8 text-gray-800">
+            {location_states !== null && location_states.length === 1 ? (
+              <span>{location_states[0]} </span>
+            ) : null}
+            {location_cities !== null && location_cities.length === 1 ? (
+              <span className="capitalize">{location_cities[0]} </span>
+            ) : null}
+            Real Estate & Homes for Sale or Rent
+          </h2>
+
+          {/* FILTER SEARCH FORM */}
+          <div className={(isOpen ? "block " : "hidden ") + "md:block"}>
+            <FilterOptions />
+          </div>
+
+          <div className="flex items-end justify-between mt-4">
+            {/* SORT SEARCH FORM */}
+            <SortProperty />
 
             {/* FILTER SEARCH FORM BUTTON */}
             <div className="ml-4 md:hidden">
@@ -90,28 +121,6 @@ const Listings = () => {
                 </div>
               </button>
             </div>
-          </div>
-
-          {/* FILTER SEARCH FORM */}
-          <div className={(isOpen ? "block " : "hidden ") + "md:block"}>
-            <FilterOptions />
-          </div>
-        </div>
-      </section>
-      <section>
-        <div className="px-8 mt-6">
-          <h2 className="text-xl font-bold leading-8 text-gray-800">
-            {location_states !== null && location_states.length === 1 ? (
-              <span>{location_states[0]} </span>
-            ) : null}
-            {location_cities !== null && location_cities.length === 1 ? (
-              <span className="capitalize">{location_cities[0]} </span>
-            ) : null}
-            Real Estate & Homes for Sale or Rent
-          </h2>
-          <div className="flex items-end justify-between mt-4">
-            {/* SORT SEARCH FORM */}
-            <SortProperty />
 
             <div className="hidden md:block">
               {/* LIST */}
