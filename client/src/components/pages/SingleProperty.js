@@ -8,6 +8,7 @@ import AskQuestion from "../layout/AskQuestion";
 import PropertyDetails from "../layout/PropertyDetails";
 import HouseDescription from "../layout/HouseDescription";
 import SimilarProperties from "../layout/SimilarProperties";
+import Spinner from "../layout/Spinner";
 
 const PropertyInfo = ({ property }) => (
   <div className="flex justify-center mt-12 md:mt-0">
@@ -110,7 +111,6 @@ const SingleProperty = () => {
 
   return (
     <section className="w-full">
-      {loaded && <h1>SPINNER</h1>}
       {property !== null && !loaded ? (
         <>
           {/* INFORATION */}
@@ -198,7 +198,11 @@ const SingleProperty = () => {
             </div>
           </div>
         </>
-      ) : null}
+      ) : (
+        <div className="w-screen h-screen">
+          <Spinner />
+        </div>
+      )}
     </section>
   );
 };
