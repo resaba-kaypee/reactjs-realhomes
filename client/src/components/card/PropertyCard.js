@@ -20,7 +20,7 @@ const PropertyCard = ({ property }) => {
         {/* AGENT */}
         <div className="relative -mt-10 text-right lg:-mt-16">
           <div className="flex items-baseline justify-between px-4">
-            <div className="w-16 h-16 mr-5 overflow-hidden border-2 border-gray-100 rounded-full lg:w-24 lg:h-24">
+            <div className="w-24 h-24 mr-5 overflow-hidden border-2 border-gray-100 rounded-full">
               <img
                 src={require(`../../assets/img/user/${property.user.photo}`)}
                 alt="agent avatar"
