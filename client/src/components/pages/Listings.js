@@ -176,7 +176,7 @@ const Listings = () => {
         ) : (
           <>
             <div className="flex flex-row justify-center w-full">
-              <div className="flex flex-col md:flex-row md:flex-wrap max-w-11/12">
+              <div className="flex flex-col w-full md:flex-row md:flex-wrap max-w-11/12">
                 {currentPosts !== null && !loading
                   ? currentPosts.map((property) => (
                       <div
