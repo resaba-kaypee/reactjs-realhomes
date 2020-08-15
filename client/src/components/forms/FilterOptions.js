@@ -49,13 +49,13 @@ const FilterOptions = () => {
   };
 
   return (
-    <form className="w-full shadow-xl" onSubmit={onSubmit}>
+    <form className="w-full" onSubmit={onSubmit}>
       <div className="flex flex-col w-full pt-6 pb-3 xl:flex-row">
         <div className="w-full md:flex md:justify-between">
           {/***** CITY *****/}
           <div className="px-2 mb-3 md:w-1/3">
             <label
-              className="block mb-1 text-xs font-bold tracking-wide text-gray-400 uppercase"
+              className="block mb-1 text-xs font-bold tracking-wide text-gray-600 uppercase"
               htmlFor="city">
               City
             </label>
@@ -84,7 +84,7 @@ const FilterOptions = () => {
           {/***** TYPES *****/}
           <div className="px-2 mb-3 md:w-1/3">
             <label
-              className="block mb-1 text-xs font-bold tracking-wide text-gray-400 uppercase"
+              className="block mb-1 text-xs font-bold tracking-wide text-gray-600 uppercase"
               htmlFor="type">
               Type
             </label>
@@ -119,7 +119,7 @@ const FilterOptions = () => {
           {/***** PRICE *****/}
           <div className="px-2 mb-3 md:w-1/3">
             <label
-              className="block mb-1 text-xs font-bold tracking-wide text-gray-400 uppercase"
+              className="block mb-1 text-xs font-bold tracking-wide text-gray-600 uppercase"
               htmlFor="price">
               Price
             </label>
@@ -148,7 +148,7 @@ const FilterOptions = () => {
                   />
                 </div>
               </div>
-              <div className="self-end w-1/5 text-center text-gray-400">to</div>
+              <div className="self-end w-1/5 text-center text-gray-600">to</div>
               <div className="relative w-2/5">
                 <select
                   id="priceMax"
@@ -179,7 +179,7 @@ const FilterOptions = () => {
             {/***** BEDROOMS *****/}
             <div className="w-2/5 md:w-1/2">
               <label
-                className="block mb-1 text-xs font-bold tracking-wide text-gray-400 uppercase"
+                className="block mb-1 text-xs font-bold tracking-wide text-gray-600 uppercase"
                 htmlFor="bedrooms">
                 Bedrooms
               </label>
@@ -206,7 +206,7 @@ const FilterOptions = () => {
                     />
                   </div>
                 </div>
-                <div className="self-end w-1/5 text-center text-gray-400">
+                <div className="self-end w-1/5 text-center text-gray-600">
                   to
                 </div>
                 <div className="relative w-2/5">
@@ -238,7 +238,7 @@ const FilterOptions = () => {
             {/***** BATHROOMS *****/}
             <div className="w-2/5 md:w-1/2">
               <label
-                className="block mb-1 text-xs font-bold tracking-wide text-gray-400 uppercase"
+                className="block mb-1 text-xs font-bold tracking-wide text-gray-600 uppercase"
                 htmlFor="bathrooms">
                 Bathrooms
               </label>
@@ -265,7 +265,7 @@ const FilterOptions = () => {
                     />
                   </div>
                 </div>
-                <div className="self-end w-1/5 text-center text-gray-400">
+                <div className="self-end w-1/5 text-center text-gray-600">
                   to
                 </div>
                 <div className="relative w-2/5">
