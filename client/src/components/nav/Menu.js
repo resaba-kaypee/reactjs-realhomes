@@ -29,7 +29,7 @@ const Menu = () => {
         }>
         <div
           className={
-            "md:justify-left md:items-center h-full md:mt-0 px-4 text-md lg:text-lg md:flex md:p-0"
+            "md:justify-left md:items-center h-full md:mt-0 px-4 text-md lg:text-lg md:flex md:p-0 mb-2 md:mb-0"
           }>
           <NavLink
             to="/realstateforsale"
