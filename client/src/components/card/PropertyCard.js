@@ -79,7 +79,7 @@ const PropertyCard = ({ property }) => {
                   name="ruler"
                   className="inline w-6 h-6 mr-1 fill-current"
                 />
-                {property.lotSize && property.lotSize.toLocaleString()}{" "}
+                {property.lotSize ? property.lotSize.toLocaleString() : "-"}{" "}
                 <span className="text-sm font-normal">sqft.</span>
               </p>
               <p className="w-1/2 pt-2 font-semibold text-right">
