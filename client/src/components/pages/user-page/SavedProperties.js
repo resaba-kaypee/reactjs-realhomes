@@ -26,11 +26,11 @@ const Card = ({ property }) => {
           </div>
         </div>
 
-        <div className="flex flex-col w-3/5 ml-4 capitalize border-r ">
+        <div className="flex flex-col w-3/5 ml-4 capitalize truncate border-r">
           <span className="mt-2 text-xl font-semibold text-gray-700 truncate">
             {property.title}
           </span>
-          <p className="w-56 mt-2 text-sm text-gray-600 truncate">
+          <p className="mt-2 text-sm text-gray-600 truncate">
             {property.description}
           </p>
           <div className="flex justify-between w-2/3">
