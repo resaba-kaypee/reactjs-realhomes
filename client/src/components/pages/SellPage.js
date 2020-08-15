@@ -228,7 +228,7 @@ const SellPage = () => {
       </section>
       <section className="relative mx-8 mb-16 lg:mx-24">
         <div className="flex flex-col items-center md:grid md:grid-cols-2 md:gap-4">
-          <div className="order-2 md:order-none">
+          <div className="order-2 mt-4 md:order-none">
             <SellersText />
           </div>
           <div className="order-1 md:order-none">
