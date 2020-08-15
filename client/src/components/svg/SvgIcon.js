@@ -20,6 +20,8 @@ const getViewBox = (name) => {
       return "0 0 20 20";
     case "train":
       return "0 0 20 20";
+    case "close":
+      return "0 0 20 20";
     case "filter":
       return "0 0 20 20";
     case "direction":
@@ -50,6 +52,8 @@ const getViewBox = (name) => {
       return "0 0 24 24";
     case "bullseye":
       return "0 0 24 24";
+    case "sort":
+      return "0 0 24 24";
     case "chat":
       return "0 0 24 24";
     case "timer":
@@ -63,6 +67,13 @@ const getViewBox = (name) => {
 
 const getPath = (name, props) => {
   switch (name) {
+    case "sort":
+      return (
+        <path
+          d="M18 21l-4-4h3V7h-3l4-4 4 4h-3v10h3M2
+          19v-2h10v2M2 13v-2h7v2M2 7V5h4v2H2z"
+        />
+      );
     case "logo":
       return (
         <>
@@ -215,6 +226,10 @@ const getPath = (name, props) => {
           strokeWidth="12"
           fill="red"
         />
+      );
+    case "close":
+      return (
+        <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm1.41-1.41A8 8 0 1 0 15.66 4.34 8 8 0 0 0 4.34 15.66zm9.9-8.49L11.41 10l2.83 2.83-1.41 1.41L10 11.41l-2.83 2.83-1.41-1.41L8.59 10 5.76 7.17l1.41-1.41L10 8.59l2.83-2.83 1.41 1.41z" />
       );
     case "list":
       return (
