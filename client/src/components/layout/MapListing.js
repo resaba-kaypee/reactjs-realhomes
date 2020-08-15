@@ -1,45 +1,71 @@
 import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
-import { NavLink } from "react-router-dom";
 import SvgIcon from "../svg/SvgIcon";
 
 const PropertyCardSimple = ({ property }) => {
   return (
-    <div className="p-2">
-      <div className="overflow-hidden border rounded shadow">
-        <div className="relative">
-          <NavLink to={`/property/${property.slug}`}>
-            <img
-              className="object-cover object-center h-56 md:h-40 xl:h-56 w-72"
-              src={require(`../../assets/img/property/${property.imageCover}`)}
-              alt={property.propertyId}
-            />
-          </NavLink>
-        </div>
-        <div className="relative px-2 -mt-10">
-          <p className="text-xl font-bold leading-10 text-white">
-            ${property.price.toLocaleString()}
+    <div className="flex w-100">
+      {/* <!-- Left side --> */}
+
+      <div className="flex w-4/6 capitalize border-r">
+        <img
+          className="object-cover w-24 h-24 mr-4 shadow-lg"
+          src={require(`../../assets/img/property/${property.imageCover}`)}
+          alt=""
+        />
+        <div className="flex flex-col truncate">
+          <span className="mt-2 font-semibold text-gray-700 truncate">
+            {property.location.address}
+          </span>
+          <p className="mt-1 text-sm text-gray-600 truncate">
+            {property.location.city}, {property.location.state}
           </p>
-          <div className="flex flex-wrap text-sm">
-            <p className="w-1/2">
-              {property.bedrooms} <span className="font-semibold">Beds</span>
-            </p>
-            <p className="w-1/2">
-              {property.bathrooms} <span className="font-semibold">Baths</span>
-            </p>
-            <p className="w-1/2">
-              {property.garage} <span className="font-semibold">Garage</span>
-            </p>
-            <p className="w-1/2">
-              {property.areaSize && property.areaSize.toLocaleString()}{" "}
-              <span className="font-semibold">sqft.</span>
-            </p>
+          <div className="flex justify-around">
+            <div className="mr-2 text-sm">
+              <span className="text-gray-700">
+                <SvgIcon
+                  name="bed"
+                  className="inline w-3 h-3 mr-1 fill-current"
+                />
+              </span>
+              {property.bedrooms}
+            </div>
+            <div className="mr-2 text-sm">
+              <span className="text-gray-700">
+                <SvgIcon
+                  name="bath"
+                  className="inline w-3 h-3 mr-1 fill-current"
+                />
+              </span>
+              {property.bathrooms}
+            </div>
+            <div className="mr-2 text-sm">
+              <span className="text-gray-700">
+                <SvgIcon
+                  name="ruler"
+                  className="inline w-3 h-3 mr-1 fill-current"
+                />
+              </span>
+              {property.areaSize}
+            </div>
           </div>
-          <p className="text-sm font-bold">{property.location.address}</p>
-          <div className="w-full pb-2 text-sm font-bold truncate">
-            <span className="capitalize">{property.location.city}, </span>
-            <span>{property.location.state}</span>
+        </div>
+      </div>
+      <div className="flex w-2/6 ml-2">
+        {/* <!-- Rigt side --> */}
+
+        <div className="text-gray-700 capitalize">
+          <p className="text-sm">{property.status}</p>
+          <p className="mt-2 font-semibold text-gray-800">
+            {property.price.toLocaleString("en", {
+              style: "currency",
+              currency: "USD",
+            })}
+          </p>
+          <div className="mt-1 text-sm">
+            <p className="text-red-600">By</p>
+            <p>{property.user.name}</p>
           </div>
         </div>
       </div>
@@ -73,31 +99,29 @@ const MapListing = ({ properties }) => {
             latitude={property.location.coordinates[1]}
             longitude={property.location.coordinates[0]}
             offsetLeft={-16}>
-            <NavLink
-              to={`/property/${property.slug}`}
+            <div
               className="text-red-600 hover:text-red-800"
-              onClick={() => setShowProperty(!showProperty)}
-              onMouseOver={() =>
+              onClick={() => {
                 setShowPopup({
                   [property._id]: true,
-                })
-              }
-              onMouseLeave={() => {
-                setShowProperty(false);
-                setShowPopup({});
+                });
+                setShowProperty(true);
               }}>
               <SvgIcon
                 name="circle"
                 className="w-8 h-8 cursor-pointer fill-current"
               />
-            </NavLink>
+            </div>
           </Marker>
-          {showPopup[property._id] ? (
+          {showProperty && showPopup[property._id] ? (
             <Popup
               tipSize={5}
               offsetTop={24}
               anchor="bottom"
-              closeButton={false}
+              onClose={() => {
+                setShowPopup({});
+                setShowProperty(false);
+              }}
               latitude={property.location.coordinates[1]}
               longitude={property.location.coordinates[0]}
               className="absolute z-10">
