@@ -34,31 +34,31 @@ const Menu = () => {
           <NavLink
             to="/realstateforsale"
             activeClassName="bg-gray-800"
-            className="block px-4 py-1 mt-1 text-gray-200 rounded hover:bg-gray-800 md:px-2 md:mt-0 md-ml-2 hover:border-gray-300">
+            className="block px-4 py-1 mt-1 text-gray-200 rounded hover:bg-gray-800 md:px-2 md:mt-0 md-ml-2 focus:outline-none focus:bg-gray-800">
             Buy
           </NavLink>
           <NavLink
             to="/sell"
             activeClassName="bg-gray-700"
-            className="block px-4 py-1 mt-1 text-gray-200 rounded hover:bg-gray-800 md:px-2 md:mt-0 md-ml-2 hover:border-gray-300">
+            className="block px-4 py-1 mt-1 text-gray-200 rounded hover:bg-gray-800 md:px-2 md:mt-0 md-ml-2 focus:outline-none focus:bg-gray-800">
             Sell
           </NavLink>
           <NavLink
             to="/rentals"
             activeClassName="bg-gray-700"
-            className="block px-4 py-1 mt-1 text-gray-200 rounded hover:bg-gray-800 md:px-2 md:mt-0 md-ml-2 hover:border-gray-300">
+            className="block px-4 py-1 mt-1 text-gray-200 rounded hover:bg-gray-800 md:px-2 md:mt-0 md-ml-2 focus:outline-none focus:bg-gray-800">
             Rent
           </NavLink>
           <NavLink
             to="/myhome"
             activeClassName="bg-gray-700"
-            className="block px-4 py-1 mt-1 text-gray-200 rounded hover:bg-gray-800 md:px-2 md:mt-0 md-ml-2 hover:border-gray-300">
+            className="block px-4 py-1 mt-1 text-gray-200 rounded hover:bg-gray-800 md:px-2 md:mt-0 md-ml-2 focus:outline-none focus:bg-gray-800">
             My Home
           </NavLink>
           <NavLink
             to="/about"
             activeClassName="bg-gray-700"
-            className="block px-4 py-1 mt-1 text-gray-200 rounded hover:bg-gray-800 md:px-2 md:mt-0 md-ml-2 hover:border-gray-300">
+            className="block px-4 py-1 mt-1 text-gray-200 rounded hover:bg-gray-800 md:px-2 md:mt-0 md-ml-2 focus:outline-none focus:bg-gray-800">
             About
           </NavLink>
         </div>
