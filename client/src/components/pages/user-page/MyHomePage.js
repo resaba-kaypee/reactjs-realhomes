@@ -36,12 +36,10 @@ const Tabs = (props) => {
               </div>
               <div
                 className={
-                  selected === 1
-                    ? "hidden"
-                    : "flex items-center select-none sm:w-1/3"
+                  selected === 1 ? "hidden" : "flex items-center sm:w-1/3"
                 }>
                 <input
-                  className="w-full px-4 bg-transparent rounded focus:outline-none"
+                  className="w-full px-4 py-2 bg-transparent focus:border-b-2 focus:border-green-500 focus:outline-none"
                   placeholder="Search"
                 />
 
