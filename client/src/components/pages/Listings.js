@@ -53,7 +53,7 @@ const Listings = () => {
 
   for (let i = 0; i < postPerPage; i++) {
     SpinnerCards.push(
-      <div className="flex md:w-1/2 lg:w-1/3 h-1/2">
+      <div className="flex w-full md:w-1/2 lg:w-1/3 h-1/2">
         <div className="flex items-center justify-center w-full m-3 bg-gray-200 border rounded shadow">
           <Spinner />
         </div>
