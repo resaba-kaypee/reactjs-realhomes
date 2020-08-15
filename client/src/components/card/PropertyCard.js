@@ -19,7 +19,7 @@ const PropertyCard = ({ property }) => {
 
         {/* AGENT */}
         <div className="relative -mt-10 text-right lg:-mt-16">
-          <div className="flex items-baseline justify-between p-4">
+          <div className="flex items-baseline justify-between px-4">
             <div className="w-16 h-16 mr-5 overflow-hidden border-2 border-gray-100 rounded-full lg:w-24 lg:h-24">
               <img
                 src={require(`../../assets/img/user/${property.user.photo}`)}
@@ -27,12 +27,11 @@ const PropertyCard = ({ property }) => {
                 className="object-cover w-full h-full"
               />
             </div>
-            <div>
-              <a href="!#" className="text-yellow-600">
-                {property.user.name}
-              </a>
-              , Agent
-            </div>
+          </div>
+          <div className="px-4">
+            <a href="!#" className="text-yellow-600">
+              {property.user.name} , Agent
+            </a>
           </div>
         </div>
 
