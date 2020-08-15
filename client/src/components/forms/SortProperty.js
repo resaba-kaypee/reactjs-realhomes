@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import PropertyContext from '../../context/property/propertyContext';
-import SvgIcon from '../svg/SvgIcon';
+import React, { useContext } from "react";
+import PropertyContext from "../../context/property/propertyContext";
+import SvgIcon from "../svg/SvgIcon";
 
 const SortProperty = () => {
   const propertyContext = useContext(PropertyContext);
@@ -14,17 +14,15 @@ const SortProperty = () => {
     <form action="">
       <div className="px-2">
         <label
-          className="inline-block mb-1 text-xs font-bold tracking-wide text-gray-700"
-          htmlFor="sort"
-        >
+          className="block mb-1 text-xs font-bold tracking-wide text-gray-600 uppercase"
+          htmlFor="sort">
           Sort By
         </label>
         <div className="relative inline-block ml-4">
           <select
             id="state"
             onChange={onChange}
-            className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white"
-          >
+            className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-500 rounded appearance-none focus:outline-none focus:bg-white">
             <option value="new">Newest Property</option>
             <option value="price_asc">Lowest Price</option>
             <option value="price_desc">Highest Price</option>
