@@ -45,66 +45,97 @@ const PropertyDetails = ({
         }>
         <div className="w-full mt-6">
           {/* FEATURES */}
-          <h3 className="text-xl font-bold leading-8 text-gray-800 underline">
-            Features
-          </h3>
-          <ul className="p-4 mt-3 bg-gray-300 rounded">
-            {features.map((feature) => (
-              <li key={feature} className="p-1 font-semibold capitalize">
-                ✔ {feature}
-              </li>
-            ))}
-          </ul>
-          {/* INFO */}
-          <h3 className="mt-6 text-xl font-bold leading-8 text-gray-800 underline">
-            Details
-          </h3>
-          <ul className="flex flex-col p-2 mt-3 bg-gray-300 rounded">
-            <li className="flex justify-between p-2">
-              <span className="font-semibold sm:text-lg">Property ID</span>
-              <span className="capitalize">{id}</span>
-            </li>
-            <li className="flex justify-between p-2">
-              <span className="font-semibold sm:text-lg">Property Type</span>
-              <span className="capitalize">{type}</span>
-            </li>
-            <li className="flex justify-between p-2">
-              <span className="font-semibold sm:text-lg">Status</span>
-              <span className="capitalize">{status}</span>
-            </li>
-            <li className="flex justify-between p-2">
-              <span className="font-semibold sm:text-lg">Price</span>
-              <span className="capitalize">$ {price.toLocaleString()}</span>
-            </li>
-            <li className="flex justify-between p-2">
-              <span className="font-semibold sm:text-lg">Bedrooms</span>
-              <span className="capitalize">{bedrooms}</span>
-            </li>
-            <li className="flex justify-between p-2">
-              <span className="font-semibold sm:text-lg">Bathrooms</span>
-              <span className="capitalize">{bathrooms}</span>
-            </li>
-            <li className="flex justify-between p-2">
-              <span className="font-semibold sm:text-lg">Garage</span>
-              <span className="capitalize">{garage}</span>
-            </li>
-            <li className="flex justify-between p-2">
-              <span className="font-semibold sm:text-lg">Lot size</span>
-              <span className="capitalize">
-                {lot && lot.toLocaleString()} sqft.
-              </span>
-            </li>
-            <li className="flex justify-between p-2">
-              <span className="font-semibold sm:text-lg">Area size</span>
-              <span className="capitalize">
-                {area && area.toLocaleString()} sqft.
-              </span>
-            </li>
-            <li className="flex justify-between p-2">
-              <span className="font-semibold sm:text-lg">Year Built</span>
-              <span className="capitalize">{year}</span>
-            </li>
-          </ul>
+          <div className="flex flex-col md:flex-row">
+            <div className="md:w-2/5">
+              <h3 className="text-xl font-bold leading-8 text-gray-800 underline">
+                Features
+              </h3>
+              <ul className="p-4 mt-3 rounded">
+                {features.map((feature) => (
+                  <li key={feature} className="p-1 font-semibold capitalize">
+                    ✔ {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* DETAILS */}
+            <div className="md:w-3/5">
+              <h3 className="text-xl font-bold leading-8 text-gray-800 underline">
+                Details
+              </h3>
+
+              <table className="mt-3 table-fixed">
+                <thead>
+                  <tr>
+                    <th className="w-3/5"></th>
+                    <th className="w-2/5"></th>
+                  </tr>
+                </thead>
+                <tbody className="capitalize">
+                  <tr>
+                    <td className="px-4 py-2 font-semibold border">
+                      Property ID
+                    </td>
+                    <td className="px-4 py-2 border">{id}</td>
+                  </tr>
+                  <tr className="bg-gray-100">
+                    <td className="px-4 py-2 font-semibold border">
+                      Property Type
+                    </td>
+                    <td className="px-4 py-2 border">{type}</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-2 font-semibold border">Status</td>
+                    <td className="px-4 py-2 border">{status}</td>
+                  </tr>
+                  <tr className="bg-gray-100">
+                    <td className="px-4 py-2 font-semibold border">Price</td>
+                    <td className="px-4 py-2 border">
+                      {price.toLocaleString("en", {
+                        style: "currency",
+                        currency: "USD",
+                      })}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-2 font-semibold border">Bedrooms</td>
+                    <td className="px-4 py-2 border">{bedrooms}</td>
+                  </tr>
+                  <tr className="bg-gray-100">
+                    <td className="px-4 py-2 font-semibold border">
+                      Bathrooms
+                    </td>
+                    <td className="px-4 py-2 border">{bathrooms}</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-2 font-semibold border">Garage</td>
+                    <td className="px-4 py-2 border">{garage}</td>
+                  </tr>
+                  <tr className="bg-gray-100">
+                    <td className="px-4 py-2 font-semibold border">
+                      Area Size
+                    </td>
+                    <td className="px-4 py-2 border">
+                      {area && area.toLocaleString()} sqft.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-2 font-semibold border">Lot Size</td>
+                    <td className="px-4 py-2 border">
+                      {lot && lot.toLocaleString()} sqft.
+                    </td>
+                  </tr>
+                  <tr className="bg-gray-100">
+                    <td className="px-4 py-2 font-semibold border">
+                      Year Built
+                    </td>
+                    <td className="px-4 py-2 border">{year}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </>
