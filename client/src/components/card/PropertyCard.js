@@ -6,7 +6,10 @@ import SvgIcon from "../svg/SvgIcon";
 const PropertyCard = ({ property }) => {
   return (
     <div className="w-full overflow-hidden bg-gray-200 rounded-lg shadow-xl">
-      <div className="border">
+      <div className="relative border">
+        <button className="absolute top-0 right-0 z-10 mt-4 mr-4 text-white cursor-pointer hover:text-red-700">
+          <SvgIcon name="heart" className="w-12 h-12 fill-current" />
+        </button>
         <div className="relative border-b-2 border-gray-100 pb-4/5">
           <NavLink to={`/property/${property.slug}`}>
             <img
