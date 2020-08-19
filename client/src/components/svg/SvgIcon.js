@@ -58,6 +58,8 @@ const getViewBox = (name) => {
       return "0 0 24 24";
     case "timer":
       return "0 0 24 24";
+    case "heart":
+      return "0 0 24 24";
     case "logo":
       return "0 0 236.5 318.1";
     default:
@@ -67,6 +69,10 @@ const getViewBox = (name) => {
 
 const getPath = (name, props) => {
   switch (name) {
+    case "heart":
+      return (
+        <path d="M12.76 3.76a6 6 0 0 1 8.48 8.48l-8.53 8.54a1 1 0 0 1-1.42 0l-8.53-8.54a6 6 0 0 1 8.48-8.48l.76.75.76-.75zm7.07 7.07a4 4 0 1 0-5.66-5.66l-1.46 1.47a1 1 0 0 1-1.42 0L9.83 5.17a4 4 0 1 0-5.66 5.66L12 18.66l7.83-7.83z" />
+      );
     case "sort":
       return (
         <path
