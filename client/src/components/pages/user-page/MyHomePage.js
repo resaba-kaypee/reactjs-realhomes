@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import properties from "./data";
 import SavedProperties from "./SavedProperties";
 import CompareProperties from "./CompareProperties";
+import AccountSettings from "./AccountSettings";
 import SvgIcon from "../../svg/SvgIcon";
 
 const Tabs = (props) => {
@@ -10,7 +11,7 @@ const Tabs = (props) => {
     setSelected(index);
   };
   return (
-    <div className="flex w-full h-screen mt-24 overflow-hidden md:mt-16">
+    <div className="flex w-full mt-24 overflow-hidden md:mt-16">
       <main className="flex flex-col flex-1 overflow-y-auto transition duration-500 ease-in-out">
         <div className="mx-10 my-2">
           <nav className="flex flex-row justify-between transition duration-500 ease-in-out border-b">
@@ -36,19 +37,22 @@ const Tabs = (props) => {
               </div>
               <div
                 className={
-                  selected === 1 ? "hidden" : "flex items-center sm:w-1/3"
+                  selected === 1 || selected === 2
+                    ? "invisible"
+                    : "flex relative items-center sm:w-1/3"
                 }>
                 <input
-                  className="w-full px-4 py-2 bg-transparent focus:border-b-2 focus:border-green-500 focus:outline-none"
+                  className="w-full py-5 pl-2 pr-10 bg-transparent focus:border-b-2 focus:border-green-500 focus:outline-none"
                   placeholder="Search"
                 />
-
-                <span className="mr-3 transition duration-500 ease-in-out cursor-pointer hover:text-green-500">
-                  <SvgIcon
-                    name="search"
-                    className="inline-block w-5 h-5 ml-1 fill-current"
-                  />
-                </span>
+                <div class="absolute inset-y-0 right-0 flex items-center pr-1 pointer-events-none">
+                  <span className="mr-3 transition duration-500 ease-in-out cursor-pointer hover:text-green-500">
+                    <SvgIcon
+                      name="search"
+                      className="inline-block w-5 h-5 ml-1 fill-current"
+                    />
+                  </span>
+                </div>
               </div>
             </div>
           </nav>
@@ -71,6 +75,9 @@ const MyHomePage = () => {
       </Panel>
       <Panel title="Compared Properties">
         <CompareProperties properties={properties} />
+      </Panel>
+      <Panel title="Account Settings">
+        <AccountSettings />
       </Panel>
     </Tabs>
   );
