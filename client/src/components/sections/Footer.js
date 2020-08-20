@@ -18,12 +18,13 @@ const Footer = () => {
             {/* LOGO */}
             <div className="flex flex-col sm:w-1/2 sm:px-4 sm:pb-12">
               <div className="flex items-center md:mr-5">
-                <SvgIcon className="w-10 h-10" name="logo" />
-                <div className="p-2 mt-3">
-                  <span className="text-sm text-white md:text-xl">REAL</span>
-                  <span className="text-sm text-orange-500 md:text-xl">
-                    HOMES
-                  </span>
+                <SvgIcon
+                  className="w-16 h-16 text-green-700 fill-current"
+                  name="logo"
+                />
+                <div className="p-2 mt-3 text-xl font-semibold">
+                  <span className="text-yellow-600">REAL</span>
+                  <span className="text-gray-600">HOMES</span>
                 </div>
               </div>
 
