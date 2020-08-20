@@ -40,10 +40,16 @@ const PropertyDetails = ({
         className={
           isOpen
             ? "block "
-            : "hidden " +
-              "flex flex-col items-center mt-6 md:flex-row md:justify-center"
+            : "max-h-0 " +
+              "flex-col items-center mt-6 md:flex-row md:justify-center overflow-hidden transition duration-1000 ease-out"
         }>
-        <div className="w-full mt-6">
+        <div
+          className={
+            (isOpen
+              ? "transition duration-300 transform translate-y-0 opacity-1"
+              : "transition duration-300 transform -translate-y-10 opacity-0") +
+            " w-full mt-6"
+          }>
           {/* FEATURES */}
           <div className="flex flex-col md:flex-row">
             <div className="md:w-2/5">

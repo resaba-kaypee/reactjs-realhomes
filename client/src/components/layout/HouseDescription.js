@@ -23,8 +23,18 @@ const HouseDescription = ({ description }) => {
           </div>
         </div>
       </button>
-      <div className={(isOpen ? "block " : "hidden ") + "mt-6"}>
-        <p className="px-2 mt-6 text-xs text-center text-gray-700 sm:text-lg">
+      <div
+        className={
+          (isOpen ? "block " : "max-h-0 ") +
+          "mt-6 overflow-hidden transition duration-1000 ease-out"
+        }>
+        <p
+          className={
+            (isOpen
+              ? "transition duration-300 transform translate-y-0 opacity-1"
+              : "transition duration-300 transform -translate-y-2 opacity-0") +
+            "px-2 mt-6 text-xs text-center text-gray-700 sm:text-lg"
+          }>
           {description}
         </p>
       </div>
