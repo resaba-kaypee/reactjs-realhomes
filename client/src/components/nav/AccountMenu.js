@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import FormContext from "../../context/form/formContext";
 import SignInButton from "../layout/SignInButton";
 import SignUpButton from "../layout/SignUpButton";
 import SignUp from "../forms/SignUp";
 import SignIn from "../forms/SignIn";
 
 const AccountMenu = () => {
+  const formContext = useContext(FormContext);
+  const { showSignIn, showSignUp, setShowSignUp, closeForms } = formContext;
   const [isOpen, setIsOpen] = useState(false);
-  const [showSignUp, setShowSignUp] = useState(false);
-  const [showSignIn, setShowSignIn] = useState(false);
 
   const handleEscape = (e) => {
     if (e.key === "Esc" || e.key === "Escape") {
       setIsOpen(false);
-      setShowSignIn(false);
-      setShowSignUp(false);
+      closeForms();
     }
   };
 
@@ -32,7 +32,7 @@ const AccountMenu = () => {
           className="relative z-10 block w-12 h-12 overflow-hidden border-2 border-gray-600 rounded-full focus:border-white focus:outline-none"
           onClick={() => {
             setIsOpen(!isOpen);
-            setShowSignUp(true);
+            setShowSignUp();
           }}>
           <img
             src={require("../../assets/img/default.jpg")}
@@ -40,19 +40,11 @@ const AccountMenu = () => {
             className="object-cover w-full h-full"
           />
         </button>
-        {isOpen && showSignUp ? (
-          <SignUp
-            setIsOpen={setIsOpen}
-            setShowSignIn={setShowSignIn}
-            setShowSignUp={setShowSignUp}
-          />
+        {isOpen && showSignUp && !showSignIn ? (
+          <SignUp setIsOpen={setIsOpen} />
         ) : null}
-        {isOpen && showSignIn ? (
-          <SignIn
-            setIsOpen={setIsOpen}
-            setShowSignIn={setShowSignIn}
-            setShowSignUp={setShowSignUp}
-          />
+        {isOpen && showSignIn && !showSignUp ? (
+          <SignIn setIsOpen={setIsOpen} />
         ) : null}
       </div>
 
