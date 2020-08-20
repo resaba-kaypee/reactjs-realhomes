@@ -6,7 +6,7 @@ import SvgIcon from "../svg/SvgIcon";
 
 const Navbar = () => {
   return (
-    <header className="fixed top-0 z-20 flex justify-center w-full bg-white border-b border-green-500 shadow">
+    <header className="fixed top-0 z-30 flex justify-center w-full bg-white border-b border-green-500 shadow">
       <div className="relative w-full px-8 py-4 md:py-0">
         <nav className="flex items-center justify-between h-full">
           <AccountMenu />
