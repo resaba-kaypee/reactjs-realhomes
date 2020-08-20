@@ -1,21 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import SignInButton from '../layout/SignInButton';
-import SignUpButton from '../layout/SignUpButton';
-import SignUp from '../forms/SignUp';
+import React, { useState, useEffect } from "react";
+import SignInButton from "../layout/SignInButton";
+import SignUpButton from "../layout/SignUpButton";
+import SignUp from "../forms/SignUp";
+import SignIn from "../forms/SignIn";
 
 const AccountMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showSignUp, setShowSignUp] = useState(false);
+  const [showSignIn, setShowSignIn] = useState(false);
 
   const handleEscape = (e) => {
-    if (e.key === 'Esc' || e.key === 'Escape') {
+    if (e.key === "Esc" || e.key === "Escape") {
       setIsOpen(false);
+      setShowSignIn(false);
+      setShowSignUp(false);
     }
   };
 
   useEffect(() => {
-    document.addEventListener('keydown', handleEscape);
+    document.addEventListener("keydown", handleEscape);
     return () => {
-      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener("keydown", handleEscape);
     };
   }, []);
 
@@ -24,16 +29,31 @@ const AccountMenu = () => {
       {/* IMAGE BUTTON */}
       <div className="relative block md:hidden">
         <button
-          className="relative z-10 block w-12 h-12 overflow-hidden border-2 border-white border-gray-600 rounded-full focus:border-white focus:outline-none"
-          onClick={() => setIsOpen(!isOpen)}
-        >
+          className="relative z-10 block w-12 h-12 overflow-hidden border-2 border-gray-600 rounded-full focus:border-white focus:outline-none"
+          onClick={() => {
+            setIsOpen(!isOpen);
+            setShowSignUp(true);
+          }}>
           <img
-            src={require('../../assets/img/default.jpg')}
+            src={require("../../assets/img/default.jpg")}
             alt="your avatar"
             className="object-cover w-full h-full"
           />
         </button>
-        {isOpen && <SignUp setIsOpen={setIsOpen} />}
+        {isOpen && showSignUp ? (
+          <SignUp
+            setIsOpen={setIsOpen}
+            setShowSignIn={setShowSignIn}
+            setShowSignUp={setShowSignUp}
+          />
+        ) : null}
+        {isOpen && showSignIn ? (
+          <SignIn
+            setIsOpen={setIsOpen}
+            setShowSignIn={setShowSignIn}
+            setShowSignUp={setShowSignUp}
+          />
+        ) : null}
       </div>
 
       {/* INLINE BUTTON */}
@@ -46,12 +66,5 @@ const AccountMenu = () => {
     </div>
   );
 };
-// <div className="hidden md:block">
-//   <div className="flex text-gray-700 rounded-lg">
-//     <SignInButton />
-//     {/* <span className="border-2 border-gray-300"></span> */}
-//     <SignUpButton />
-//   </div>
-// </div>
 
 export default AccountMenu;
