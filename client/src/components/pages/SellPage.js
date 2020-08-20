@@ -193,7 +193,7 @@ const AddressBar = () => (
       />
       <button
         type="submit"
-        className="w-1/3 px-4 py-3 text-lg font-semibold text-gray-200 transition duration-500 ease-in-out bg-gray-800 border border-l-0 border-gray-800 rounded rounded-l-none hover:bg-yellow-600 hover:border-yellow-600">
+        className="w-1/3 px-4 py-3 font-semibold text-gray-200 transition duration-500 ease-in-out bg-gray-800 border border-l-0 border-gray-800 rounded rounded-l-none hover:bg-yellow-600 hover:border-yellow-600">
         Get Started
       </button>
     </div>
@@ -214,7 +214,7 @@ const SellPage = () => {
               <div className="absolute"></div>
               <div className="relative mb-4">
                 <h1 className="text-4xl font-semibold text-yellow-500">
-                  Sell Your Home
+                  Sell your home.
                 </h1>
                 <p className="mt-2 text-lg text-yellow-500">
                   We analyze millions of home transactions to pair you with the
