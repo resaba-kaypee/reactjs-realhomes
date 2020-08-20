@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import FormContext from "../../context/form/formContext";
 import Modal from "../layout/Modal";
 
-const SignIn = ({ setIsOpen, setShowSignIn, setShowSignUp }) => {
+const SignIn = ({ setIsOpen }) => {
+  const formContext = useContext(FormContext);
+  const { closeForms, setShowSignUp } = formContext;
   return (
     <Modal>
       <div className="flex items-center justify-center w-screen h-screen">
@@ -12,7 +15,7 @@ const SignIn = ({ setIsOpen, setShowSignIn, setShowSignUp }) => {
             className="fixed inset-0 right-0 w-full h-full bg-black opacity-25 cursor-default"
             onClick={() => {
               setIsOpen(false);
-              setShowSignIn(false);
+              closeForms();
             }}></button>
           <form className="relative px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
             <button
@@ -21,7 +24,7 @@ const SignIn = ({ setIsOpen, setShowSignIn, setShowSignUp }) => {
               className="absolute top-0 right-0 -mt-6 -mr-6 text-red-600 rounded-full shadow-md cursor-pointer focus:border-white focus:outline-none"
               onClick={() => {
                 setIsOpen(false);
-                setShowSignIn(false);
+                closeForms();
               }}>
               <svg className="w-8 h-8 fill-current" viewBox="0 0 20 20">
                 <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm1.41-1.41A8 8 0 1 0 15.66 4.34 8 8 0 0 0 4.34 15.66zm9.9-8.49L11.41 10l2.83 2.83-1.41 1.41L10 11.41l-2.83 2.83-1.41-1.41L8.59 10 5.76 7.17l1.41-1.41L10 8.59l2.83-2.83 1.41 1.41z" />
@@ -70,10 +73,7 @@ const SignIn = ({ setIsOpen, setShowSignIn, setShowSignUp }) => {
                 <p className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800">
                   No account?{" "}
                   <button
-                    onClick={() => {
-                      setShowSignIn(false);
-                      setShowSignUp(true);
-                    }}
+                    onClick={() => setShowSignUp()}
                     type="button"
                     className="font-bold text-blue-700 border-b-2 border-blue-800">
                     Register here
