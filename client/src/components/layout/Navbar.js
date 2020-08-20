@@ -6,15 +6,18 @@ import SvgIcon from "../svg/SvgIcon";
 
 const Navbar = () => {
   return (
-    <header className="fixed top-0 z-20 flex justify-center w-full bg-gray-900">
+    <header className="fixed top-0 z-20 flex justify-center w-full bg-white border-b border-green-500 shadow">
       <div className="relative w-full px-8 py-4 md:py-0">
         <nav className="flex items-center justify-between h-full">
           <AccountMenu />
           <NavLink to="/" className="flex items-center justify-center md:mr-5">
-            <SvgIcon className="w-10 h-10" name="logo" />
-            <div className="p-2 mt-3">
-              <span className="text-sm text-white md:text-xl">REAL</span>
-              <span className="text-sm text-orange-500 md:text-xl">HOMES</span>
+            <SvgIcon
+              className="w-10 h-10 text-green-700 fill-current sm:w-16 sm:h-16"
+              name="logo"
+            />
+            <div className="p-2 mt-3 font-semibold">
+              <span className="text-lg text-yellow-700 sm:text-2xl ">REAL</span>
+              <span className="text-lg text-gray-700 sm:text-2xl ">HOMES</span>
             </div>
           </NavLink>
           <Menu />
