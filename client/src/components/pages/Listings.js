@@ -166,9 +166,16 @@ const Listings = () => {
       <section>
         <div
           className={
-            (isMapActive ? "flex " : "hidden ") + "mt-8 justify-center"
+            (isMapActive ? "flex max-h-full " : "max-h-0 ") +
+            "mt-8 justify-center overflow-hidden transition duration-1000 ease-out"
           }>
-          <div className="w-11/12 px-2">
+          <div
+            className={
+              (isMapActive
+                ? "transition duration-300 transform translate-y-0 opacity-1"
+                : "transition duration-300 transform -translate-y-2 opacity-0") +
+              " w-11/12 px-2"
+            }>
             {currentPosts !== null && !loading ? (
               <MapListings properties={currentPosts} />
             ) : null}
