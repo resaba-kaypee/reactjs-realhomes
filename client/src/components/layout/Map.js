@@ -13,6 +13,7 @@ const Map = ({ longitude, latitude }) => {
   return (
     <ReactMapGL
       {...viewport}
+      scrollZoom={false}
       width="100%"
       height="100%"
       onViewportChange={setViewport}
