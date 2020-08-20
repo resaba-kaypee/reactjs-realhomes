@@ -41,7 +41,7 @@ const Search = () => {
         <button
           type="submit"
           className="px-4 py-3 text-gray-200 transition duration-500 ease-in-out bg-gray-800 border border-l-0 border-gray-800 rounded rounded-l-none hover:bg-yellow-600 hover:border-yellow-600">
-          <SvgIcon name="search" className="w-5 h-5 fill-current" />
+          <SvgIcon name="search" className="w-6 h-6 fill-current" />
         </button>
       </div>
     </form>
