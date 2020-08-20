@@ -12,11 +12,13 @@ const PropertyCardSimple = ({ property }) => {
         </button>
         <div className="relative">
           <NavLink to={`/property/${property.slug}`}>
-            <img
-              className="object-cover object-center w-56 h-56 md:h-40"
-              src={require(`../../assets/img/property/${property.imageCover}`)}
-              alt={property.propertyId}
-            />
+            <div className="w-56 h-56 md:w-72 md:h-72 lg:w-84 lg:h-84">
+              <img
+                className="object-cover w-full h-full"
+                src={require(`../../assets/img/property/${property.imageCover}`)}
+                alt={property.propertyId}
+              />
+            </div>
           </NavLink>
         </div>
         <div className="relative px-2 -mt-10">
