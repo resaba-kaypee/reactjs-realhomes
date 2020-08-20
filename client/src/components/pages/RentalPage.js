@@ -33,7 +33,7 @@ const RentalPage = () => {
               <div className="absolute"></div>
               <div className="relative mb-4">
                 <h1 className="text-4xl font-semibold text-yellow-500">
-                  Discover Your Perfect Rental
+                  Discover your perfect rental.
                 </h1>
                 <p className="mt-2 text-lg text-yellow-500">
                   Search nearby apartments, condos, and homes for rent

@@ -37,7 +37,7 @@ const BuyPage = () => {
               <div className="absolute"></div>
               <div className="relative mb-4">
                 <h1 className="text-4xl font-semibold text-yellow-500">
-                  Discover Your Perfect Home
+                  Discover your perfect home.
                 </h1>
                 <p className="mt-2 text-lg text-yellow-500">
                   With the most complete source of homes for sale & real estate
