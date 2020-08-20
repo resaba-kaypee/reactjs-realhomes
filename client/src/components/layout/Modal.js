@@ -1,18 +1,18 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
-import { createPortal } from 'react-dom';
+import { createPortal } from "react-dom";
 
 const Modal = ({ children }) => {
   const elRef = useRef(null);
 
   if (!elRef.current) {
-    const div = document.createElement('div');
+    const div = document.createElement("div");
     elRef.current = div;
-    div.classList = 'fixed z-30';
+    div.classList = "fixed z-40";
   }
 
   useEffect(() => {
-    const modalRoot = document.getElementById('modal');
+    const modalRoot = document.getElementById("modal");
     modalRoot.appendChild(elRef.current);
 
     return () => modalRoot.removeChild(elRef.current);
@@ -26,6 +26,6 @@ const Modal = ({ children }) => {
 
 Modal.propTypes = {
   children: PropTypes.element,
-}
+};
 
 export default Modal;
