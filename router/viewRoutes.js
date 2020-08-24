@@ -8,9 +8,10 @@ const {
   checkIfNew,
   getProperty,
   getAllProperty,
+  getAllApartment,
   getPropertiesByLocation,
   getCitiesByCurrentLocation,
-  getAllApartment,
+  getNewestApartment,
   newest,
   getAffordableProperties,
   featuredProperties,
@@ -28,7 +29,11 @@ router.route("/affordable").get(getAffordableProperties, getAllProperty);
 
 router.route("/property/:slug").get(getProperty); // avalaible for everyone
 
-router.route("/rentals").get(getAllApartment, getAllProperty);
+router.route("/rentals").get(getNewestApartment, getAllProperty);
+
+router
+  .route("/rentals/search")
+  .get(getAllApartment, getCitiesByCurrentLocation, getAllProperty);
 
 router
   .route("/properties/search")

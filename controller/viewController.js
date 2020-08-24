@@ -46,6 +46,7 @@ exports.getAffordableProperties = (req, res, next) => {
   next();
 };
 
+// get single property details by slug
 exports.getProperty = catchAsync(async (req, res, next) => {
   const property = await Property.findOne({ slug: req.params.slug }).populate({
     path: "user",
@@ -62,6 +63,7 @@ exports.getProperty = catchAsync(async (req, res, next) => {
   });
 });
 
+// list down all avalable cities in each state
 exports.getCitiesByCurrentLocation = catchAsync(async (req, res, next) => {
   const { location } = req.query;
 
@@ -92,10 +94,19 @@ exports.getCitiesByCurrentLocation = catchAsync(async (req, res, next) => {
   next();
 });
 
-exports.getAllApartment = (req, res, next) => {
+exports.getNewestApartment = (req, res, next) => {
   req.query = {
     type: { type: "apartment" },
     limit: 6,
+    sort: "-datePosted",
+  };
+  next();
+};
+
+exports.getAllApartment = (req, res, next) => {
+  req.query = {
+    ...req.query,
+    type: { type: "apartment" },
   };
   next();
 };
