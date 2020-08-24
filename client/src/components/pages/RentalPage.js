@@ -51,7 +51,7 @@ const RentalPage = () => {
               Rentals with Pools
             </h2>
             <NavLink
-              to="/search?type[type]=apartment&features=pool"
+              to="/rentals-search?type[type]=apartment&features=pool"
               className="text-blue-500 hover:underline">
               View All with Pools
             </NavLink>
@@ -68,7 +68,7 @@ const RentalPage = () => {
               Rentals with In-unit Laundry
             </h2>
             <NavLink
-              to="/search?type[type]=apartment&features=in-unit laundry"
+              to="/rentals-search?type[type]=apartment&features=in-unit laundry"
               className="text-blue-500 hover:underline">
               View All with In-unit Laundry
             </NavLink>
@@ -85,7 +85,7 @@ const RentalPage = () => {
               Pet-friendly Rentals with
             </h2>
             <NavLink
-              to="/search?type[type]=apartment&features=pets allowed"
+              to="/rentals-search?type[type]=apartment&features=pets allowed"
               className="text-blue-500 hover:underline">
               View All Pet-friendly Rentals
             </NavLink>

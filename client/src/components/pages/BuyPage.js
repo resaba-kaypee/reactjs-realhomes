@@ -56,7 +56,7 @@ const BuyPage = () => {
               Newest Listings
             </h2>
             <NavLink
-              to="/search?sort=-datePosted"
+              to="/properties-search?sort=-datePosted"
               className="text-blue-500 hover:underline">
               View All Newest Listings
             </NavLink>
@@ -73,7 +73,7 @@ const BuyPage = () => {
               Featured Listings
             </h2>
             <NavLink
-              to="/search?limit=6&sort=-price"
+              to="/properties-search?limit=6&sort=-price"
               className="text-blue-500 hover:underline">
               View All Featured Listings
             </NavLink>
@@ -90,7 +90,7 @@ const BuyPage = () => {
               Homes Around $300,000
             </h2>
             <NavLink
-              to="/search?price[lte]=300000&sort=-price"
+              to="/properties-search?price[lte]=300000&sort=-price"
               className="text-blue-500 hover:underline">
               View All Affordable Properties
             </NavLink>
