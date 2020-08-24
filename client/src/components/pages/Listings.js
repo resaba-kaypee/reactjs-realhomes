@@ -86,7 +86,7 @@ const Listings = () => {
           </div>
         </div>
       </section>
-      <main className="w-full mt-20 md:mt-12">
+      <main className="w-full">
         <section>
           <div className="px-8 mt-6">
             <h2 className="text-xl font-bold leading-8 text-gray-800">
@@ -102,14 +102,14 @@ const Listings = () => {
             {/* FILTER SEARCH FORM */}
             <div
               className={
-                (isOpen ? "block " : "max-h-0 ") +
+                (isOpen ? "block " : "max-h-0 md:max-h-full ") +
                 "md:block overflow-hidden transition duration-1000 ease-out"
               }>
               <div
                 className={
                   isOpen
-                    ? "transition duration-300 transform translate-y-0 opacity-1"
-                    : "transition duration-300 transform -translate-y-10 opacity-0"
+                    ? "transition duration-300 transform translate-y-0 opacity-100"
+                    : "transition duration-300 transform -translate-y-10 opacity-0 md:opacity-100 md:translate-y-0"
                 }>
                 <FilterOptions />
               </div>
