@@ -20,11 +20,19 @@ const Search = () => {
     .map((key) => `${key}=${params[key]}`)
     .join("");
 
+  const rentalPathQuery = `${queryStr}&type[type]=apartment`;
+
   const onSubmit = (e) => {
     e.preventDefault();
     setHistorySearch(queryStr);
-    location.search = `?${queryStr}`;
-    history.push(`/search${location.search}`);
+
+    if (location.pathname === "/rentals-search") {
+      location.search = `?${rentalPathQuery}`;
+      history.push(`/rentals-search${location.search}`);
+    } else {
+      location.search = `?${queryStr}`;
+      history.push(`/properties-search${location.search}`);
+    }
   };
 
   return (

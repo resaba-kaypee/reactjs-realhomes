@@ -30,22 +30,41 @@ const FilterOptions = () => {
     bathroomsMax,
   } = filterObj;
 
-  const filterStr = Object.keys(filterObj)
+  let filterStr = Object.keys(filterObj)
     .filter((key) => filterObj[key] !== null && filterObj[key] !== "")
     .map((key) => `${key}=${filterObj[key]}`)
     .join("&");
 
-  const queryStr =
-    history_search !== null && filterStr !== ""
-      ? history_search + "&" + filterStr
-      : filterStr !== ""
-      ? filterStr
-      : history_search;
+  const rentalPathQuery = `type[type]=apartment`;
+
+  let queryStr;
+
+  if (location.pathname === "/rentals-search") {
+    queryStr =
+      history_search !== null && filterStr !== ""
+        ? `${history_search}&${rentalPathQuery}&${filterStr}`
+        : filterStr !== ""
+        ? `${rentalPathQuery}&${filterStr}`
+        : `${history_search}&${rentalPathQuery}`;
+  } else {
+    queryStr =
+      history_search !== null && filterStr !== ""
+        ? history_search + "&" + filterStr
+        : filterStr !== ""
+        ? filterStr
+        : history_search;
+  }
 
   const onSubmit = (e) => {
     e.preventDefault();
+
     location.search = `?${queryStr}`;
-    history.push(`/search${location.search}`);
+
+    if (location.pathname === "/rentals-search") {
+      history.push(`/rentals-search${location.search}`);
+    } else {
+      history.push(`/properties-search${location.search}`);
+    }
   };
 
   return (
