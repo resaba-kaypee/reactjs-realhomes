@@ -6,7 +6,7 @@ import SlideSimple from "../carousel/SlideSimple";
 
 const SimilarProperties = ({ type }) => {
   const location = useLocation();
-  
+
   location.search = `?type[type]=${type}`;
 
   const propertyContext = useContext(PropertyContext);
@@ -16,6 +16,7 @@ const SimilarProperties = ({ type }) => {
     if (type) {
       getSimilarProperties();
     }
+    // eslint-disable-next-line
   }, [type]);
 
   return (
@@ -34,6 +35,6 @@ const SimilarProperties = ({ type }) => {
 
 SimilarProperties.propTypes = {
   type: PropTypes.string,
-}
+};
 
 export default SimilarProperties;

@@ -22,6 +22,7 @@ const AccountMenu = () => {
     return () => {
       document.removeEventListener("keydown", handleEscape);
     };
+    // eslint-disable-next-line
   }, []);
 
   return (
