@@ -4,19 +4,20 @@ import AuthContext from "./authContext";
 import authReducer from "./authReducer";
 
 import {
-  // USER_LOADED,
+  USER_LOADED,
   // AUTH_ERROR,
   REGISTER_USER,
-  // LOGIN,
   // LOGOUT,
   ERROR,
   CLEAR_ERRORS,
+  LOGIN,
+  LOGOUT,
 } from "../types";
 
 const AuthState = (props) => {
   const initialState = {
-    isAuthenticated: null,
     user: null,
+    isAuthenticated: false,
     loading: true,
     success: null,
     error: null,
@@ -24,6 +25,7 @@ const AuthState = (props) => {
 
   const [state, dispatch] = useReducer(authReducer, initialState);
 
+  // register new user
   const registerUser = async (data) => {
     const config = {
       headers: {
@@ -40,13 +42,46 @@ const AuthState = (props) => {
     }
   };
 
-  const loadUser = () => {};
-  const loginUser = () => {};
+  // load user
+
+  const loadUser = async () => {
+    try {
+      const res = await axios.get("/api/auth");
+      dispatch({ type: USER_LOADED, payload: res.data });
+    } catch (err) {}
+  };
+
+  // log in user
+  const loginUser = async (data) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const res = await axios.post("/api/v1/users/login", data, config);
+      dispatch({ type: LOGIN });
+    } catch (err) {
+      dispatch({ type: ERROR, payload: err.response.data.message });
+    }
+  };
+
+  // deavtivate user account
   const deleteUser = () => {};
-  const logoutUser = () => {};
+
+  // user logout
+  const logoutUser = async () => {
+    try {
+      const res = await axios.post("/api/v1/users/logout");
+      dispatch({ type: LOGOUT });
+    } catch (err) {
+      dispatch({ type: ERROR, payload: err.response.data.message });
+    }
+  };
 
   const clearErrors = () => {
-    dispatch({type: CLEAR_ERRORS})
+    dispatch({ type: CLEAR_ERRORS });
   };
 
   return (
@@ -59,6 +94,7 @@ const AuthState = (props) => {
         error: state.error,
         registerUser,
         loginUser,
+        loadUser,
         logoutUser,
         deleteUser,
         clearErrors,

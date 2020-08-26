@@ -10,11 +10,6 @@ import {
 
 export default (state, action) => {
   switch (action.type) {
-    case USER_LOADED:
-      return {
-        ...state,
-        user: action.payload,
-      };
     case REGISTER_USER:
       console.log("Message:", action.payload);
       return {
@@ -27,8 +22,20 @@ export default (state, action) => {
         isAuthenticated: true,
         loading: false,
       };
-    case AUTH_ERROR:
+    case USER_LOADED:
+      console.log(action.payload);
+      return {
+        ...state,
+        user: action.payload,
+        isAuthenticated: true,
+        loading: false,
+      };
     case LOGOUT:
+      return {
+        ...state,
+        user: null,
+      };
+    case AUTH_ERROR:
     case ERROR:
       console.log("Error:", action.payload);
       return {
