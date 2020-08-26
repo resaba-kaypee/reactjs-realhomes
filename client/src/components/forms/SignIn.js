@@ -1,10 +1,30 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import AuthContext from "../../context/auth/authContext";
 import FormContext from "../../context/form/formContext";
 import Modal from "../layout/Modal";
 
 const SignIn = ({ setIsOpen }) => {
+  const authContext = useContext(AuthContext);
+  const { loginUser, error, success } = authContext;
   const formContext = useContext(FormContext);
   const { closeForms, setShowSignUp } = formContext;
+
+  const [value, setValue] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = value;
+
+  const onChange = (e) => {
+    setValue({ ...value, [e.target.name]: e.target.value });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    loginUser(value);
+  };
+
   return (
     <Modal>
       <div className="flex items-center justify-center w-screen h-screen">
@@ -17,7 +37,9 @@ const SignIn = ({ setIsOpen }) => {
               setIsOpen(false);
               closeForms();
             }}></button>
-          <form className="relative px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
+          <form
+            onSubmit={onSubmit}
+            className="relative px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
             <button
               type="button"
               tabIndex="-1"
@@ -40,7 +62,10 @@ const SignIn = ({ setIsOpen }) => {
                 className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                 id="email"
                 type="email"
+                name="email"
                 placeholder="Email"
+                onChange={onChange}
+                value={email}
                 required
               />
             </div>
@@ -54,7 +79,10 @@ const SignIn = ({ setIsOpen }) => {
                 className="w-full px-3 py-2 mb-3 leading-tight text-gray-700 border border-red-500 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                 id="password"
                 type="password"
+                name="password"
                 placeholder="******************"
+                onChange={onChange}
+                value={password}
                 required
               />
             </div>
