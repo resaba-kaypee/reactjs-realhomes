@@ -9,9 +9,10 @@ import {
   SET_HISTORY_SEARCH,
   GET_ALL_APARTMENT,
   SORT_BY,
-  CREATE_PROPERTY,
-  UPDATE_PROPERTY,
-  DELETE_PROPERTY,
+  SAVE_PROPERTY,
+  // CREATE_PROPERTY,
+  // UPDATE_PROPERTY,
+  // DELETE_PROPERTY,
   ERROR,
 } from "../types";
 
@@ -36,6 +37,12 @@ export default (state, action) => {
           ),
         ],
         loading: false,
+      };
+    case SAVE_PROPERTY:
+      console.log(action.payload.status);
+      return {
+        ...state,
+        status: action.payload.status,
       };
     case GET_FEATURED_PROPERTIES:
       return {
