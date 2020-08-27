@@ -1,11 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import AuthContext from "../../context/auth/authContext";
 import FormContext from "../../context/form/formContext";
 import Modal from "../layout/Modal";
+import Alerts from "../layout/Alerts";
 
 const SignIn = ({ setIsOpen }) => {
   const authContext = useContext(AuthContext);
-  const { loginUser, error, success } = authContext;
+  const { loginUser, error, success, isAuthenticated, user } = authContext;
   const formContext = useContext(FormContext);
   const { closeForms, setShowSignUp } = formContext;
 
@@ -13,6 +14,18 @@ const SignIn = ({ setIsOpen }) => {
     email: "",
     password: "",
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  console.log("Error:", error);
+  console.log("Successr:", success);
+
+  useEffect(() => {
+    if (!success && isAuthenticated && user) {
+      setIsSubmitting(false);
+      closeForms();
+    }
+  }, [success, isAuthenticated, user]);
 
   const { email, password } = value;
 
@@ -22,6 +35,7 @@ const SignIn = ({ setIsOpen }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     loginUser(value);
   };
 
@@ -40,6 +54,9 @@ const SignIn = ({ setIsOpen }) => {
           <form
             onSubmit={onSubmit}
             className="relative px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
+            <div className="w-full h-20">
+              <Alerts />
+            </div>
             <button
               type="button"
               tabIndex="-1"
@@ -88,9 +105,13 @@ const SignIn = ({ setIsOpen }) => {
             </div>
             <div className="flex flex-col items-center justify-center">
               <button
-                className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
-                type="submit">
-                Sign In
+                disabled={isSubmitting}
+                type="submit"
+                className={
+                  (isSubmitting ? "opacity-50 cursor-wait" : "opacity-100") +
+                  " px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+                }>
+                {isSubmitting ? "Signing in..." : "Sign In"}
               </button>
               <div className="flex flex-col items-center mt-4">
                 <a
