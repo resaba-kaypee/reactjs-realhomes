@@ -19,20 +19,19 @@ export default (state, action) => {
     case LOGIN:
       return {
         ...state,
-        isAuthenticated: true,
+        isAuthenticated: action.payload.data && true,
         loading: false,
       };
     case USER_LOADED:
-      console.log(action.payload);
       return {
         ...state,
-        user: action.payload,
-        isAuthenticated: true,
-        loading: false,
+        user: action.payload.data,
+        isAuthenticated: action.payload.data && true,
       };
     case LOGOUT:
       return {
         ...state,
+        isAuthenticated: false,
         user: null,
       };
     case AUTH_ERROR:

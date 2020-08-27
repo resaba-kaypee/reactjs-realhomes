@@ -35,7 +35,6 @@ const AuthState = (props) => {
 
     try {
       const res = await axios.post("/api/v1/users/signup", data, config);
-      console.log(res);
       dispatch({ type: REGISTER_USER, payload: res.data });
     } catch (err) {
       dispatch({ type: ERROR, payload: err.response.data.message });
@@ -61,7 +60,8 @@ const AuthState = (props) => {
 
     try {
       const res = await axios.post("/api/v1/users/login", data, config);
-      dispatch({ type: LOGIN });
+      dispatch({ type: LOGIN, payload: res.data });
+      loadUser();
     } catch (err) {
       dispatch({ type: ERROR, payload: err.response.data.message });
     }
@@ -73,7 +73,7 @@ const AuthState = (props) => {
   // user logout
   const logoutUser = async () => {
     try {
-      const res = await axios.post("/api/v1/users/logout");
+      const res = await axios.get("/api/v1/users/logout");
       dispatch({ type: LOGOUT });
     } catch (err) {
       dispatch({ type: ERROR, payload: err.response.data.message });
