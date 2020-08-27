@@ -21,6 +21,8 @@ const {
 
 router.use(checkIfNew);
 
+router.route("/auth").get(isLoggedIn);
+
 router.route("/newest").get(newest, getAllProperty);
 
 router.route("/featured-properties").get(featuredProperties, getAllProperty);
