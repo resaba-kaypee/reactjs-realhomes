@@ -113,11 +113,8 @@ exports.getAllApartment = (req, res, next) => {
 
 exports.getMySavedProperties = catchAsync(async (req, res, next) => {
   // find all saved properties that match user id
-  const savedProperties = await SavedProperty.find({ user: req.user.id });
-  // find all property by ids saved by user
-  const propertyIds = savedProperties.map((id) => id.property);
-  // get all property by ids saved by user
-  const properties = await Property.find({ _id: { $in: propertyIds } });
+  const savedProperties = await SavedProperty.find({ user: req.user._id });
+  const properties = savedProperties.map((data) => data.property);
 
   res.status(200).json({
     status: "success",
