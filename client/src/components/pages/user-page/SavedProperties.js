@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import PropertyContext from "../../../context/property/propertyContext";
 import SvgIcon from "../../svg/SvgIcon";
 
 const Card = ({ property }) => {
@@ -94,7 +95,10 @@ const Card = ({ property }) => {
   );
 };
 
-const SavedProperties = ({ properties }) => {
+const SavedProperties = () => {
+  const propertyContext = useContext(PropertyContext);
+  const { user_property_list } = propertyContext;
+
   return (
     <>
       <h2 className="my-4 text-3xl font-semibold sm:text-4xl">
@@ -105,7 +109,9 @@ const SavedProperties = ({ properties }) => {
 
         <div>
           <span>
-            <span className="mr-2 text-green-500">{properties.length}</span>
+            <span className="mr-2 text-green-500">
+              {user_property_list !== null && user_property_list.length}
+            </span>
             Total homes
           </span>
         </div>
@@ -131,17 +137,17 @@ const SavedProperties = ({ properties }) => {
         </div>
       </div>
 
-      {properties.length === 0 ? (
-        <div className="px-4 py-4 mt-4 bg-white rounded-lg shadow-xl cursor-pointer">
-          <h1>No properties saved</h1>
-        </div>
-      ) : (
+      {user_property_list !== null && user_property_list.length > 0 ? (
         <div className="overflow-x-scroll">
-          <div className="min-w-5xl">
-            {properties.map((property) => (
-              <Card key={property.propertyId} property={property} />
+          <div className="px-4 min-w-5xl">
+            {user_property_list.map((property) => (
+              <Card key={property._id} property={property} />
             ))}
           </div>
+        </div>
+      ) : (
+        <div className="px-4 py-4 mt-4 bg-white rounded-lg shadow-xl cursor-pointer">
+          <h1>No properties saved</h1>
         </div>
       )}
     </>

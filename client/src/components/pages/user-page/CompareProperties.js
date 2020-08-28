@@ -1,4 +1,5 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
+import PropertyContext from "../../../context/property/propertyContext";
 import SvgIcon from "../../svg/SvgIcon";
 
 const Table = ({ properties }) => {
@@ -11,7 +12,7 @@ const Table = ({ properties }) => {
             <tr>
               <th className="px-4 py-2"></th>
               {properties.map((property) => (
-                <Fragment key={property.propertyId}>
+                <Fragment key={property._id}>
                   <th className="px-4 py-2">
                     <div>
                       <div className="h-48">
@@ -59,9 +60,9 @@ const Table = ({ properties }) => {
               </th>
               {properties.map((property) => (
                 <td
-                  key={property.propertyId}
+                  key={property._id}
                   className="px-4 py-3 text-sm text-center text-gray-700 border">
-                  {property.propertyId}
+                  {property._id}
                 </td>
               ))}
             </tr>
@@ -69,7 +70,7 @@ const Table = ({ properties }) => {
               <th className="px-4 py-3 font-semibold text-left border">City</th>
               {properties.map((property) => (
                 <td
-                  key={property.propertyId}
+                  key={property._id}
                   className="px-4 py-3 text-sm text-center text-gray-700 border">
                   {property.location.city}
                 </td>
@@ -79,7 +80,7 @@ const Table = ({ properties }) => {
               <th className="px-4 py-3 font-semibold text-left border">Type</th>
               {properties.map((property) => (
                 <td
-                  key={property.propertyId}
+                  key={property._id}
                   className="px-4 py-3 text-sm text-center text-gray-700 border">
                   {property.type.type}
                 </td>
@@ -91,7 +92,7 @@ const Table = ({ properties }) => {
               </th>
               {properties.map((property) => (
                 <td
-                  key={property.propertyId}
+                  key={property._id}
                   className="px-4 py-3 text-sm text-center text-gray-700 border">
                   {property.bedrooms}
                 </td>
@@ -103,7 +104,7 @@ const Table = ({ properties }) => {
               </th>
               {properties.map((property) => (
                 <td
-                  key={property.propertyId}
+                  key={property._id}
                   className="px-4 py-3 text-sm text-center text-gray-700 border">
                   {property.bathrooms}
                 </td>
@@ -115,7 +116,7 @@ const Table = ({ properties }) => {
               </th>
               {properties.map((property) => (
                 <td
-                  key={property.propertyId}
+                  key={property._id}
                   className="px-4 py-3 text-sm text-center text-gray-700 border">
                   {property.garage ? property.garage : "❌"}
                 </td>
@@ -127,7 +128,7 @@ const Table = ({ properties }) => {
               </th>
               {properties.map((property) => (
                 <td
-                  key={property.propertyId}
+                  key={property._id}
                   className="px-4 py-3 text-sm text-center text-gray-700 border">
                   {property.areaSize ? property.areaSize : "❌"}
                 </td>
@@ -139,7 +140,7 @@ const Table = ({ properties }) => {
               </th>
               {properties.map((property) => (
                 <td
-                  key={property.propertyId}
+                  key={property._id}
                   className="px-4 py-3 text-sm text-center text-gray-700 border">
                   {property.lotSize ? property.lotSize : "❌"}
                 </td>
@@ -151,7 +152,7 @@ const Table = ({ properties }) => {
               </th>
               {properties.map((property) => (
                 <td
-                  key={property.propertyId}
+                  key={property._id}
                   className="px-4 py-3 text-sm text-center text-gray-700 border">
                   {property.yearBuilt}
                 </td>
@@ -164,7 +165,9 @@ const Table = ({ properties }) => {
   );
 };
 
-const CompareProperties = ({ properties }) => {
+const CompareProperties = () => {
+  const propertyContext = useContext(PropertyContext);
+  const { user_property_list } = propertyContext;
   return (
     <>
       <h2 className="my-4 text-3xl font-semibold sm:text-4xl">
@@ -175,7 +178,9 @@ const CompareProperties = ({ properties }) => {
 
         <div>
           <span>
-            <span className="mr-2 text-green-500">{properties.length}</span>
+            <span className="mr-2 text-green-500">
+              {user_property_list !== null && user_property_list.length}
+            </span>
             Total homes
           </span>
         </div>
@@ -200,8 +205,8 @@ const CompareProperties = ({ properties }) => {
           </div>
         </div>
       </div>
-      {properties.length > 0 ? (
-        <Table properties={properties} />
+      {user_property_list !== null && user_property_list.length > 0 ? (
+        <Table properties={user_property_list} />
       ) : (
         <div className="px-4 py-4 mt-4 bg-white rounded-lg shadow-xl cursor-pointer ">
           <h1>No properties saved</h1>

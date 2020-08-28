@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import properties from "./data";
+import React, { useState, useContext, useEffect } from "react";
+import PropertyContext from "../../../context/property/propertyContext";
 import SavedProperties from "./SavedProperties";
 import CompareProperties from "./CompareProperties";
 import AccountSettings from "./AccountSettings";
@@ -45,7 +45,7 @@ const Tabs = (props) => {
                   className="w-full py-5 pl-2 pr-10 bg-transparent focus:border-b-2 focus:border-green-500 focus:outline-none"
                   placeholder="Search"
                 />
-                <div class="absolute inset-y-0 right-0 flex items-center pr-1 pointer-events-none">
+                <div className="absolute inset-y-0 right-0 flex items-center pr-1 pointer-events-none">
                   <span className="mr-3 transition duration-500 ease-in-out cursor-pointer hover:text-green-500">
                     <SvgIcon
                       name="search"
@@ -68,13 +68,21 @@ const Panel = (props) => {
 };
 
 const MyHomePage = () => {
+  const propertyContext = useContext(PropertyContext);
+  const { getUserPropertyList } = propertyContext;
+
+  useEffect(() => {
+    getUserPropertyList();
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <Tabs selected={0}>
       <Panel title="Saved Properties">
-        <SavedProperties properties={properties} />
+        <SavedProperties />
       </Panel>
       <Panel title="Compared Properties">
-        <CompareProperties properties={properties} />
+        <CompareProperties />
       </Panel>
       <Panel title="Account Settings">
         <AccountSettings />

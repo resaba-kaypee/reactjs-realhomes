@@ -9,6 +9,7 @@ import {
   SET_HISTORY_SEARCH,
   GET_ALL_APARTMENT,
   SORT_BY,
+  GET_USER_PROPERTY_LIST,
   SAVE_PROPERTY,
   // CREATE_PROPERTY,
   // UPDATE_PROPERTY,
@@ -37,6 +38,11 @@ export default (state, action) => {
           ),
         ],
         loading: false,
+      };
+    case GET_USER_PROPERTY_LIST:
+      return {
+        ...state,
+        user_property_list: action.payload.data,
       };
     case SAVE_PROPERTY:
       console.log(action.payload.status);

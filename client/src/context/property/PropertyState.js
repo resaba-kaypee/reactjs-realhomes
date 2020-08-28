@@ -14,6 +14,7 @@ import {
   SET_HISTORY_SEARCH,
   GET_ALL_APARTMENT,
   SORT_BY,
+  GET_USER_PROPERTY_LIST,
   SAVE_PROPERTY,
   // CREATE_PROPERTY,
   // UPDATE_PROPERTY,
@@ -34,7 +35,7 @@ const PropertyState = (props) => {
     location_cities: null,
     history_search: localStorage.getItem("history") || null,
     property: null,
-    user_saved_property: null,
+    user_property_list: null,
     similar: null,
     apt_pools: null,
     apt_laundry: null,
@@ -126,6 +127,16 @@ const PropertyState = (props) => {
     dispatch({ type: SORT_BY, payload: option });
   };
 
+  // Get user save property
+  const getUserPropertyList = async () => {
+    try {
+      const res = await axios.get("/api/my-saved-properties");
+      dispatch({ type: GET_USER_PROPERTY_LIST, payload: res.data });
+    } catch (err) {
+      dispatch({ type: ERROR, payload: err.response.data.message });
+    }
+  };
+
   // Saved user property
   const saveProperty = async (data) => {
     const config = {
@@ -136,7 +147,6 @@ const PropertyState = (props) => {
 
     try {
       const res = await axios.post("/api/save-property", data, config);
-      console.log(res);
       dispatch({ type: SAVE_PROPERTY, payload: res.data });
     } catch (err) {
       dispatch({ type: ERROR, payload: err.response.data.message });
@@ -161,7 +171,7 @@ const PropertyState = (props) => {
         history_search: state.history_search,
         location_cities: state.location_cities,
         location_states: state.location_states,
-        user_saved_property: state.user_saved_property,
+        user_property_list: state.user_property_list,
         property: state.property,
         similar: state.similar,
         apt_pools: state.apt_pools,
@@ -176,6 +186,7 @@ const PropertyState = (props) => {
         getSimilarProperties,
         setHistorySearch,
         getProperty,
+        getUserPropertyList,
         saveProperty,
         getAllApartment,
         sortBy,
