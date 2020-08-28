@@ -5,7 +5,6 @@ import SignInButton from "../layout/SignInButton";
 import SignUpButton from "../layout/SignUpButton";
 import SignUp from "../forms/SignUp";
 import SignIn from "../forms/SignIn";
-import Spinner from "../layout/Spinner";
 
 const UserIcon = ({ user, logoutUser }) => (
   <div className="flex items-center">

@@ -6,7 +6,7 @@ import Alerts from "../layout/Alerts";
 
 const SignIn = ({ setIsOpen }) => {
   const authContext = useContext(AuthContext);
-  const { loginUser, error, success, isAuthenticated, user } = authContext;
+  const { loginUser, success, isAuthenticated, user } = authContext;
   const formContext = useContext(FormContext);
   const { closeForms, setShowSignUp } = formContext;
 
@@ -16,9 +16,6 @@ const SignIn = ({ setIsOpen }) => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  console.log("Error:", error);
-  console.log("Successr:", success);
 
   useEffect(() => {
     if (!success && isAuthenticated && user) {

@@ -43,7 +43,6 @@ const SignUp = ({ setIsOpen }) => {
         <div className="w-full max-w-xs lg:mt-20 sm:max-w-sm">
           <button
             // OVERLAY BUTTON
-            tabIndex="-1"
             className="fixed inset-0 right-0 w-full h-full bg-black opacity-25 cursor-default"
             onClick={() => {
               setIsOpen(false);

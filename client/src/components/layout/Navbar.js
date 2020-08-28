@@ -10,7 +10,7 @@ const Navbar = () => {
       <div className="relative w-full px-8 py-4 md:py-0">
         <nav className="flex items-center justify-between h-full">
           <AccountMenu />
-          <NavLink to="/" className="flex items-center justify-center md:mr-5">
+          <NavLink to="/" className="flex items-center justify-center">
             <SvgIcon
               className="w-10 h-10 text-green-700 fill-current sm:w-16 sm:h-16"
               name="logo"

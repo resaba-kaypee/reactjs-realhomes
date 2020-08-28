@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 const AskQuestion = ({ user }) => {
-  const [isOpen, setIsOpen] = useState(true);
   return (
     <div className="flex flex-col items-center mt-6 lg:flex-row md:justify-center">
       <div className="w-full mt-6 lg:w-1/2">

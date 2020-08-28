@@ -73,7 +73,7 @@ const AuthState = (props) => {
   // user logout
   const logoutUser = async () => {
     try {
-      const res = await axios.get("/api/v1/users/logout");
+      await axios.get("/api/v1/users/logout");
       dispatch({ type: LOGOUT });
     } catch (err) {
       dispatch({ type: ERROR, payload: err.response.data.message });

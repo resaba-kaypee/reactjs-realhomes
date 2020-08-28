@@ -25,11 +25,11 @@ const Menu = () => {
       <div
         className={
           (isOpen ? "block " : "hidden ") +
-          "absolute md:static md:block top-0 left-0 w-full mt-20 md:mt-0"
+          "absolute md:relative md:block top-0 left-0 w-full md:w-auto mt-20 md:mt-0"
         }>
         <div
           className={
-            "md:justify-left md:items-center h-full md:mt-0 px-4 text-md lg:text-lg md:flex md:p-0 py-2 md:mb-0 text-gray-700 bg-white shadow md:shadow-none"
+            "md:items-center h-full md:mt-0 px-4 text-md lg:text-lg md:flex md:p-0 py-2 md:mb-0 text-gray-700 bg-white shadow md:shadow-none"
           }>
           <NavLink
             to="/realstateforsale"
