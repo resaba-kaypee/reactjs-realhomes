@@ -15,6 +15,8 @@ import {
   // UPDATE_PROPERTY,
   // DELETE_PROPERTY,
   ERROR,
+  CLEAR_ERRORS,
+  CLEAR_PROPERTY_LIST,
 } from "../types";
 
 export default (state, action) => {
@@ -96,6 +98,17 @@ export default (state, action) => {
       return {
         ...state,
         error: action.payload.message,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+        status: null,
+      };
+    case CLEAR_PROPERTY_LIST:
+      return {
+        ...state,
+        user_property_list: null,
       };
     default:
       return state;

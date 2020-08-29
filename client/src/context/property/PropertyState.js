@@ -20,6 +20,8 @@ import {
   // UPDATE_PROPERTY,
   // DELETE_PROPERTY,
   ERROR,
+  CLEAR_ERRORS,
+  CLEAR_PROPERTY_LIST,
 } from "../types";
 
 const PropertyState = (props) => {
@@ -160,6 +162,16 @@ const PropertyState = (props) => {
   // Delete property
   const deleteProperty = () => {};
 
+  // Clear success and error messages
+  const clearErrors = () => {
+    dispatch({ type: CLEAR_ERRORS });
+  };
+
+  // Clear users propperty list upon log out
+  const clearPropertyList = () => {
+    dispatch({ type: CLEAR_PROPERTY_LIST });
+  };
+
   return (
     <PropertyContext.Provider
       value={{
@@ -177,6 +189,7 @@ const PropertyState = (props) => {
         apt_pools: state.apt_pools,
         apt_laundry: state.apt_laundry,
         apt_pet: state.apt_pet,
+        status: state.status,
         error: state.error,
         loading: state.loading,
         getAllProperty,
@@ -193,6 +206,8 @@ const PropertyState = (props) => {
         createProperty,
         updateProperty,
         deleteProperty,
+        clearErrors,
+        clearPropertyList,
       }}>
       {props.children}
     </PropertyContext.Provider>
