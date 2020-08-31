@@ -1,9 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
+import AuthContext from "../../../context/auth/authContext";
 import PropertyContext from "../../../context/property/propertyContext";
 import SavedProperties from "./SavedProperties";
 import CompareProperties from "./CompareProperties";
 import AccountSettings from "./AccountSettings";
 import SvgIcon from "../../svg/SvgIcon";
+import NotLoggedIn from "../NotLoggedIn";
 
 const Tabs = (props) => {
   const [selected, setSelected] = useState(props.selected);
@@ -11,7 +13,7 @@ const Tabs = (props) => {
     setSelected(index);
   };
   return (
-    <div className="flex w-full mt-24 overflow-hidden md:mt-16">
+    <div className="flex w-full mt-24 mb-16 overflow-hidden md:mt-16">
       <main className="flex flex-col flex-1 overflow-y-auto transition duration-500 ease-in-out">
         <div className="mx-10 my-2">
           <nav className="flex flex-row justify-between transition duration-500 ease-in-out border-b">
@@ -68,26 +70,36 @@ const Panel = (props) => {
 };
 
 const MyHomePage = () => {
+  const authContext = useContext(AuthContext);
+  const { isAuthenticated } = authContext;
   const propertyContext = useContext(PropertyContext);
   const { getUserPropertyList } = propertyContext;
 
   useEffect(() => {
-    getUserPropertyList();
+    if (isAuthenticated) {
+      getUserPropertyList();
+    }
     // eslint-disable-next-line
-  }, []);
+  }, [isAuthenticated]);
 
   return (
-    <Tabs selected={0}>
-      <Panel title="Saved Properties">
-        <SavedProperties />
-      </Panel>
-      <Panel title="Compared Properties">
-        <CompareProperties />
-      </Panel>
-      <Panel title="Account Settings">
-        <AccountSettings />
-      </Panel>
-    </Tabs>
+    <>
+      {isAuthenticated ? (
+        <Tabs selected={0}>
+          <Panel title="Saved Properties">
+            <SavedProperties />
+          </Panel>
+          <Panel title="Compared Properties">
+            <CompareProperties />
+          </Panel>
+          <Panel title="Account Settings">
+            <AccountSettings />
+          </Panel>
+        </Tabs>
+      ) : (
+        <NotLoggedIn />
+      )}
+    </>
   );
 };
 
