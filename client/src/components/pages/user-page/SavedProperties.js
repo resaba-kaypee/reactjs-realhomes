@@ -100,7 +100,7 @@ const SavedProperties = () => {
   const { user_property_list } = propertyContext;
 
   return (
-    <>
+    <div className="mb-6">
       <h2 className="my-4 text-3xl font-semibold sm:text-4xl">
         Saved Properties
       </h2>
@@ -150,7 +150,7 @@ const SavedProperties = () => {
           <h1>No properties saved</h1>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

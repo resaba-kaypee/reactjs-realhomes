@@ -169,7 +169,7 @@ const CompareProperties = () => {
   const propertyContext = useContext(PropertyContext);
   const { user_property_list } = propertyContext;
   return (
-    <>
+    <div className="mb-6">
       <h2 className="my-4 text-3xl font-semibold sm:text-4xl">
         Compare Properties
       </h2>
@@ -212,7 +212,7 @@ const CompareProperties = () => {
           <h1>No properties saved</h1>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
