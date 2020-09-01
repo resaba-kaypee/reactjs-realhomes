@@ -1,5 +1,4 @@
-import React, { Fragment, useContext } from "react";
-import PropertyContext from "../../../context/property/propertyContext";
+import React, { Fragment } from "react";
 import SvgIcon from "../../svg/SvgIcon";
 
 const Table = ({ properties }) => {
@@ -165,9 +164,7 @@ const Table = ({ properties }) => {
   );
 };
 
-const CompareProperties = () => {
-  const propertyContext = useContext(PropertyContext);
-  const { user_property_list } = propertyContext;
+const CompareProperties = ({ list }) => {
   return (
     <div className="mb-6">
       <h2 className="my-4 text-3xl font-semibold sm:text-4xl">
@@ -179,7 +176,7 @@ const CompareProperties = () => {
         <div>
           <span>
             <span className="mr-2 text-green-500">
-              {user_property_list !== null && user_property_list.length}
+              {list !== null && list.length}
             </span>
             Total homes
           </span>
@@ -205,11 +202,11 @@ const CompareProperties = () => {
           </div>
         </div>
       </div>
-      {user_property_list !== null && user_property_list.length > 0 ? (
-        <Table properties={user_property_list} />
+      {list !== null && list.length > 0 ? (
+        <Table properties={list} />
       ) : (
         <div className="px-4 py-4 mt-4 bg-white rounded-lg shadow-xl cursor-pointer ">
-          <h1>No properties saved</h1>
+          <h1>No properties savedi nthe list.</h1>
         </div>
       )}
     </div>

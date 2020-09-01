@@ -7,7 +7,7 @@ import SignUpButton from "../layout/SignUpButton";
 import SignUp from "../forms/SignUp";
 import SignIn from "../forms/SignIn";
 
-const UserIcon = ({ user, logoutUser, clearPropertyList }) => (
+const UserIcon = ({ user, logoutUser, clearPropertyList, setAccount }) => (
   <div className="flex items-center">
     <figure className="w-12 h-12 overflow-hidden border-2 rounded-full md:mr-5">
       <img
@@ -20,6 +20,7 @@ const UserIcon = ({ user, logoutUser, clearPropertyList }) => (
       type="button"
       onClick={() => {
         logoutUser();
+        setAccount(null);
         clearPropertyList();
       }}
       className="flex-shrink-0 px-3 py-2 text-gray-900 transition duration-500 ease-in-out border border-yellow-600 rounded hover:text-white hover:bg-yellow-600 hover:border-yellow-600">
@@ -30,7 +31,7 @@ const UserIcon = ({ user, logoutUser, clearPropertyList }) => (
 
 const AccountMenu = () => {
   const authContext = useContext(AuthContext);
-  const { logoutUser, isAuthenticated, user } = authContext;
+  const { logoutUser } = authContext;
 
   const propertyContext = useContext(PropertyContext);
   const { clearPropertyList } = propertyContext;
@@ -39,6 +40,17 @@ const AccountMenu = () => {
   const { showSignIn, showSignUp, setShowSignUp, closeForms } = formContext;
 
   const [isOpen, setIsOpen] = useState(false);
+  const [account, setAccount] = useState(() =>
+    JSON.parse(sessionStorage.getItem("user"))
+  );
+
+  const cache = sessionStorage.getItem("user");
+
+  useEffect(() => {
+    if (cache === null || cache === "") {
+      setAccount(JSON.parse(cache));
+    }
+  }, [cache]);
 
   const handleEscape = (e) => {
     if (e.key === "Esc" || e.key === "Escape") {
@@ -65,11 +77,19 @@ const AccountMenu = () => {
             setIsOpen(!isOpen);
             setShowSignUp();
           }}>
-          <img
-            src={require(`../../assets/img/${"default.jpg" || user.photo}`)}
-            alt="your avatar"
-            className="object-cover w-full h-full"
-          />
+          {account !== null ? (
+            <img
+              src={require(`../../assets/img/${account.photo}`)}
+              alt="your avatar"
+              className="object-cover w-full h-full"
+            />
+          ) : (
+            <img
+              src={require(`../../assets/img/default.jpg`)}
+              alt="your avatar"
+              className="object-cover w-full h-full"
+            />
+          )}
         </button>
         {isOpen && showSignUp && !showSignIn ? (
           <SignUp setIsOpen={setIsOpen} />
@@ -81,11 +101,12 @@ const AccountMenu = () => {
 
       {/* INLINE BUTTON */}
       <div className="hidden md:block">
-        {user !== null && isAuthenticated ? (
+        {account !== null ? (
           <UserIcon
-            user={user}
+            user={account}
             logoutUser={logoutUser}
             clearPropertyList={clearPropertyList}
+            setAccount={setAccount}
           />
         ) : (
           <div className="flex items-center">

@@ -75,6 +75,16 @@ const MyHomePage = () => {
   const propertyContext = useContext(PropertyContext);
   const { getUserPropertyList } = propertyContext;
 
+  const [list, setList] = useState(() =>
+    JSON.parse(sessionStorage.getItem("list"))
+  );
+
+  useEffect(() => {
+    if (!sessionStorage.getItem("list")) {
+      setList(JSON.parse(sessionStorage.getItem("list")));
+    }
+  }, []);
+
   useEffect(() => {
     if (isAuthenticated) {
       getUserPropertyList();
@@ -82,23 +92,21 @@ const MyHomePage = () => {
     // eslint-disable-next-line
   }, [isAuthenticated]);
 
+  if (!isAuthenticated && !list) return <NotLoggedIn />;
+
   return (
     <>
-      {isAuthenticated ? (
-        <Tabs selected={0}>
-          <Panel title="Saved Properties">
-            <SavedProperties />
-          </Panel>
-          <Panel title="Compared Properties">
-            <CompareProperties />
-          </Panel>
-          <Panel title="Account Settings">
-            <AccountSettings />
-          </Panel>
-        </Tabs>
-      ) : (
-        <NotLoggedIn />
-      )}
+      <Tabs selected={0}>
+        <Panel title="Saved Properties">
+          <SavedProperties list={list} />
+        </Panel>
+        <Panel title="Compared Properties">
+          <CompareProperties list={list} />
+        </Panel>
+        <Panel title="Account Settings">
+          <AccountSettings />
+        </Panel>
+      </Tabs>
     </>
   );
 };
