@@ -16,6 +16,7 @@ export default (state, action) => {
         success: action.payload.status,
       };
     case LOGIN:
+      sessionStorage.setItem("user", JSON.stringify(action.payload.data.user));
       return {
         ...state,
         isAuthenticated: action.payload.data && true,
@@ -28,6 +29,7 @@ export default (state, action) => {
         isAuthenticated: action.payload.data && true,
       };
     case LOGOUT:
+      sessionStorage.removeItem("user");
       return {
         ...state,
         isAuthenticated: false,
