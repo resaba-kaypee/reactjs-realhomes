@@ -42,6 +42,7 @@ export default (state, action) => {
         loading: false,
       };
     case GET_USER_PROPERTY_LIST:
+      sessionStorage.setItem("list", JSON.stringify(action.payload.data));
       return {
         ...state,
         user_property_list: action.payload.data,
@@ -106,6 +107,7 @@ export default (state, action) => {
         status: null,
       };
     case CLEAR_PROPERTY_LIST:
+      sessionStorage.removeItem("list");
       return {
         ...state,
         user_property_list: null,
