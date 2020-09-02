@@ -1,7 +1,10 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import SvgIcon from "../../svg/SvgIcon";
+import PropertyContext from "../../../context/property/propertyContext";
 
-const Table = ({ properties }) => {
+const Table = ({ list }) => {
+  const propertyContext = useContext(PropertyContext);
+  const { deletePropertyFromList } = propertyContext;
   return (
     <div className="px-4 py-4 mt-4 overflow-x-hidden bg-white rounded-lg shadow-xl">
       {/* <!-- Table --> */}
@@ -10,8 +13,8 @@ const Table = ({ properties }) => {
           <thead>
             <tr>
               <th className="px-4 py-2"></th>
-              {properties.map((property) => (
-                <Fragment key={property._id}>
+              {list.map(({ _id, property }) => (
+                <Fragment key={_id}>
                   <th className="px-4 py-2">
                     <div>
                       <div className="h-48">
@@ -23,6 +26,7 @@ const Table = ({ properties }) => {
                           />
                           <div className="absolute top-0 left-0">
                             <button
+                              onClick={() => deletePropertyFromList(_id)}
                               type="button"
                               className="-mt-2 -ml-3 text-green-500 bg-gray-200 rounded-full shadow-xl hover:text-red-600">
                               <SvgIcon
@@ -57,9 +61,9 @@ const Table = ({ properties }) => {
               <th className="px-4 py-3 font-semibold text-left border">
                 Property ID
               </th>
-              {properties.map((property) => (
+              {list.map(({ _id, property }) => (
                 <td
-                  key={property._id}
+                  key={_id}
                   className="px-4 py-3 text-sm text-center text-gray-700 border">
                   {property._id}
                 </td>
@@ -67,9 +71,9 @@ const Table = ({ properties }) => {
             </tr>
             <tr>
               <th className="px-4 py-3 font-semibold text-left border">City</th>
-              {properties.map((property) => (
+              {list.map(({ _id, property }) => (
                 <td
-                  key={property._id}
+                  key={_id}
                   className="px-4 py-3 text-sm text-center text-gray-700 border">
                   {property.location.city}
                 </td>
@@ -77,9 +81,9 @@ const Table = ({ properties }) => {
             </tr>
             <tr className="bg-gray-200">
               <th className="px-4 py-3 font-semibold text-left border">Type</th>
-              {properties.map((property) => (
+              {list.map(({ _id, property }) => (
                 <td
-                  key={property._id}
+                  key={_id}
                   className="px-4 py-3 text-sm text-center text-gray-700 border">
                   {property.type.type}
                 </td>
@@ -89,9 +93,9 @@ const Table = ({ properties }) => {
               <th className="px-4 py-3 font-semibold text-left border">
                 Bedrooms
               </th>
-              {properties.map((property) => (
+              {list.map(({ _id, property }) => (
                 <td
-                  key={property._id}
+                  key={_id}
                   className="px-4 py-3 text-sm text-center text-gray-700 border">
                   {property.bedrooms}
                 </td>
@@ -101,9 +105,9 @@ const Table = ({ properties }) => {
               <th className="px-4 py-3 font-semibold text-left border">
                 Bathrooms
               </th>
-              {properties.map((property) => (
+              {list.map(({ _id, property }) => (
                 <td
-                  key={property._id}
+                  key={_id}
                   className="px-4 py-3 text-sm text-center text-gray-700 border">
                   {property.bathrooms}
                 </td>
@@ -113,9 +117,9 @@ const Table = ({ properties }) => {
               <th className="px-4 py-3 font-semibold text-left border">
                 Garage
               </th>
-              {properties.map((property) => (
+              {list.map(({ _id, property }) => (
                 <td
-                  key={property._id}
+                  key={_id}
                   className="px-4 py-3 text-sm text-center text-gray-700 border">
                   {property.garage ? property.garage : "❌"}
                 </td>
@@ -125,9 +129,9 @@ const Table = ({ properties }) => {
               <th className="px-4 py-3 font-semibold text-left border">
                 Area size
               </th>
-              {properties.map((property) => (
+              {list.map(({ _id, property }) => (
                 <td
-                  key={property._id}
+                  key={_id}
                   className="px-4 py-3 text-sm text-center text-gray-700 border">
                   {property.areaSize ? property.areaSize : "❌"}
                 </td>
@@ -137,9 +141,9 @@ const Table = ({ properties }) => {
               <th className="px-4 py-3 font-semibold text-left border">
                 Lot size
               </th>
-              {properties.map((property) => (
+              {list.map(({ _id, property }) => (
                 <td
-                  key={property._id}
+                  key={_id}
                   className="px-4 py-3 text-sm text-center text-gray-700 border">
                   {property.lotSize ? property.lotSize : "❌"}
                 </td>
@@ -149,9 +153,9 @@ const Table = ({ properties }) => {
               <th className="px-4 py-3 font-semibold text-left border">
                 Date posted
               </th>
-              {properties.map((property) => (
+              {list.map(({ _id, property }) => (
                 <td
-                  key={property._id}
+                  key={_id}
                   className="px-4 py-3 text-sm text-center text-gray-700 border">
                   {property.yearBuilt}
                 </td>
@@ -181,32 +185,12 @@ const CompareProperties = ({ list }) => {
             Total homes
           </span>
         </div>
-        <div className="flex flex-col sm:flex-row">
-          <div>
-            <span className="ml-2 text-green-500 cursor-pointer">
-              <SvgIcon
-                name="sort"
-                className="inline-block w-5 h-5 ml-1 fill-current"
-              />
-            </span>
-            <span className="ml-2 capitalize">price</span>
-          </div>
-          <div>
-            <span className="ml-2 text-green-500 cursor-pointer">
-              <SvgIcon
-                name="sort"
-                className="inline-block w-5 h-5 ml-1 fill-current"
-              />
-            </span>
-            <span className="ml-2 capitalize">date posted</span>
-          </div>
-        </div>
       </div>
       {list !== null && list.length > 0 ? (
-        <Table properties={list} />
+        <Table list={list} />
       ) : (
         <div className="px-4 py-4 mt-4 bg-white rounded-lg shadow-xl cursor-pointer ">
-          <h1>No properties savedi nthe list.</h1>
+          <h1>No properties saved in the list.</h1>
         </div>
       )}
     </div>

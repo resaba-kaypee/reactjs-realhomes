@@ -11,6 +11,7 @@ import {
   SORT_BY,
   GET_USER_PROPERTY_LIST,
   SAVE_PROPERTY,
+  DELETE_PROPERTY_FROM_LIST,
   // CREATE_PROPERTY,
   // UPDATE_PROPERTY,
   // DELETE_PROPERTY,
@@ -46,12 +47,21 @@ export default (state, action) => {
       return {
         ...state,
         user_property_list: action.payload.data,
+        loading: false,
       };
     case SAVE_PROPERTY:
       console.log(action.payload.status);
       return {
         ...state,
         status: action.payload.status,
+      };
+    case DELETE_PROPERTY_FROM_LIST:
+      return {
+        ...state,
+        user_property_list: state.user_property_list.filter(
+          (list) => list._id !== action.payload
+        ),
+        loading: false,
       };
     case GET_FEATURED_PROPERTIES:
       return {

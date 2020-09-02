@@ -6,6 +6,7 @@ import CompareProperties from "./CompareProperties";
 import AccountSettings from "./AccountSettings";
 import SvgIcon from "../../svg/SvgIcon";
 import NotLoggedIn from "../NotLoggedIn";
+import Spinner from "../../layout/Spinner";
 
 const Tabs = (props) => {
   const [selected, setSelected] = useState(props.selected);
@@ -73,17 +74,8 @@ const MyHomePage = () => {
   const authContext = useContext(AuthContext);
   const { isAuthenticated } = authContext;
   const propertyContext = useContext(PropertyContext);
-  const { getUserPropertyList } = propertyContext;
-
-  const [list, setList] = useState(() =>
-    JSON.parse(sessionStorage.getItem("list"))
-  );
-
-  useEffect(() => {
-    if (!sessionStorage.getItem("list")) {
-      setList(JSON.parse(sessionStorage.getItem("list")));
-    }
-  }, []);
+  const { getUserPropertyList, user_property_list, loading } = propertyContext;
+  const account = sessionStorage.getItem("user");
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -92,21 +84,25 @@ const MyHomePage = () => {
     // eslint-disable-next-line
   }, [isAuthenticated]);
 
-  if (!isAuthenticated && !list) return <NotLoggedIn />;
+  if (!account) return <NotLoggedIn />;
 
   return (
     <>
-      <Tabs selected={0}>
-        <Panel title="Saved Properties">
-          <SavedProperties list={list} />
-        </Panel>
-        <Panel title="Compared Properties">
-          <CompareProperties list={list} />
-        </Panel>
-        <Panel title="Account Settings">
-          <AccountSettings />
-        </Panel>
-      </Tabs>
+      {user_property_list !== null && !loading ? (
+        <Tabs selected={0}>
+          <Panel title="Saved Properties">
+            <SavedProperties list={user_property_list} />
+          </Panel>
+          <Panel title="Compared Properties">
+            <CompareProperties list={user_property_list} />
+          </Panel>
+          <Panel title="Account Settings">
+            <AccountSettings />
+          </Panel>
+        </Tabs>
+      ) : (
+        <Spinner />
+      )}
     </>
   );
 };

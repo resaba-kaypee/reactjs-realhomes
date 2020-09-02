@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import SvgIcon from "../../svg/SvgIcon";
+import PropertyContext from "../../../context/property/propertyContext";
 
-const Card = ({ property }) => {
+const Card = ({ property, _id }) => {
+  const propertyContext = useContext(PropertyContext);
+  const { deletePropertyFromList } = propertyContext;
   return (
     <div className="px-4 py-4 mt-4 bg-white rounded-lg shadow-xl ">
       {/* <!-- Card --> */}
@@ -13,6 +16,7 @@ const Card = ({ property }) => {
           <div className="relative w-48">
             <div className="absolute top-0 left-0">
               <button
+                onClick={() => deletePropertyFromList(_id)}
                 type="button"
                 className="-mt-2 -ml-3 text-green-500 bg-gray-200 rounded-full shadow-xl hover:text-red-600">
                 <SvgIcon name="close" className="w-10 h-10 fill-current" />
@@ -102,7 +106,6 @@ const SavedProperties = ({ list }) => {
       </h2>
       <div className="flex items-center justify-between pb-2 text-gray-600 border-b">
         {/* <!-- Header --> */}
-
         <div>
           <span>
             <span className="mr-2 text-green-500">
@@ -111,33 +114,12 @@ const SavedProperties = ({ list }) => {
             Total homes
           </span>
         </div>
-        <div className="flex flex-col sm:flex-row">
-          <div>
-            <span className="ml-2 text-green-500 cursor-pointer">
-              <SvgIcon
-                name="sort"
-                className="inline-block w-5 h-5 ml-1 fill-current"
-              />
-            </span>
-            <span className="ml-2 capitalize">price</span>
-          </div>
-          <div>
-            <span className="ml-2 text-green-500 cursor-pointer">
-              <SvgIcon
-                name="sort"
-                className="inline-block w-5 h-5 ml-1 fill-current"
-              />
-            </span>
-            <span className="ml-2 capitalize">date posted</span>
-          </div>
-        </div>
       </div>
-
       {list !== null && list.length > 0 ? (
         <div className="overflow-x-scroll">
           <div className="px-4 min-w-5xl">
-            {list.map((property) => (
-              <Card key={property._id} property={property} />
+            {list.map(({ _id, property }) => (
+              <Card key={_id} property={property} _id={_id} />
             ))}
           </div>
         </div>

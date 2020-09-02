@@ -16,6 +16,7 @@ import {
   SORT_BY,
   GET_USER_PROPERTY_LIST,
   SAVE_PROPERTY,
+  DELETE_PROPERTY_FROM_LIST,
   // CREATE_PROPERTY,
   // UPDATE_PROPERTY,
   // DELETE_PROPERTY,
@@ -155,6 +156,16 @@ const PropertyState = (props) => {
     }
   };
 
+  // Delete property from user list
+  const deletePropertyFromList = async (_id) => {
+    try {
+      await axios.delete(`/api/delete-property-from-list/${_id}`);
+      dispatch({ type: DELETE_PROPERTY_FROM_LIST, payload: _id });
+    } catch (err) {
+      dispatch({ type: ERROR, payload: err.response.data.message });
+    }
+  };
+
   // Create property
   const createProperty = () => {};
   // Update property
@@ -201,6 +212,7 @@ const PropertyState = (props) => {
         getProperty,
         getUserPropertyList,
         saveProperty,
+        deletePropertyFromList,
         getAllApartment,
         sortBy,
         createProperty,
