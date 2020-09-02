@@ -3,7 +3,7 @@ const SavedProperty = require("../models/SavedProperty");
 
 const catchAsync = require("../utils/catchAsync");
 const AppError = require("../utils/appError");
-const { getAll } = require("./handlerFactory");
+const { getAll, deleteOne } = require("./handlerFactory");
 
 exports.checkIfNew = catchAsync(async (req, res, next) => {
   const properties = await Property.find({
@@ -114,12 +114,11 @@ exports.getAllApartment = (req, res, next) => {
 exports.getMySavedProperties = catchAsync(async (req, res, next) => {
   // find all saved properties that match user id
   const savedProperties = await SavedProperty.find({ user: req.user._id });
-  const properties = savedProperties.map((data) => data.property);
 
   res.status(200).json({
     status: "success",
-    results: properties.length,
-    data: properties,
+    results: savedProperties.length,
+    data: savedProperties,
   });
 });
 
@@ -132,6 +131,8 @@ exports.saveProperty = catchAsync(async (req, res, next) => {
     data: myProperty,
   });
 });
+
+exports.deletePropertyFromList = deleteOne(SavedProperty);
 
 exports.getAllProperty = getAll(Property);
 

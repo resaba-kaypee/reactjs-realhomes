@@ -17,6 +17,7 @@ const {
   featuredProperties,
   saveProperty,
   getMySavedProperties,
+  deletePropertyFromList,
 } = require("../controller/viewController");
 
 router.use(checkIfNew);
@@ -45,6 +46,11 @@ router
 
 // after logging in
 router.get("/my-saved-properties", protect, getMySavedProperties);
+router.delete(
+  "/delete-property-from-list/:id",
+  protect,
+  deletePropertyFromList
+);
 router.post("/save-property", protect, saveProperty);
 
 module.exports = router;
