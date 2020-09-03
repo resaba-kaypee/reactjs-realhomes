@@ -15,7 +15,7 @@ const SavePropertyButton = ({ _id }) => {
   useEffect(() => {
     if (
       user_property_list !== null &&
-      user_property_list.some((p) => p._id === _id)
+      user_property_list.some(({ property }) => property._id === _id)
     ) {
       setIsSaved(true);
     } else {
@@ -23,14 +23,18 @@ const SavePropertyButton = ({ _id }) => {
     }
   }, [user_property_list, _id]);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    if (isAuthenticated) {
+  const handleSave = () => {
+    if (isAuthenticated && user) {
       saveProperty({
         user: user._id,
         property: _id,
       });
     }
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    handleSave();
   };
 
   return (
