@@ -61,7 +61,7 @@ const AuthState = (props) => {
     try {
       const res = await axios.post("/api/v1/users/login", data, config);
       dispatch({ type: LOGIN, payload: res.data });
-      loadUser();
+      await loadUser();
     } catch (err) {
       dispatch({ type: ERROR, payload: err.response.data.message });
     }
@@ -80,7 +80,7 @@ const AuthState = (props) => {
     }
   };
 
-  const clearErrors = () => {
+  const clearErrorsAuth = () => {
     dispatch({ type: CLEAR_ERRORS });
   };
 
@@ -97,7 +97,7 @@ const AuthState = (props) => {
         loadUser,
         logoutUser,
         deleteUser,
-        clearErrors,
+        clearErrorsAuth,
       }}>
       {props.children}
     </AuthContext.Provider>

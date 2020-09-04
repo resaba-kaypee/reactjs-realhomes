@@ -174,7 +174,7 @@ const PropertyState = (props) => {
   const deleteProperty = () => {};
 
   // Clear success and error messages
-  const clearErrors = () => {
+  const clearErrorsProperty = () => {
     dispatch({ type: CLEAR_ERRORS });
   };
 
@@ -218,7 +218,7 @@ const PropertyState = (props) => {
         createProperty,
         updateProperty,
         deleteProperty,
-        clearErrors,
+        clearErrorsProperty,
         clearPropertyList,
       }}>
       {props.children}
