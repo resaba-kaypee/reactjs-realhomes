@@ -61,6 +61,7 @@ export default (state, action) => {
         user_property_list: state.user_property_list.filter(
           (list) => list._id !== action.payload
         ),
+        status: "removed",
         loading: false,
       };
     case GET_FEATURED_PROPERTIES:
