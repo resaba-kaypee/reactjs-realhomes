@@ -1,8 +1,9 @@
 import React from "react";
+
 import PropTypes from "prop-types";
 import Carousel from "@brainhubeu/react-carousel";
-import PropertyCardSimple from "../card/PropertyCardSimple";
-import Spinner from "../layout/Spinner";
+import { PropertyCardSimple } from "../Card";
+import Spinner from "../Spinner";
 
 const SpinnerCard = () => (
   <div className="w-full h-56 m-2 bg-gray-200 rounded shadow">

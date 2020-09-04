@@ -1,9 +1,11 @@
 import React, { useEffect, useContext } from "react";
 import { NavLink } from "react-router-dom";
+
 import PropertyContext from "../../context/property/propertyContext";
-import Search from "../forms/Search";
-import SlideSimple from "../carousel/SlideSimple";
+
 import Listing from "../../assets/img/listings.jpg";
+import { SlideSimple } from "../Carousel";
+import Search from "../Search";
 
 const RentalPage = () => {
   const propertyContext = useContext(PropertyContext);

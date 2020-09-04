@@ -1,6 +1,7 @@
 import React from "react";
-import SvgIcon from "../svg/SvgIcon";
+
 import Listing from "../../assets/img/listings.jpg";
+import SvgIcon from "../SvgIcon";
 
 const SellersText = () => (
   <>

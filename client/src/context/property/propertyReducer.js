@@ -1,4 +1,4 @@
-import sortBy from "../../utils/sortBy";
+import sortBy from "../../helper/_sortBy";
 import {
   GET_ALL_PROPERTY,
   GET_PROPERTIES_BY_LOCATION,

@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
-import SvgIcon from "../svg/SvgIcon";
-import SavePropertyButton from "../layout/SavePropertyButton";
+
+import SavePropertyButton from "./SavePropertyCardButton";
+import SvgIcon from "../SvgIcon";
 
 const PropertyCard = ({ property }) => {
   return (

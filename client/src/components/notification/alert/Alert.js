@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import AuthContext from "../../../context/auth/authContext";
-import SvgIcon from "../../svg/SvgIcon";
+import SvgIcon from "../../SvgIcon";
 
 const Alerts = () => {
   const authContext = useContext(AuthContext);

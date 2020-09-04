@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 
 import PropertyContext from "../../../context/property/propertyContext";
-import SvgIcon from "../../svg/SvgIcon";
+import SvgIcon from "../../SvgIcon";
 
 const Toast = () => {
   const propertyContext = useContext(PropertyContext);

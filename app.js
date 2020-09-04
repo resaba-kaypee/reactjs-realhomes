@@ -21,8 +21,19 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 //=====================================>> MIDDLEWARES
-// Serving static files
-app.use(express.static(path.join(__dirname, 'public')));
+
+// Serve static assets in production
+if (process.env.NODE_ENV === "production") {
+  // Set static folder
+  app.use(express.static(__dirname, "client/build"));
+  
+  app.get("*", (req, res) =>
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  );
+}
+
+// Serving static files in dev
+app.use(express.static(path.join(__dirname, 'client/public')));
 
 // Dev logging
 if (process.env.NODE_ENV === 'development') {
