@@ -6,36 +6,6 @@ import PropertyContext from "../../../context/property/propertyContext";
 
 import FormContext from "../../../context/form/formContext";
 import { SignIn, SignUp } from "./Forms";
-import { SignInButton, SignUpButton } from "./Buttons";
-
-const UserIcon = ({
-  user,
-  logoutUser,
-  clearPropertyList,
-  setAccount,
-  history,
-}) => (
-  <div className="flex items-center">
-    <figure className="w-12 h-12 overflow-hidden border-2 rounded-full md:mr-5">
-      <img
-        src={require(`../../../assets/img/${user.photo}`)}
-        alt="your avatar"
-        className="object-cover w-full h-full"
-      />
-    </figure>
-    <button
-      type="button"
-      onClick={() => {
-        logoutUser();
-        setAccount(null);
-        clearPropertyList();
-        history.push("/");
-      }}
-      className="flex-shrink-0 px-3 py-2 text-gray-900 transition duration-500 ease-in-out border border-yellow-600 rounded hover:text-white hover:bg-yellow-600 hover:border-yellow-600">
-      Log out
-    </button>
-  </div>
-);
 
 const AccountMenu = () => {
   const history = useHistory();
@@ -46,18 +16,18 @@ const AccountMenu = () => {
   const { clearPropertyList } = propertyContext;
 
   const formContext = useContext(FormContext);
-  const { showSignIn, showSignUp, setShowSignUp, closeForms } = formContext;
+  const {
+    closeForms,
+    showSignIn,
+    showSignUp,
+    setShowSignUp,
+    setShowSignIn,
+  } = formContext;
 
-  const [isOpen, setIsOpen] = useState(false);
   const [account, setAccount] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   const cache = sessionStorage.getItem("user");
-
-  useEffect(() => {
-    if (cache) {
-      setAccount(JSON.parse(cache));
-    }
-  }, [cache]);
 
   const handleEscape = (e) => {
     if (e.key === "Esc" || e.key === "Escape") {
@@ -65,6 +35,12 @@ const AccountMenu = () => {
       closeForms();
     }
   };
+
+  useEffect(() => {
+    if (cache) {
+      setAccount(JSON.parse(cache));
+    }
+  }, [cache]);
 
   useEffect(() => {
     document.addEventListener("keydown", handleEscape);
@@ -75,54 +51,57 @@ const AccountMenu = () => {
   }, []);
 
   return (
-    <div className="md:order-last">
-      {/* IMAGE BUTTON */}
-      <div className="relative block md:hidden">
-        <button
-          className="relative z-10 block w-12 h-12 overflow-hidden border-2 border-gray-600 rounded-full focus:border-white focus:outline-none"
-          onClick={() => {
-            setIsOpen(!isOpen);
-            setShowSignUp();
-          }}>
-          {account !== null ? (
+    <div className="flex items-center justify-end w-full my-5 md:my-0 md:w-auto">
+      {account ? (
+        <>
+          <figure className="w-12 h-12 mr-4 overflow-hidden border-2 rounded-full">
             <img
               src={require(`../../../assets/img/${account.photo}`)}
               alt="your avatar"
               className="object-cover w-full h-full"
             />
-          ) : (
-            <img
-              src={require(`../../../assets/img/default.jpg`)}
-              alt="your avatar"
-              className="object-cover w-full h-full"
-            />
-          )}
-        </button>
-        {isOpen && showSignUp && !showSignIn ? (
-          <SignUp setIsOpen={setIsOpen} />
-        ) : null}
-        {isOpen && showSignIn && !showSignUp ? (
-          <SignIn setIsOpen={setIsOpen} />
-        ) : null}
-      </div>
-
-      {/* INLINE BUTTON */}
-      <div className="hidden md:block">
-        {account !== null ? (
-          <UserIcon
-            user={account}
-            logoutUser={logoutUser}
-            clearPropertyList={clearPropertyList}
-            setAccount={setAccount}
-            history={history}
-          />
-        ) : (
-          <div className="flex items-center">
-            <SignInButton />
-            <SignUpButton />
-          </div>
-        )}
-      </div>
+          </figure>
+          <button
+            className="p-2 text-gray-800 transition duration-500 ease-in-out bg-transparent border border-gray-300 rounded hover:bg-gray-100 hover:text-gray-700"
+            type="button"
+            onClick={() => {
+              logoutUser();
+              setIsOpen(false);
+              setAccount(null);
+              clearPropertyList();
+              history.push("/");
+            }}>
+            Log out
+          </button>
+        </>
+      ) : (
+        <>
+          <button
+            className="p-2 mr-4 text-gray-800 transition duration-500 ease-in-out bg-transparent border border-gray-300 rounded hover:bg-gray-100 hover:text-gray-700"
+            type="button"
+            onClick={() => {
+              setIsOpen(!isOpen);
+              setShowSignIn();
+            }}>
+            Sign in
+          </button>
+          <button
+            className="p-2 text-gray-200 transition duration-500 ease-in-out bg-blue-600 border rounded hover:bg-blue-500 hover:text-gray-100"
+            type="button"
+            onClick={() => {
+              setIsOpen(!isOpen);
+              setShowSignUp();
+            }}>
+            Sign up
+          </button>
+        </>
+      )}
+      {isOpen && showSignUp && !showSignIn ? (
+        <SignUp setIsOpen={setIsOpen} />
+      ) : null}
+      {isOpen && showSignIn && !showSignUp ? (
+        <SignIn setIsOpen={setIsOpen} />
+      ) : null}
     </div>
   );
 };

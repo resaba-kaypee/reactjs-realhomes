@@ -1,30 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-import AccountMenu from "./AccountMenu";
-import Menu from "./Menu/";
-import SvgIcon from "../SvgIcon";
+import NavLinks from "./NavLinks";
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <header className="fixed top-0 z-30 flex justify-center w-full bg-white border-b border-green-500 shadow">
-      <div className="relative w-full px-8 py-4 md:py-0">
-        <nav className="flex items-center justify-between h-full">
-          <AccountMenu />
+    <div className="fixed top-0 z-40 w-full">
+      <nav className="w-full bg-white shadow-lg md:flex md:justify-between">
+        {/* >> BURGER NAV ICON << */}
+        <div className="flex items-center justify-between px-6">
+          <div className="md:hidden">
+            <button
+              type="button"
+              className="block py-3 text-blue-600 focus:outline-none"
+              onClick={() => setIsOpen(!isOpen)}>
+              <svg
+                className="w-10 h-10 fill-current focus:outline-none"
+                viewBox="0 0 20 20  ">
+                {isOpen ? (
+                  <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
+                ) : (
+                  <path d="M0 3h20v2H0V3zm0 4h20v2H0V7zm0 4h20v2H0v-2zm0 4h20v2H0v-2z" />
+                )}
+              </svg>
+            </button>
+          </div>
+
+          {/* >> LOGO << */}
+
           <NavLink to="/" className="flex items-center justify-center">
-            <SvgIcon
-              className="w-10 h-10 text-green-700 fill-current sm:w-16 sm:h-16"
-              name="logo"
-            />
-            <div className="p-2 mt-3 font-semibold">
-              <span className="text-lg text-yellow-700 sm:text-2xl ">REAL</span>
-              <span className="text-lg text-gray-700 sm:text-2xl ">HOMES</span>
+            <div className="py-2 font-semibold leading-13">
+              <span className="text-xl text-yellow-700 sm:text-2xl ">REAL</span>
+              <span className="text-xl text-gray-700 sm:text-2xl ">HOMES</span>
             </div>
           </NavLink>
-          <Menu />
-        </nav>
-      </div>
-    </header>
+        </div>
+
+        {/* >> NAVLINKS << */}
+        <NavLinks isOpen={isOpen} />
+      </nav>
+    </div>
   );
 };
 
