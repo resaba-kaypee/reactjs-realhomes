@@ -2,15 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 
-import SvgIcon from "../SvgIcon";
+import SavePropertyButton from "./SavePropertyCardButton";
 
 const PropertyCardSimple = ({ property }) => {
   return (
     <div className="p-2">
       <div className="relative overflow-hidden border rounded shadow">
-        <button className="absolute top-0 right-0 z-10 mt-4 mr-4 text-white cursor-pointer hover:text-red-700">
-          <SvgIcon name="heart" className="w-12 h-12 fill-current" />
-        </button>
+        <div className="absolute top-0 right-0 z-10 mt-4 mr-4">
+          <SavePropertyButton _id={property._id} />
+        </div>
         <div className="relative">
           <NavLink to={`/property/${property.slug}`}>
             <div className="w-56 h-56 lg:w-84 lg:h-84">
