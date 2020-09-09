@@ -3,8 +3,9 @@ import { NavLink } from "react-router-dom";
 
 import PropertyContext from "../../context/property/propertyContext";
 
-import Search from "../Search";
+import Container from "../Shared/Container";
 import Listing from "../../assets/img/listings.jpg";
+import Search from "../Search";
 import { SlideSimple } from "../Carousel";
 
 const BuyPage = () => {
@@ -29,7 +30,7 @@ const BuyPage = () => {
   return (
     <>
       <section
-        className="relative w-full bg-no-repeat h-2/3"
+        className="relative w-full bg-no-repeat bg-cover h-2/3"
         style={{
           backgroundImage: `url(${Listing})`,
         }}>
@@ -51,9 +52,10 @@ const BuyPage = () => {
           </div>
         </div>
       </section>
-      <section className="relative mt-12">
-        <div className="px-2 md:px-8">
-          <div className="px-4">
+
+      <Container>
+        <div className="mt-12 ">
+          <div className="px-2 md:px-6">
             <h2 className="text-lg font-semibold text-gray-800 sm:text-2xl">
               Newest Listings
             </h2>
@@ -62,15 +64,17 @@ const BuyPage = () => {
               className="text-blue-500 hover:underline">
               View All Newest Listings
             </NavLink>
-          </div>
-          <div className="w-full mt-6">
-            <SlideSimple properties={properties} loading={loading} />
+
+            <div className="w-full mt-6">
+              <SlideSimple properties={properties} loading={loading} />
+            </div>
           </div>
         </div>
-      </section>
-      <section className="relative mt-12">
-        <div className="px-2 md:px-8">
-          <div className="px-4">
+      </Container>
+
+      <Container>
+        <div className="mt-12 ">
+          <div className="px-2 md:px-6">
             <h2 className="text-lg font-semibold text-gray-800 sm:text-2xl">
               Featured Listings
             </h2>
@@ -79,15 +83,16 @@ const BuyPage = () => {
               className="text-blue-500 hover:underline">
               View All Featured Listings
             </NavLink>
-          </div>
-          <div className="mt-6">
-            <SlideSimple properties={featured} loading={loading} />
+
+            <div className="mt-6">
+              <SlideSimple properties={featured} loading={loading} />
+            </div>
           </div>
         </div>
-      </section>
-      <section className="relative my-12">
-        <div className="px-2 md:px-8">
-          <div className="px-4">
+      </Container>
+      <Container>
+        <div className="my-12 ">
+          <div className="px-2 md:px-6">
             <h2 className="text-lg font-semibold text-gray-800 sm:text-2xl">
               Homes Around $300,000
             </h2>
@@ -96,12 +101,13 @@ const BuyPage = () => {
               className="text-blue-500 hover:underline">
               View All Affordable Properties
             </NavLink>
-          </div>
-          <div className="mt-6">
-            <SlideSimple properties={affordable} loading={loading} />
+
+            <div className="mt-6">
+              <SlideSimple properties={affordable} loading={loading} />
+            </div>
           </div>
         </div>
-      </section>
+      </Container>
     </>
   );
 };

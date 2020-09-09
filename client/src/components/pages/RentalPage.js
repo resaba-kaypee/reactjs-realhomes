@@ -6,6 +6,7 @@ import PropertyContext from "../../context/property/propertyContext";
 import Listing from "../../assets/img/listings.jpg";
 import { SlideSimple } from "../Carousel";
 import Search from "../Search";
+import Container from "../Shared/Container";
 
 const RentalPage = () => {
   const propertyContext = useContext(PropertyContext);
@@ -25,7 +26,7 @@ const RentalPage = () => {
   return (
     <>
       <section
-        className="relative w-full bg-no-repeat h-2/3"
+        className="relative w-full bg-no-repeat bg-cover h-2/3"
         style={{
           backgroundImage: `url(${Listing})`,
         }}>
@@ -46,9 +47,10 @@ const RentalPage = () => {
           </div>
         </div>
       </section>
-      <section className="relative mt-12">
-        <div className="px-2 md:px-8">
-          <div className="px-4">
+
+      <Container>
+        <div className="mt-12">
+          <div className="px-2 md:px-6">
             <h2 className="text-lg font-semibold text-gray-800 sm:text-2xl">
               Rentals with Pools
             </h2>
@@ -57,15 +59,17 @@ const RentalPage = () => {
               className="text-blue-500 hover:underline">
               View All with Pools
             </NavLink>
-          </div>
-          <div className="mt-6">
-            <SlideSimple properties={apt_pools} loading={loading} />
+
+            <div className="mt-6">
+              <SlideSimple properties={apt_pools} loading={loading} />
+            </div>
           </div>
         </div>
-      </section>
-      <section className="relative mt-12">
-        <div className="px-2 md:px-8">
-          <div className="px-4">
+      </Container>
+
+      <Container>
+        <div className="mt-12">
+          <div className="px-2 md:px-6">
             <h2 className="text-lg font-semibold text-gray-800 sm:text-2xl">
               Rentals with In-unit Laundry
             </h2>
@@ -74,15 +78,17 @@ const RentalPage = () => {
               className="text-blue-500 hover:underline">
               View All with In-unit Laundry
             </NavLink>
-          </div>
-          <div className="mt-6">
-            <SlideSimple properties={apt_laundry} loading={loading} />
+
+            <div className="mt-6">
+              <SlideSimple properties={apt_laundry} loading={loading} />
+            </div>
           </div>
         </div>
-      </section>
-      <section className="relative my-12">
-        <div className="px-2 md:px-8">
-          <div className="px-4">
+      </Container>
+
+      <Container>
+        <div className="my-12">
+          <div className="px-2 md:px-6">
             <h2 className="text-lg font-semibold text-gray-800 sm:text-2xl">
               Pet-friendly Rentals with
             </h2>
@@ -91,12 +97,13 @@ const RentalPage = () => {
               className="text-blue-500 hover:underline">
               View All Pet-friendly Rentals
             </NavLink>
-          </div>
-          <div className="mt-6">
-            <SlideSimple properties={apt_pet} loading={loading} />
+
+            <div className="mt-6">
+              <SlideSimple properties={apt_pet} loading={loading} />
+            </div>
           </div>
         </div>
-      </section>
+      </Container>
     </>
   );
 };

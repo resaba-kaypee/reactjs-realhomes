@@ -4,12 +4,13 @@ import { useLocation } from "react-router-dom";
 import PropertyContext from "../../context/property/propertyContext";
 
 import Listing from "../../assets/img/listings.jpg";
-import FilterOptions from "./FilterOptions";
 import { PropertyCard } from "../Card";
+import FilterOptions from "./FilterOptions";
 import { MapListing } from "../Mapbox";
 import Pagination from "./Pagination";
-import Spinner from "../Spinner";
 import Search from "../Search";
+import Container from "../Shared/Container";
+import Spinner from "../Spinner";
 import SortProperty from "./SortProperty";
 import SvgIcon from "../SvgIcon";
 
@@ -66,7 +67,7 @@ const ListingsRentalsPage = () => {
   return (
     <>
       <section
-        className="relative w-full bg-no-repeat h-2/3"
+        className="relative w-full bg-no-repeat bg-cover h-2/3"
         style={{
           backgroundImage: `url(${Listing})`,
         }}>
@@ -88,9 +89,9 @@ const ListingsRentalsPage = () => {
           </div>
         </div>
       </section>
-      <main className="w-full">
-        <section>
-          <div className="px-8 mt-6">
+      <main>
+        <Container>
+          <div className="px-6 mt-6">
             <h2 className="text-xl font-bold leading-8 text-gray-800">
               {location_states !== null && location_states.length === 1 ? (
                 <span>{location_states[0]} </span>
@@ -179,8 +180,9 @@ const ListingsRentalsPage = () => {
               </div>
             </div>
           </div>
-        </section>
-        <section>
+        </Container>
+
+        <Container>
           <div
             className={
               (isMapActive ? "flex max-h-full " : "max-h-0 ") +
@@ -198,8 +200,9 @@ const ListingsRentalsPage = () => {
               ) : null}
             </div>
           </div>
-        </section>
-        <section>
+        </Container>
+
+        <Container>
           {loading ? (
             <div className="flex flex-row justify-center w-full">
               <div className="flex flex-wrap w-full h-screen max-w-11/12">
@@ -232,7 +235,7 @@ const ListingsRentalsPage = () => {
               </div>
             </>
           )}
-        </section>
+        </Container>
       </main>
     </>
   );

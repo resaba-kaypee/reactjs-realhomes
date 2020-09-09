@@ -2,6 +2,7 @@ import React from "react";
 
 import Listing from "../../assets/img/listings.jpg";
 import SvgIcon from "../SvgIcon";
+import Container from "../Shared/Container";
 
 const SellersText = () => (
   <>
@@ -205,7 +206,7 @@ const SellPage = () => {
   return (
     <>
       <section
-        className="relative w-full bg-no-repeat h-2/3"
+        className="relative w-full bg-no-repeat bg-cover h-2/3"
         style={{
           backgroundImage: `url(${Listing})`,
         }}>
@@ -227,28 +228,30 @@ const SellPage = () => {
           </div>
         </div>
       </section>
-      <section className="relative mx-8 mb-16 lg:mx-24">
-        <div className="flex flex-col items-center md:grid md:grid-cols-2 md:gap-4">
-          <div className="order-2 mt-4 md:order-none">
-            <SellersText />
-          </div>
-          <div className="order-1 md:order-none">
-            <SellersImage />
-          </div>
-          <div className="order-3 md:order-none">
-            <AgentsImage />
-          </div>
-          <div className="order-4 md:order-none">
-            <AgentsText />
-          </div>
-          <div className="order-6 md:order-none">
-            <ToolsText />
-          </div>
-          <div className="order-5 md:order-none">
-            <ToolsImage />
+      <Container>
+        <div className="px-6 mb-16">
+          <div className="flex flex-col items-center md:grid md:grid-cols-2 md:gap-4">
+            <div className="order-2 mt-4 md:order-none">
+              <SellersText />
+            </div>
+            <div className="order-1 md:order-none">
+              <SellersImage />
+            </div>
+            <div className="order-3 md:order-none">
+              <AgentsImage />
+            </div>
+            <div className="order-4 md:order-none">
+              <AgentsText />
+            </div>
+            <div className="order-6 md:order-none">
+              <ToolsText />
+            </div>
+            <div className="order-5 md:order-none">
+              <ToolsImage />
+            </div>
           </div>
         </div>
-      </section>
+      </Container>
     </>
   );
 };
