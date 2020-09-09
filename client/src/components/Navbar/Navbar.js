@@ -6,8 +6,8 @@ import NavLinks from "./NavLinks";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="fixed top-0 z-40 w-full">
-      <nav className="w-full bg-white shadow-lg md:flex md:justify-between">
+    <div className="fixed top-0 z-40 flex justify-center w-full bg-white shadow-lg">
+      <nav className="w-full max-w-6xl md:flex md:justify-between">
         {/* >> BURGER NAV ICON << */}
         <div className="flex items-center justify-between px-6">
           <div className="md:hidden">

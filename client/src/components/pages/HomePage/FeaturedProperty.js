@@ -23,7 +23,7 @@ const FeaturedProperty = () => {
         <h2 className="text-4xl font-semibold">Featured Properties</h2>
       </div>
       <div className="flex flex-row justify-center w-full">
-        <div className="flex flex-col md:flex-row md:flex-wrap max-w-11/12">
+        <div className="flex flex-col w-full max-w-6xl px-4 md:flex-row md:flex-wrap">
           {featured !== null && !loading ? (
             featured.map((property) => (
               <div key={property._id} className="p-2 mt-2 md:w-1/2 lg:w-1/3">
