@@ -59,7 +59,7 @@ const AccountSettings = () => {
                       alt="user"
                     />
                   </div>
-                  <label className="w-3/4 py-2 ml-6 text-lg font-semibold text-center text-green-400 transition duration-500 ease-in-out border-b border-transparent border-green-400 cursor-pointer hover:border-b-2 hover:text-green-500 hover:border-green-500 focus-within:border-b-2 focus-within:text-green-500 focus-within:border-green-500">
+                  <label className="w-3/4 py-2 ml-6 text-lg font-semibold text-center text-blue-600 transition duration-500 ease-in-out border-b border-transparent border-blue-700 cursor-pointer hover:border-b-2 hover:text-gray-900 hover:border-blue-700 focus-within:border-b-2 focus-within:text-gray-900 focus-within:border-blue-700">
                     <input
                       onChange={(e) => handleChange(e)}
                       className="sr-only"
@@ -85,7 +85,7 @@ const AccountSettings = () => {
                 </div>
                 <div className="relative h-12 mb-6 sm:w-1/2 sm:h-full">
                   <div className="absolute bottom-0 right-0 pr-3">
-                    <button className="px-4 py-2 text-xl font-semibold text-center text-green-400 capitalize transition duration-500 ease-in-out border border-b border-transparent border-green-400 rounded cursor-pointer hover:border-b-2 hover:text-green-500 hover:border-green-500 focus-within:border-b-2 focus-within:text-green-500 focus-within:border-green-500">
+                    <button className="px-4 py-2 text-xl font-semibold text-center text-blue-600 capitalize transition duration-500 ease-in-out border border-b border-transparent border-blue-400 rounded cursor-pointer hover:border-b-2 hover:text-gray-900 hover:border-blue-700 focus-within:border-b-2 focus-within:text-gray-900 focus:border-blue-700 focus:outline-none hover:bg-gray-100 focus:bg-gray-100">
                       save settings
                     </button>
                   </div>
@@ -142,7 +142,7 @@ const AccountSettings = () => {
               </div>
               <div className="relative flex w-full h-12 mt-6">
                 <div className="absolute bottom-0 right-0 pr-3">
-                  <button className="px-4 py-2 text-xl font-semibold text-center text-green-400 capitalize transition duration-500 ease-in-out border border-b border-transparent border-green-400 rounded cursor-pointer hover:border-b-2 hover:text-green-500 hover:border-green-500 focus-within:border-b-2 focus-within:text-green-500 focus-within:border-green-500">
+                  <button className="px-4 py-2 text-xl font-semibold text-center text-blue-600 capitalize transition duration-500 ease-in-out border border-b border-transparent border-blue-400 rounded cursor-pointer hover:border-b-2 hover:text-gray-900 hover:border-blue-700 focus-within:border-b-2 focus-within:text-gray-900 focus:border-blue-700 focus:outline-none hover:bg-gray-100 focus:bg-gray-100">
                     save password
                   </button>
                 </div>
