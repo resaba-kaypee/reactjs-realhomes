@@ -9,9 +9,9 @@ const Table = ({ list }) => {
   const { deletePropertyFromList } = propertyContext;
 
   return (
-    <div className="px-4 py-4 mt-4 overflow-x-hidden bg-white rounded-lg shadow-xl">
+    <div className="px-4 mt-4 overflow-x-hidden bg-white rounded-lg shadow-xl">
       {/* <!-- Table --> */}
-      <div className="min-w-full overflow-x-scroll">
+      <div className="min-w-full py-4 overflow-x-scroll">
         <table className="capitalize table-auto">
           <thead>
             <tr>
@@ -68,7 +68,7 @@ const Table = ({ list }) => {
                 <td
                   key={_id}
                   className="px-4 py-3 text-sm text-center text-gray-700 border">
-                  {property._id}
+                  {property.propertyId}
                 </td>
               ))}
             </tr>

@@ -21,7 +21,7 @@ const SavedProperties = ({ list }) => {
       </div>
       {list !== null && list.length > 0 ? (
         <div className="overflow-x-scroll">
-          <div className="px-4 min-w-5xl">
+          <div className="px-4 pb-4 min-w-5xl">
             {list.map(({ _id, property }) => (
               <Card key={_id} property={property} _id={_id} />
             ))}
