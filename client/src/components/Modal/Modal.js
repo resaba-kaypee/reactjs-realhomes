@@ -8,7 +8,7 @@ const Modal = ({ children }) => {
   if (!elRef.current) {
     const div = document.createElement("div");
     elRef.current = div;
-    div.classList = "fixed z-40";
+    div.classList = "fixed z-50";
   }
 
   useEffect(() => {
