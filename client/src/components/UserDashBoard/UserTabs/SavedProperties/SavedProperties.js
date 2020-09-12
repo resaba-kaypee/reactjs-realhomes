@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import PropertyContext from "../../../../context/property/propertyContext";
 
 import Card from "./Card";
+import Spinner from "../../../Spinner";
 
-const SavedProperties = ({ list }) => {
+const SavedProperties = () => {
+  const propertyContext = useContext(PropertyContext);
+  const { user_property_list, loading } = propertyContext;
+
+  if (user_property_list === null && loading) return <Spinner />;
+
   return (
     <div className="mb-6">
       <h2 className="my-4 text-3xl font-semibold sm:text-4xl">
@@ -13,16 +21,16 @@ const SavedProperties = ({ list }) => {
         <div>
           <span>
             <span className="mr-2 text-green-500">
-              {list !== null && list.length}
+              {user_property_list !== null && user_property_list.length}
             </span>
             Total homes
           </span>
         </div>
       </div>
-      {list !== null && list.length > 0 ? (
+      {user_property_list !== null && user_property_list.length > 0 ? (
         <div className="overflow-x-scroll">
           <div className="px-4 pb-4 min-w-5xl">
-            {list.map(({ _id, property }) => (
+            {user_property_list.map(({ _id, property }) => (
               <Card key={_id} property={property} _id={_id} />
             ))}
           </div>
