@@ -17,23 +17,19 @@ const Footer = () => {
           <div className="relative flex flex-wrap max-w-6xl px-8 xl:px-0">
             {/* LOGO */}
             <div className="flex flex-col sm:w-1/2 sm:px-4 sm:pb-12">
-              <div className="flex items-center md:mr-5">
-                <SvgIcon
-                  className="w-16 h-16 text-green-700 fill-current"
-                  name="logo"
-                />
-                <div className="p-2 mt-3 text-xl font-semibold">
-                  <span className="text-yellow-600">REAL</span>
-                  <span className="text-gray-600">HOMES</span>
-                </div>
+              <div className="text-center">
+                <span className="text-xl text-white sm:text-2xl">REAL</span>
+                <span className="text-xl text-yellow-600 sm:text-2xl">
+                  HOMES
+                </span>
               </div>
 
-              <p className="mt-2 font-hairline leading-6 tracking-wider text-teal-200 sm:text-sm">
+              <p className="mt-2 font-hairline leading-6 tracking-wider text-center text-gray-200 sm:text-sm">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea
                 odit officia aperiam? Aut, neque sequi?
               </p>
 
-              <div className="flex flex-row mt-4 text-white">
+              <div className="flex flex-row justify-center mt-4 text-white">
                 <a href="!#" className="pr-2">
                   <div className="p-3 transition duration-500 ease-in-out border rounded-full hover:bg-yellow-600 hover:border-yellow-600">
                     <SvgIcon
@@ -62,7 +58,7 @@ const Footer = () => {
 
             {/* GET INFO */}
             <div className="pt-8 sm:pt-0 sm:w-1/2 sm:px-4 sm:pb-12">
-              <h1 className="text-3xl font-semibold text-white">
+              <h1 className="text-xl text-white sm:text-2xl">
                 Get <span className="text-yellow-600">Info</span>
               </h1>
               <p className="mt-2 text-sm font-semibold text-white">
@@ -87,7 +83,7 @@ const Footer = () => {
 
             {/* PROPERTY CITIES */}
             <div className="pt-8 sm:pt-0 sm:w-1/2 sm:px-4 sm:pb-12">
-              <h1 className="text-3xl font-semibold text-white">
+              <h1 className="text-xl text-white sm:text-2xl">
                 Property <span className="text-yellow-600">Cities</span>
               </h1>
               <div className="flex flex-wrap justify-between mt-2">
@@ -145,7 +141,7 @@ const Footer = () => {
 
             {/* NEWSLETTER */}
             <div className="pt-8 sm:pt-0 sm:w-1/2 sm:px-4 sm:pb-12">
-              <h1 className="text-3xl font-semibold text-white">
+              <h1 className="text-xl text-white sm:text-2xl">
                 News<span className="text-yellow-600">letter</span>
               </h1>
               <p className="mt-2 text-sm text-gray-200">
