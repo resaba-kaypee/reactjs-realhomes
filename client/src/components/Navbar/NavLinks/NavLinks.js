@@ -13,14 +13,14 @@ const NavLinks = ({ isOpen }) => {
         <NavLink
           activeClassName="border-b-2 border-blue-700 text-gray-900"
           className="inline-block px-4 py-2 text-lg no-underline transition duration-500 ease-in-out shadow hover:border-blue-400 hover:border-b-2 md:shadow-none leading-13 hover:text-gray-900 lg:-ml-2"
-          to="/buy">
+          to="/realstateforsale">
           Buy
         </NavLink>
 
         <NavLink
           activeClassName="border-b-2 border-blue-700 text-gray-900"
           className="inline-block px-4 py-2 text-lg no-underline transition duration-500 ease-in-out shadow hover:border-blue-400 hover:border-b-2 md:shadow-none leading-13 hover:text-gray-900 lg:-ml-2"
-          to="rent">
+          to="/rentals">
           Rent
         </NavLink>
 
@@ -33,14 +33,14 @@ const NavLinks = ({ isOpen }) => {
         <NavLink
           activeClassName="border-b-2 border-blue-700 text-gray-900"
           className="inline-block px-4 py-2 text-lg no-underline transition duration-500 ease-in-out shadow hover:border-blue-400 hover:border-b-2 md:shadow-none leading-13 hover:text-gray-900 lg:-ml-2"
-          to="my-home">
+          to="/my-home">
           My Home
         </NavLink>
 
         <NavLink
           activeClassName="border-b-2 border-blue-700 text-gray-900"
           className="inline-block px-4 py-2 text-lg no-underline transition duration-500 ease-in-out shadow hover:border-blue-400 hover:border-b-2 md:shadow-none leading-13 hover:text-black lg:-ml-2"
-          to="about">
+          to="/about">
           About
         </NavLink>
       </nav>
