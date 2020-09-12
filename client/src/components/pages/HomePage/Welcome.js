@@ -6,7 +6,7 @@ import Search from "../../Search";
 const Welcome = () => {
   return (
     <section
-      className="relative w-full bg-center bg-no-repeat h-2/3"
+      className="relative w-full bg-top bg-no-repeat bg-cover h-2/3"
       style={{
         backgroundImage: `url(${Home})`,
       }}>
