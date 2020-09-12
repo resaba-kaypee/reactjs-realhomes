@@ -1,4 +1,5 @@
+import MapCard from "./MapCard";
 import PropertyCard from "./PropertyCard";
 import PropertyCardSimple from "./PropertyCardSimple";
 
-export { PropertyCard, PropertyCardSimple };
+export { MapCard, PropertyCard, PropertyCardSimple };
