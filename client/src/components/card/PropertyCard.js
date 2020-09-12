@@ -7,7 +7,7 @@ import SvgIcon from "../SvgIcon";
 
 const PropertyCard = ({ property }) => {
   return (
-    <div className="w-full overflow-hidden bg-gray-200 rounded-lg shadow-xl">
+    <div className="w-full max-w-2xl overflow-hidden bg-gray-200 rounded-lg shadow-xl">
       <div className="relative border">
         <div className="absolute top-0 right-0 z-10 mt-4 mr-4">
           <SavePropertyButton _id={property._id} />
