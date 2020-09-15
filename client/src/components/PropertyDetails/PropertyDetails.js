@@ -88,30 +88,34 @@ const PropertyDetails = () => {
                   </div>
 
                   {/* PROPERTY DETAILS */}
-                  <div className="mt-12">
-                    <HouseInfo
-                      features={property.features}
-                      id={property.propertyId}
-                      type={property.type.type}
-                      status={property.status}
-                      price={property.price}
-                      bedrooms={property.bedrooms}
-                      bathrooms={property.bathrooms}
-                      garage={property.garage}
-                      lot={property.lotSize}
-                      area={property.areaSize}
-                      year={property.yearBuilt}
-                    />
-                  </div>
+                  <div className="flex flex-col w-full mt-12 md:flex-row">
+                    <div className="w-full md:w-1/2">
+                      <div>
+                        <HouseInfo
+                          features={property.features}
+                          id={property.propertyId}
+                          type={property.type.type}
+                          status={property.status}
+                          price={property.price}
+                          bedrooms={property.bedrooms}
+                          bathrooms={property.bathrooms}
+                          garage={property.garage}
+                          lot={property.lotSize}
+                          area={property.areaSize}
+                          year={property.yearBuilt}
+                        />
+                      </div>
 
-                  {/* --DESCRIPTION-- */}
-                  <div className="mt-12">
-                    <HouseDescription description={property.description} />
-                  </div>
+                      {/* --DESCRIPTION-- */}
+                      <div className="mt-12">
+                        <HouseDescription description={property.description} />
+                      </div>
+                    </div>
 
-                  {/* ASK QUESTION */}
-                  <div className="mt-12">
-                    <AgentForm user={property.user} />
+                    {/* ASK QUESTION */}
+                    <div className="w-full mt-6 md:mt-0 md:w-1/2">
+                      <AgentForm user={property.user} />
+                    </div>
                   </div>
 
                   {/* SIMIlAR SLIDE */}

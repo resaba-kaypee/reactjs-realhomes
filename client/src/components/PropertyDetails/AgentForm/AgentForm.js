@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 
 const AgentForm = ({ user }) => {
   return (
-    <div className="flex flex-col items-center mt-6 lg:flex-row md:justify-center">
-      <div className="w-full mt-6 lg:w-1/2">
+    <div className="flex flex-col items-center md:justify-center">
+      <div className="w-full">
         <h3 className="text-2xl font-bold leading-8 text-center text-gray-800">
           Know more about this property
         </h3>
@@ -30,8 +30,8 @@ const AgentForm = ({ user }) => {
       </div>
 
       {/* FORM */}
-      <div className="flex w-1/2 sm: sm:justify-center">
-        <form className="w-full max-w-md mt-6">
+      <div className="flex justify-center w-full">
+        <form className="max-w-md mt-6">
           <div className="mb-6 md:flex md:items-center">
             <div className="md:w-1/3">
               <label
