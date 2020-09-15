@@ -3,10 +3,10 @@ import { NavLink } from "react-router-dom";
 
 import PropertyContext from "../../context/property/propertyContext";
 
-import Listing from "../../assets/img/listings.jpg";
 import { SlideSimple } from "../Carousel";
 import Search from "../Search";
 import Container from "../Shared/Container";
+import HeroSectionContainer from "../Shared/HeroSectionContainer";
 
 const RentalPage = () => {
   const propertyContext = useContext(PropertyContext);
@@ -25,28 +25,19 @@ const RentalPage = () => {
 
   return (
     <>
-      <section
-        className="relative w-full bg-no-repeat bg-cover h-2/3"
-        style={{
-          backgroundImage: `url(${Listing})`,
-        }}>
-        <div className="absolute bottom-0 w-full mb-32 ml-auto mr-auto lg:mb-24">
-          <div className="flex justify-center px-4 sm:px-8 lg:px-10">
-            <div className="relative w-full max-w-6xl p-8">
-              <div className="absolute"></div>
-              <div className="relative mb-4">
-                <h1 className="text-4xl font-semibold text-yellow-500">
-                  Discover your perfect rental.
-                </h1>
-                <p className="mt-2 text-lg text-yellow-500">
-                  Search nearby apartments, condos, and homes for rent
-                </p>
-              </div>
-              <Search />
-            </div>
+      <HeroSectionContainer>
+        <div className="relative w-full max-w-6xl p-8">
+          <div className="mb-4">
+            <h1 className="text-4xl font-semibold text-yellow-500">
+              Discover your perfect rental.
+            </h1>
+            <p className="mt-2 text-lg text-yellow-500">
+              Search nearby apartments, condos, and homes for rent
+            </p>
           </div>
+          <Search />
         </div>
-      </section>
+      </HeroSectionContainer>
 
       <Container>
         <div className="mt-12">
