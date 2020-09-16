@@ -4,7 +4,6 @@ import { NavLink, Switch, Route } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
 import PropertyContext from "../../context/property/propertyContext";
 
-import NotLoggedIn from "./NotLoggedIn";
 import Container from "../Shared/Container";
 import TrackHomeBar from "./TrackHomeBar";
 import {
@@ -18,7 +17,6 @@ const UserDashBoard = () => {
   const { isAuthenticated } = authContext;
   const propertyContext = useContext(PropertyContext);
   const { getUserPropertyList } = propertyContext;
-  const account = sessionStorage.getItem("user");
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -26,8 +24,6 @@ const UserDashBoard = () => {
     }
     // eslint-disable-next-line
   }, [isAuthenticated]);
-
-  if (!account) return <NotLoggedIn />;
 
   return (
     <>
