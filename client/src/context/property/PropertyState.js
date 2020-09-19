@@ -30,7 +30,10 @@ const PropertyState = (props) => {
 
   const initialState = {
     properties: null,
-    results: null,
+    totalResults: null,
+    currentResults: null,
+    nextPage: null,
+    prevPage: null,
     cities: null,
     featured: null,
     affordable: null,
@@ -63,7 +66,7 @@ const PropertyState = (props) => {
   // Get all properties by state
   const getPropertiesByLocation = async () => {
     try {
-      const res = await axios.get(`api/properties/search${location.search}`);
+      const res = await axios.get(`api/properties-search${location.search}`);
       dispatch({ type: GET_PROPERTIES_BY_LOCATION, payload: res.data });
     } catch (err) {
       dispatch({ type: ERROR, payload: err.response.data });
@@ -73,7 +76,7 @@ const PropertyState = (props) => {
   // Get similar properties
   const getSimilarProperties = async () => {
     try {
-      const res = await axios.get(`/api/properties/search${location.search}`);
+      const res = await axios.get(`/api/properties-search${location.search}`);
       dispatch({ type: GET_SIMILAR_PROPERTIES, payload: res.data });
     } catch (err) {
       dispatch({ type: ERROR, payload: err.response.data });
@@ -187,7 +190,10 @@ const PropertyState = (props) => {
     <PropertyContext.Provider
       value={{
         properties: state.properties,
-        results: state.results,
+        totalResults: state.totalResults,
+        currentResults: state.currentResults,
+        nextPage: state.nextPage,
+        prevPage: state.prevPage,
         cities: state.cities,
         featured: state.featured,
         affordable: state.affordable,

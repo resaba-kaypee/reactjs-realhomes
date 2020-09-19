@@ -28,7 +28,10 @@ export default (state, action) => {
       return {
         ...state,
         properties: action.payload.data,
-        results: Number(action.payload.results),
+        totalResults: action.payload.totalResults,
+        currentResults: action.payload.currentResults,
+        nextPage: action.payload.next,
+        prevPage: action.payload.prev,
         cities: action.payload.cities ? action.payload.cities : null,
         location_states: [
           ...new Set(
@@ -50,7 +53,6 @@ export default (state, action) => {
         loading: false,
       };
     case SAVE_PROPERTY:
-      console.log(action.payload.status);
       return {
         ...state,
         status: action.payload.status,
