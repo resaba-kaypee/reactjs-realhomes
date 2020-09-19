@@ -19,38 +19,21 @@ const ListingsPage = () => {
   const propertyContext = useContext(PropertyContext);
   const {
     getPropertiesByLocation,
+    loading,
     location_states,
     location_cities,
     properties,
-    results,
-    loading,
   } = propertyContext;
 
-  const [isOpen, setIsOpen] = useState(false);
   const [isListActive, setIsListActive] = useState(true);
   const [isMapActive, setIsMapActive] = useState(false);
-  const [postPerPage] = useState(6);
-  const [posts, setPosts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [isOpen, setIsOpen] = useState(false);
+  const postPerPage = properties && properties.length;
 
   useEffect(() => {
     getPropertiesByLocation();
     // eslint-disable-next-line
   }, [location.search]);
-
-  useEffect(() => {
-    if (properties !== null && !loading) {
-      setPosts(properties);
-    }
-  }, [properties, loading, results]);
-
-  const end = currentPage * postPerPage;
-  const start = end - postPerPage;
-  const currentPosts = posts.slice(start, end);
-
-  const paginate = (pageNumber) => {
-    if (pageNumber !== currentPage) setCurrentPage(pageNumber);
-  };
 
   const SpinnerCards = [];
 
@@ -195,26 +178,20 @@ const ListingsPage = () => {
                   : "transition duration-300 transform -translate-y-2 opacity-0") +
                 " w-11/12 px-2"
               }>
-              {currentPosts !== null && !loading ? (
-                <MapListing properties={currentPosts} />
+              {properties !== null && !loading ? (
+                <MapListing properties={properties} />
               ) : null}
             </div>
           </div>
         </Container>
 
         <Container>
-          {loading ? (
-            <div className="flex flex-row justify-center w-full">
-              <div className="flex flex-wrap w-full h-screen max-w-11/12">
-                {SpinnerCards}
-              </div>
-            </div>
-          ) : (
+          {!loading ? (
             <>
               <div className="flex flex-row justify-center w-full">
                 <div className="flex flex-col w-full md:flex-row md:flex-wrap max-w-11/12">
-                  {currentPosts !== null && !loading
-                    ? currentPosts.map((property) => (
+                  {properties !== null && !loading
+                    ? properties.map((property) => (
                         <div
                           key={property._id}
                           className="p-2 mt-2 md:w-1/2 lg:w-1/3">
@@ -225,15 +202,15 @@ const ListingsPage = () => {
                 </div>
               </div>
               <div className="flex justify-center w-full my-8">
-                <Pagination
-                  totalItems={results}
-                  itemsPerPage={postPerPage}
-                  onPaginate={paginate}
-                  from={start}
-                  to={end}
-                />
+                <Pagination />
               </div>
             </>
+          ) : (
+            <div className="flex flex-row justify-center w-full">
+              <div className="flex flex-wrap w-full h-screen max-w-11/12">
+                {SpinnerCards}
+              </div>
+            </div>
           )}
         </Container>
       </main>

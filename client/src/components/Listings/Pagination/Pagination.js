@@ -1,108 +1,132 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 
-import PropTypes from "prop-types";
+import PropertyContext from "../../../context/property/propertyContext";
 
-const Pagination = ({
-  totalItems,
-  itemsPerPage,
-  onPaginate,
-  from,
-  to,
-  ...rest
-}) => {
-  const [start, setStart] = useState(0);
+const Pagination = () => {
+  const location = useLocation();
+  const history = useHistory();
+  const propertyContext = useContext(PropertyContext);
+  const { loading, nextPage, prevPage, totalResults } = propertyContext;
+
+  const [start, setStart] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [currentPages, setCurrentPages] = useState([]);
+  const itemsPerPage = 6;
 
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
-  const pages = [];
+  //needed to show how many results (Showing 1{from} to 6{to} of 20{totalResults} results)
+  const to = currentPage * itemsPerPage;
+  const from = to - itemsPerPage + 1;
 
-  for (let i = 0; i < totalPages; i++) pages[i] = i + 1;
-
-  const currentPages = pages.splice(start, 5);
-
-  const onClick = (e) => {
-    e.preventDefault();
-
-    const { textContent: value } = e.target;
-
-    setCurrentPage(parseInt(value));
-  };
+  const nextSearch = nextPage && nextPage.split("?")[1];
+  const prevSearch = prevPage && prevPage.split("?")[1];
+  const currentLocation = location.search.split("&");
+  const page = currentLocation[currentLocation.length - 1];
+  const num = parseInt(page.split("=")[1]);
+  const query = currentLocation.slice(0, currentLocation.length - 1).join("&");
 
   useEffect(() => {
-    const currentPageIndex = currentPages.indexOf(currentPage);
+    setStart(num);
+    setCurrentPage(num);
+  }, [num]);
 
-    if (currentPageIndex > 3) {
-      if (currentPages.pop() !== totalPages) setStart(start + 1);
+  useEffect(() => {
+    if (totalResults && !loading) {
+      const total = Math.ceil(totalResults / itemsPerPage);
+      const pages = [];
+      setTotalPages(total);
+
+      for (let i = 0; i < total; i++) {
+        pages[i] = i + 1;
+      }
+      setCurrentPages(pages.splice(start - 1, 5));
+    }
+    // eslint-disable-next-line
+  }, [totalResults, loading]);
+
+  const onPaginate = (pageNumber) => {
+    // if you are on page 2 and you want to move to another page
+    // also you can't select the page the you're currently on
+    // set the current page to selected value
+    if (pageNumber !== currentPage) {
+      setCurrentPage(pageNumber);
+      setStart(pageNumber);
     }
 
-    if (currentPageIndex < 1 && currentPages.shift() !== 1) setStart(start - 1);
+    // direct the page to selected value
+    history.push(`${query}&page=${pageNumber}`);
+  };
 
-    onPaginate(currentPage);
-    // eslint-disable-next-line
-  }, [currentPage]);
+  // get the next page url from the store
+  const onNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+      setStart(start + 1);
+    }
+    history.push(`?${nextSearch}`);
+  };
+
+  // get the prev page url from the store
+  const onPrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      setStart(start - 1);
+    }
+    history.push(`?${prevSearch}`);
+  };
 
   return (
-    <>
-      <nav>
-        <div className="flex justify-center my-2">
-          <p className="text-lg leading-5 text-gray-700">
-            Showing
-            <span className="px-2 font-semibold">{from + 1}</span>
-            to
-            <span className="px-2 font-semibold">
-              {to > totalItems ? totalItems : to}{" "}
-            </span>
-            of
-            <span className="px-2 font-semibold">{totalItems}</span>
-            results
-          </p>
-        </div>
-        <ul className="text-lg pagination" {...rest}>
-          <li className={`page-item ${currentPage === 1 && "disabled"}`}>
-            <button
-              style={{ boxShadow: "none" }}
-              className="page-link"
-              onClick={() => {
-                if (currentPage > 1) setCurrentPage(currentPage - 1);
-              }}>
-              Prev
-            </button>
-          </li>
-          {currentPages.map((page, key) => (
+    <nav>
+      <div className="flex justify-center my-2">
+        <p className="text-lg leading-5 text-gray-700">
+          Showing
+          <span className="px-2 font-semibold">{from}</span>
+          to
+          <span className="px-2 font-semibold">
+            {to > totalResults ? totalResults : to}{" "}
+          </span>
+          of
+          <span className="px-2 font-semibold">{totalResults}</span>
+          results
+        </p>
+      </div>
+      <ul className="text-lg pagination">
+        <li className={`page-item ${currentPage === 1 && "disabled"}`}>
+          <button
+            className="page-link"
+            onClick={() => onPrevPage()}
+            style={{ boxShadow: "none" }}
+            type="button">
+            Prev
+          </button>
+        </li>
+        {currentPages.length > 0 &&
+          currentPages.map((page, key) => (
             <li
               key={key}
               className={`page-item ${page === currentPage && "active"}`}>
               <button
-                onClick={onClick}
+                onClick={() => onPaginate(page)}
                 className="page-link"
-                style={{ boxShadow: "none" }}>
+                style={{ boxShadow: "none" }}
+                type="button">
                 {page}
               </button>
             </li>
           ))}
-          <li
-            className={`page-item ${currentPage === totalPages && "disabled"}`}>
-            <button
-              style={{ boxShadow: "none" }}
-              className="page-link"
-              onClick={() => {
-                if (currentPage < totalPages) setCurrentPage(currentPage + 1);
-              }}>
-              Next
-            </button>
-          </li>
-        </ul>
-      </nav>
-    </>
+        <li className={`page-item ${currentPage === totalPages && "disabled"}`}>
+          <button
+            className="page-link"
+            onClick={() => onNextPage()}
+            style={{ boxShadow: "none" }}
+            type="button">
+            Next
+          </button>
+        </li>
+      </ul>
+    </nav>
   );
-};
-
-Pagination.propTypes = {
-  totalItems: PropTypes.number,
-  itemsPerPage: PropTypes.number,
-  onPaginate: PropTypes.func,
-  from: PropTypes.number,
-  to: PropTypes.number,
 };
 
 export default Pagination;
