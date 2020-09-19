@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 
 import PropertyContext from "../../context/property/propertyContext";
 
-import Listing from "../../assets/img/listings.jpg";
 import { SlideSimple } from "../Carousel";
 import Search from "../Search";
 import Container from "../Shared/Container";
@@ -52,7 +51,7 @@ const BuyPage = () => {
               Newest Listings
             </h2>
             <NavLink
-              to="/properties-search?sort=-datePosted"
+              to="/properties-search?sort=-datePosted&page=1"
               className="text-blue-500 hover:underline">
               View All Newest Listings
             </NavLink>
@@ -71,7 +70,7 @@ const BuyPage = () => {
               Featured Listings
             </h2>
             <NavLink
-              to="/properties-search?limit=6&sort=-price"
+              to="/properties-search?limit=6&sort=-price&page1"
               className="text-blue-500 hover:underline">
               View All Featured Listings
             </NavLink>
@@ -89,7 +88,7 @@ const BuyPage = () => {
               Homes Around $300,000
             </h2>
             <NavLink
-              to="/properties-search?price[lte]=300000&sort=-price"
+              to="/properties-search?price[lte]=300000&sort=-price&page=1"
               className="text-blue-500 hover:underline">
               View All Affordable Properties
             </NavLink>
