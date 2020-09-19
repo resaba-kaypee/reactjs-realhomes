@@ -5,6 +5,7 @@ import FormContext from "../../../../context/form/formContext";
 
 import Modal from "../../../Modal";
 import Alerts from "../../../Notification/Alert";
+import Logo from "../../../Shared/Logo";
 
 const SignUp = ({ setIsOpen }) => {
   const authContext = useContext(AuthContext);
@@ -53,8 +54,8 @@ const SignUp = ({ setIsOpen }) => {
           <form
             onSubmit={onSubmit}
             className="relative px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
-            <div className="w-full h-20">
-              <Alerts />
+            <div className="flex items-center justify-center w-full h-20">
+              {error || success ? <Alerts /> : <Logo />}
             </div>
             <button
               type="button"

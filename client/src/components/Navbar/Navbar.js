@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import NavLinks from "./NavLinks";
+import Logo from "../Shared/Logo";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,10 +31,7 @@ const Navbar = () => {
           {/* >> LOGO << */}
 
           <NavLink to="/" className="flex items-center justify-center">
-            <div className="py-2 font-semibold leading-13">
-              <span className="text-xl text-yellow-700 sm:text-2xl ">REAL</span>
-              <span className="text-xl text-gray-700 sm:text-2xl ">HOMES</span>
-            </div>
+            <Logo />
           </NavLink>
         </div>
 
