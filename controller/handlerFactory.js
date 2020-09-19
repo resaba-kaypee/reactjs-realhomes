@@ -1,17 +1,17 @@
-const catchAsync = require('../utils/catchAsync');
-const AppError = require('../utils/appError');
-const APIFeatures = require('../utils/apiFeatures');
+const catchAsync = require("../utils/catchAsync");
+const AppError = require("../utils/appError");
+const APIFeatures = require("../utils/apiFeatures");
 
 exports.deleteOne = (Model) =>
   catchAsync(async (req, res, next) => {
     const doc = await Model.findByIdAndDelete(req.params.id);
 
     if (!doc) {
-      return next(new AppError('No document found with that ID', 404));
+      return next(new AppError("No document found with that ID", 404));
     }
 
     res.status(204).json({
-      status: 'success',
+      status: "success",
       data: null,
     });
   });
@@ -24,11 +24,11 @@ exports.updateOne = (Model) =>
     });
 
     if (!doc) {
-      return next(new AppError('No documents found with that ID', 404));
+      return next(new AppError("No documents found with that ID", 404));
     }
 
     res.status(200).json({
-      status: 'success',
+      status: "success",
       data: { data: doc },
     });
   });
@@ -38,7 +38,7 @@ exports.createOne = (Model) =>
     const doc = await Model.create(req.body);
 
     res.status(201).json({
-      status: 'success',
+      status: "success",
       data: {
         data: doc,
       },
@@ -52,11 +52,11 @@ exports.getOne = (Model, options) =>
     const doc = await query;
 
     if (!doc) {
-      return next(new AppError('No document found with that ID', 404));
+      return next(new AppError("No document found with that ID", 404));
     }
 
     res.status(200).json({
-      status: 'success',
+      status: "success",
       data: { data: doc },
     });
   });
@@ -69,13 +69,19 @@ exports.getAll = (Model) =>
       .limitFields()
       .paganate();
 
+    const filtered = new APIFeatures(Model.find(), req.query).filter();
+
     // const doc = await features.query.explain();
     const doc = await features.query;
+    const total = await filtered.query;
 
     res.status(200).json({
-      status: 'success',
+      status: "success",
+      totalResults: total.length,
+      currentResults: doc.length,
+      next: doc.length < req.query.limit ? null : res.next,
+      prev: res.prev,
       cities: res.cities,
-      results: doc.length,
       data: doc,
     });
   });

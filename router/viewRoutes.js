@@ -18,29 +18,37 @@ const {
   saveProperty,
   getMySavedProperties,
   deletePropertyFromList,
+  limitPerPage,
 } = require("../controller/viewController");
 
 router.use(checkIfNew);
 
 router.route("/auth").get(isLoggedIn);
 
-router.route("/newest").get(newest, getAllProperty);
+router.route("/newest").get(limitPerPage, newest, getAllProperty);
 
 router.route("/featured-properties").get(featuredProperties, getAllProperty);
 
-router.route("/affordable").get(getAffordableProperties, getAllProperty);
+router
+  .route("/affordable")
+  .get(limitPerPage, getAffordableProperties, getAllProperty);
 
 router.route("/property/:slug").get(getProperty); // avalaible for everyone
 
-router.route("/rentals").get(getNewestApartment, getAllProperty);
+router.route("/rentals").get(limitPerPage, getNewestApartment, getAllProperty);
 
 router
-  .route("/rentals/search")
-  .get(getAllApartment, getCitiesByCurrentLocation, getAllProperty);
+  .route("/rentals-search")
+  .get(
+    limitPerPage,
+    getAllApartment,
+    getCitiesByCurrentLocation,
+    getAllProperty
+  );
 
 router
-  .route("/properties/search")
-  .get(getCitiesByCurrentLocation, getPropertiesByLocation); // avalaible for everyone
+  .route("/properties-search")
+  .get(limitPerPage, getCitiesByCurrentLocation, getPropertiesByLocation); // avalaible for everyone
 
 // for users
 

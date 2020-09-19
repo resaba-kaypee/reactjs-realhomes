@@ -132,6 +132,34 @@ exports.saveProperty = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.limitPerPage = (req, res, next) => {
+  const url = req.url.split("&");
+
+  const newUrl = url.slice(0, url.length - 1).join("&");
+  const currentPage = req.query.page * 1;
+
+  const nextPage = currentPage + 1;
+  const prevPage = currentPage - 1;
+
+  const nextPageUrl = `${req.protocol}://${req.get(
+    "host"
+  )}${newUrl}&page=${nextPage}`;
+
+  const prevPageUrl = `${req.protocol}://${req.get(
+    "host"
+  )}${newUrl}&page=${prevPage}`;
+
+  res.next = nextPageUrl;
+  res.prev = currentPage <= 1 ? null : prevPageUrl;
+
+  req.query = {
+    ...req.query,
+    limit: 6,
+  };
+
+  next();
+};
+
 exports.deletePropertyFromList = deleteOne(SavedProperty);
 
 exports.getAllProperty = getAll(Property);
