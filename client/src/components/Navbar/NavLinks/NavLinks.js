@@ -14,27 +14,27 @@ const NavLinks = ({ isOpen }) => {
       <nav className="flex flex-col text-blue-600 md:flex-row md:items-center md:my-0 text-md lg:text-lg md:mb-0">
         <NavLink
           activeClassName="border-b-2 border-blue-700 text-gray-900"
-          className="inline-block px-4 py-2 text-lg no-underline transition duration-500 ease-in-out shadow hover:border-blue-400 hover:border-b-2 md:shadow-none leading-13 hover:text-gray-900 lg:-ml-2"
+          className="inline-block px-2 py-2 text-lg no-underline transition duration-500 ease-in-out shadow lg:px-4 hover:border-blue-400 hover:border-b-2 md:shadow-none leading-13 hover:text-gray-900 lg:-ml-2"
           to="/realstateforsale">
           Buy
         </NavLink>
 
         <NavLink
           activeClassName="border-b-2 border-blue-700 text-gray-900"
-          className="inline-block px-4 py-2 text-lg no-underline transition duration-500 ease-in-out shadow hover:border-blue-400 hover:border-b-2 md:shadow-none leading-13 hover:text-gray-900 lg:-ml-2"
+          className="inline-block px-2 py-2 text-lg no-underline transition duration-500 ease-in-out shadow lg:px-4 hover:border-blue-400 hover:border-b-2 md:shadow-none leading-13 hover:text-gray-900 lg:-ml-2"
           to="/rentals">
           Rent
         </NavLink>
 
         <NavLink
           activeClassName="border-b-2 border-blue-700 text-gray-900"
-          className="inline-block px-4 py-2 text-lg no-underline transition duration-500 ease-in-out shadow hover:border-blue-400 hover:border-b-2 md:shadow-none leading-13 hover:text-gray-900 lg:-ml-2"
+          className="inline-block px-2 py-2 text-lg no-underline transition duration-500 ease-in-out shadow lg:px-4 hover:border-blue-400 hover:border-b-2 md:shadow-none leading-13 hover:text-gray-900 lg:-ml-2"
           to="sell">
           Sell
         </NavLink>
         <NavLink
           activeClassName="border-b-2 border-blue-700 text-gray-900"
-          className="inline-block px-4 py-2 text-lg no-underline transition duration-500 ease-in-out shadow hover:border-blue-400 hover:border-b-2 md:shadow-none leading-13 hover:text-gray-900 lg:-ml-2"
+          className="inline-block px-2 py-2 text-lg no-underline transition duration-500 ease-in-out shadow lg:px-4 hover:border-blue-400 hover:border-b-2 md:shadow-none leading-13 hover:text-gray-900 lg:-ml-2"
           to="/my-home">
           My Home
         </NavLink>
@@ -48,7 +48,7 @@ const NavLinks = ({ isOpen }) => {
             setIsDroppped(false);
           }}></button>
         <button
-          className="inline-block px-4 py-2 text-lg text-left no-underline transition duration-500 ease-in-out shadow group md:shadow-none leading-13 hover:text-black lg:-ml-2"
+          className="inline-block px-2 py-2 text-lg text-left no-underline transition duration-500 ease-in-out shadow lg:px-4 group md:shadow-none leading-13 hover:text-black lg:-ml-2"
           onClick={() => setIsDroppped(!isDropped)}
           type="button">
           About{" "}
