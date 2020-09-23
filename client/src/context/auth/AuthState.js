@@ -5,9 +5,8 @@ import authReducer from "./authReducer";
 
 import {
   USER_LOADED,
-  // AUTH_ERROR,
   REGISTER_USER,
-  // LOGOUT,
+  UPDATE_USER,
   ERROR,
   CLEAR_ERRORS,
   LOGIN,
@@ -23,16 +22,16 @@ const AuthState = (props) => {
     error: null,
   };
 
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   // register new user
   const registerUser = async (data) => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
     try {
       const res = await axios.post("/api/v1/users/signup", data, config);
       dispatch({ type: REGISTER_USER, payload: res.data });
@@ -42,7 +41,6 @@ const AuthState = (props) => {
   };
 
   // load user
-
   const loadUser = async () => {
     try {
       const res = await axios.get("/api/auth");
@@ -52,16 +50,27 @@ const AuthState = (props) => {
 
   // log in user
   const loginUser = async (data) => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
     try {
       const res = await axios.post("/api/v1/users/login", data, config);
       dispatch({ type: LOGIN, payload: res.data });
       await loadUser();
+    } catch (err) {
+      dispatch({ type: ERROR, payload: err.response.data.message });
+    }
+  };
+
+  // update user info
+  const updateUser = async (data) => {
+    const patch = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      method: "patch",
+    };
+
+    try {
+      const res = await axios.patch("/api/v1/users/updateMe", data, patch);
+      dispatch({ type: UPDATE_USER, payload: res.data });
     } catch (err) {
       dispatch({ type: ERROR, payload: err.response.data.message });
     }
@@ -93,6 +102,7 @@ const AuthState = (props) => {
         success: state.success,
         error: state.error,
         registerUser,
+        updateUser,
         loginUser,
         loadUser,
         logoutUser,
