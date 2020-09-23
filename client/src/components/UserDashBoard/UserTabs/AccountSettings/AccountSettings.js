@@ -1,12 +1,35 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+
+import AuthContext from "../../../../context/auth/authContext";
 
 import SvgIcon from "../../../SvgIcon";
 
 const AccountSettings = () => {
+  const authContext = useContext(AuthContext);
+  const { updateUser, user } = authContext;
+
+  const userPhoto = user ? user.photo : "default.jpg";
+
   const [imageName, setImageName] = useState("Upload new photo");
   const [isVisible, setIsVisible] = useState(false);
 
-  const handleChange = (e) => {
+  const [identification, setIdentification] = useState({
+    name: "",
+    email: "",
+    photo: {},
+  });
+
+  const { email, name, photo } = identification;
+
+  const onChange = (e) => {
+    setIdentification({ ...identification, [e.target.name]: e.target.value });
+  };
+
+  const handlePhoto = (e) => {
+    setIdentification({
+      ...identification,
+      photo: e.target.files.item(0),
+    });
     setImageName(e.target.files.item(0).name);
     setIsVisible(true);
   };
@@ -15,12 +38,27 @@ const AccountSettings = () => {
     setImageName("Upload new photo");
     setIsVisible(false);
   };
+
+  const handleUpdateUser = () => {
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("photo", photo);
+
+    updateUser(formData);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    handleUpdateUser();
+  };
+
   return (
     <div className="pt-2 my-16 ">
       <div className="container mx-auto">
         <div className="w-full max-w-2xl p-6 mx-auto">
           <h2 className="text-2xl text-gray-900">Your Account Settings</h2>
-          <form className="pt-4 mt-6 border-t">
+          <form className="pt-4 mt-6 border-t" onSubmit={onSubmit}>
             <div className="flex flex-wrap mb-6 -mx-3">
               <div className="w-full px-3 mb-8 md:w-full">
                 <label
@@ -31,9 +69,11 @@ const AccountSettings = () => {
                 <input
                   className="w-full px-4 py-3 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                   id="grid-text-1"
+                  name="name"
+                  onChange={onChange}
+                  placeholder={user ? user.name : "Enter name"}
                   type="text"
-                  placeholder="Enter email"
-                  required
+                  value={name}
                 />
               </div>
               <div className="w-full px-3 mb-8 md:w-full">
@@ -45,9 +85,11 @@ const AccountSettings = () => {
                 <input
                   className="w-full px-4 py-3 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                   id="grid-text-2"
+                  name="email"
+                  onChange={onChange}
+                  placeholder={user ? user.email : "Enter email"}
                   type="text"
-                  placeholder="Enter email"
-                  required
+                  value={email}
                 />
               </div>
               <div className="flex flex-col justify-between w-full sm:flex-row">
@@ -55,26 +97,26 @@ const AccountSettings = () => {
                   <div className="flex w-1/4 overflow-hidden">
                     <img
                       className="object-cover w-16 h-16 rounded-full"
-                      src={require("../../../../assets/img/default.jpg")}
+                      src={require(`../../../../assets/img/user/${userPhoto}`)}
                       alt="user"
                     />
                   </div>
                   <label className="w-3/4 py-2 ml-6 text-lg font-semibold text-center text-blue-600 transition duration-500 ease-in-out border-b border-transparent border-blue-700 cursor-pointer hover:border-b-2 hover:text-gray-900 hover:border-blue-700 focus-within:border-b-2 focus-within:text-gray-900 focus-within:border-blue-700">
                     <input
-                      onChange={(e) => handleChange(e)}
-                      className="sr-only"
-                      type="file"
                       accept="image/*"
+                      className="sr-only"
                       name="photo"
+                      onChange={(e) => handlePhoto(e)}
+                      type="file"
                     />
                     <div className={isVisible ? "flex justify-between" : ""}>
                       <span className="w-24 truncate">{imageName}</span>
                       <button
-                        type="button"
-                        onClick={() => removeUpload()}
                         className={
                           (isVisible ? "" : "hidden") + " hover:text-red-600"
-                        }>
+                        }
+                        onClick={() => removeUpload()}
+                        type="button">
                         <SvgIcon
                           name="close"
                           className="w-6 h-6 fill-current"
