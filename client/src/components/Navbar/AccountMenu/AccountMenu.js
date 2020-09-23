@@ -10,7 +10,7 @@ import { SignIn, SignUp } from "./Forms";
 const AccountMenu = () => {
   const history = useHistory();
   const authContext = useContext(AuthContext);
-  const { logoutUser } = authContext;
+  const { isAuthenticated, logoutUser, user } = authContext;
 
   const propertyContext = useContext(PropertyContext);
   const { clearPropertyList } = propertyContext;
@@ -24,10 +24,9 @@ const AccountMenu = () => {
     setShowSignIn,
   } = formContext;
 
-  const [account, setAccount] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const userPhoto = user && isAuthenticated ? user.photo : "default.jpg";
 
-  const cache = sessionStorage.getItem("user");
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleEscape = (e) => {
     if (e.key === "Esc" || e.key === "Escape") {
@@ -35,12 +34,6 @@ const AccountMenu = () => {
       closeForms();
     }
   };
-
-  useEffect(() => {
-    if (cache) {
-      setAccount(JSON.parse(cache));
-    }
-  }, [cache]);
 
   useEffect(() => {
     document.addEventListener("keydown", handleEscape);
@@ -52,11 +45,11 @@ const AccountMenu = () => {
 
   return (
     <div className="flex items-center justify-end w-full my-5 md:my-0 md:w-auto">
-      {account ? (
+      {user !== null && isAuthenticated ? (
         <>
           <figure className="w-12 h-12 mr-4 overflow-hidden border-2 rounded-full">
             <img
-              src={require(`../../../assets/img/${account.photo}`)}
+              src={require(`../../../assets/img/user/${userPhoto}`)}
               alt="your avatar"
               className="object-cover w-full h-full"
             />
@@ -67,7 +60,6 @@ const AccountMenu = () => {
             onClick={() => {
               logoutUser();
               setIsOpen(false);
-              setAccount(null);
               clearPropertyList();
               history.push("/");
             }}>
