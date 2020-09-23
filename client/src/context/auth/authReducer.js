@@ -2,6 +2,7 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   REGISTER_USER,
+  UPDATE_USER,
   LOGIN,
   LOGOUT,
   ERROR,
@@ -10,6 +11,7 @@ import {
 
 export default (state, action) => {
   switch (action.type) {
+    case UPDATE_USER:
     case REGISTER_USER:
       return {
         ...state,
@@ -27,6 +29,7 @@ export default (state, action) => {
         ...state,
         user: action.payload.data,
         isAuthenticated: action.payload.data && true,
+        loading: false,
       };
     case LOGOUT:
       sessionStorage.removeItem("user");
@@ -37,12 +40,11 @@ export default (state, action) => {
       };
     case AUTH_ERROR:
     case ERROR:
-      console.log("Error:", action.payload);
       return {
         ...state,
-        isAuthenticated: false,
-        loading: false,
-        user: null,
+        // isAuthenticated: false,
+        // loading: false,
+        // user: null,
         error: action.payload,
       };
     case CLEAR_ERRORS:

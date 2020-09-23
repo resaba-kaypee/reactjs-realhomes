@@ -28,6 +28,13 @@ const AuthState = (props) => {
     },
   };
 
+  const patch = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    method: "patch",
+  };
+
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   // register new user
@@ -61,15 +68,22 @@ const AuthState = (props) => {
 
   // update user info
   const updateUser = async (data) => {
-    const patch = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      method: "patch",
-    };
-
     try {
       const res = await axios.patch("/api/v1/users/updateMe", data, patch);
+      dispatch({ type: UPDATE_USER, payload: res.data });
+    } catch (err) {
+      dispatch({ type: ERROR, payload: err.response.data.message });
+    }
+  };
+
+  // update user info
+  const updatePassword = async (data) => {
+    try {
+      const res = await axios.patch(
+        "/api/v1/users/updateMyPassword",
+        data,
+        config
+      );
       dispatch({ type: UPDATE_USER, payload: res.data });
     } catch (err) {
       dispatch({ type: ERROR, payload: err.response.data.message });
@@ -103,6 +117,7 @@ const AuthState = (props) => {
         error: state.error,
         registerUser,
         updateUser,
+        updatePassword,
         loginUser,
         loadUser,
         logoutUser,
