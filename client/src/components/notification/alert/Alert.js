@@ -1,10 +1,14 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
+
 import AuthContext from "../../../context/auth/authContext";
+import FormContext from "../../../context/form/formContext";
 import SvgIcon from "../../SvgIcon";
 
 const Alerts = () => {
   const authContext = useContext(AuthContext);
   const { error, success, clearErrorsAuth } = authContext;
+  const formContext = useContext(FormContext);
+  const { showSignUp, showForgotPassword } = formContext;
 
   const [alert, setAlert] = useState(false);
   const message = useRef("");
@@ -21,7 +25,13 @@ const Alerts = () => {
 
   // Alerts
   useEffect(() => {
-    if (success && success === "success") {
+    if (success && success === "success" && showForgotPassword) {
+      message.current = "Link sent to email!";
+      setAlert(true);
+      startTimer();
+    }
+
+    if (success && success === "success" && showSignUp) {
       message.current = "Registration successful!";
       setAlert(true);
       startTimer();
@@ -35,7 +45,7 @@ const Alerts = () => {
 
     return () => clearTimeout(timer);
     // eslint-disable-next-line
-  }, [success, error, timer]);
+  }, [error, success, showForgotPassword, showSignUp, timer]);
 
   return (
     <>
