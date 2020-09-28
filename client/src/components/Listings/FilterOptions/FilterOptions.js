@@ -205,7 +205,7 @@ const FilterOptions = () => {
               <div className="flex justify-between">
                 <div className="relative w-2/5">
                   <select
-                    id="bedrooms"
+                    id="bedrooms[gte]"
                     name="bedrooms[gte]"
                     value={bedroomsMin}
                     onChange={onChange}
@@ -230,7 +230,7 @@ const FilterOptions = () => {
                 </div>
                 <div className="relative w-2/5">
                   <select
-                    id="bedrooms"
+                    id="bedrooms[lte]"
                     name="bedrooms[lte]"
                     value={bedroomsMax}
                     onChange={onChange}
@@ -264,7 +264,7 @@ const FilterOptions = () => {
               <div className="flex justify-between">
                 <div className="relative w-2/5">
                   <select
-                    id="bathrooms"
+                    id="bathrooms[gte]"
                     name="bathrooms[gte]"
                     value={bathroomsMin}
                     onChange={onChange}
@@ -289,7 +289,7 @@ const FilterOptions = () => {
                 </div>
                 <div className="relative w-2/5">
                   <select
-                    id="bathrooms"
+                    id="bathrooms[lte]"
                     name="bathrooms[lte]"
                     value={bathroomsMax}
                     onChange={onChange}
