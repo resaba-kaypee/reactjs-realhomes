@@ -5,7 +5,7 @@ import AuthContext from "../../../context/auth/authContext";
 import PropertyContext from "../../../context/property/propertyContext";
 
 import FormContext from "../../../context/form/formContext";
-import { SignIn, SignUp } from "./Forms";
+import { ForgotPassword, SignIn, SignUp } from "./Forms";
 
 const AccountMenu = () => {
   const history = useHistory();
@@ -18,6 +18,7 @@ const AccountMenu = () => {
   const formContext = useContext(FormContext);
   const {
     closeForms,
+    showForgotPassword,
     showSignIn,
     showSignUp,
     setShowSignUp,
@@ -93,6 +94,9 @@ const AccountMenu = () => {
       ) : null}
       {isOpen && showSignIn && !showSignUp ? (
         <SignIn setIsOpen={setIsOpen} />
+      ) : null}
+      {isOpen && showForgotPassword && !showSignIn && !showSignUp ? (
+        <ForgotPassword setIsOpen={setIsOpen} />
       ) : null}
     </div>
   );
