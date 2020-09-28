@@ -44,7 +44,6 @@ exports.signup = catchAsync(async (req, res, next) => {
   await new Email(newUser, url).sendWelcome();
 
   createAndSendToken(newUser, 201, res);
-  createAndSendToken(newUser, 201, res);
 });
 
 // @route   POST api/v1/users/login
@@ -117,7 +116,7 @@ exports.login = catchAsync(async (req, res, next) => {
 // @access  Public
 exports.logout = (req, res) => {
   res.cookie("jwt", "logged out", {
-    expires: new Date(Date.now() + 3000),
+    expires: new Date(Date.now() + 0),
     httpOnly: true,
   });
 
@@ -170,33 +169,30 @@ exports.protect = catchAsync(async (req, res, next) => {
 // @route   ...
 // @desc    only for rendered pages, no error
 // @access  ...
-exports.isLoggedIn = async (req, res, next) => {
+exports.isLoggedIn = catchAsync(async (req, res, next) => {
   if (req.cookies.jwt) {
-    try {
-      // 1.) Verify token
-      const decoded = await promisify(jwt.verify)(
-        req.cookies.jwt,
-        process.env.JWT_SECRET
-      );
-      // 2.) Check if user still exist
-      const currentUser = await User.findById(decoded.id);
-      if (!currentUser) {
-        return next();
-      }
-      // 3.) Check if user changed password after the token was issued
-      if (currentUser.changedPasswordAfter(decoded.iat)) {
-        return next();
-      }
-
-      // There is a logged in user
-      res.locals.user = currentUser; //pug gets access to user variable
-      return next();
-    } catch (error) {
+    // 1.) Verify token
+    const decoded = await promisify(jwt.verify)(
+      req.cookies.jwt,
+      process.env.JWT_SECRET
+    );
+    // 2.) Check if user still exist
+    const currentUser = await User.findById(decoded.id);
+    if (!currentUser) {
       return next();
     }
+    // 3.) Check if user changed password after the token was issued
+    if (currentUser.changedPasswordAfter(decoded.iat)) {
+      return next();
+    }
+
+    // There is a logged in user
+    res.locals.user = currentUser; //pug gets access to user variable
+    res.status(200).json({
+      data: currentUser,
+    });
   }
-  next();
-};
+});
 
 // @route   Delete api/v1/tours/
 // @desc    Admin and lead-guide can delete tours
@@ -230,9 +226,11 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 
   // 3.) Send it to user's email
   try {
-    const resetURL = `${req.protocol}://${req.get(
-      "host"
-    )}/api/v1/users/resetPassword/${resetToken}`;
+    // const resetURL = `${req.protocol}://${req.get(
+    //   "host"
+    // )}/api/v1/users/resetPassword/${resetToken}`;
+
+    const resetURL = `http://localhost:3000/resetPassword/${resetToken}`;
 
     await new Email(user, resetURL).sendPasswordReset();
 
@@ -283,6 +281,31 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 
   // 4.) Log the user in, send JWT
   createAndSendToken(user, 200, res);
+});
+
+// @route   Patch api/v1/users/verify-token/:token
+// @desc    Users reset token
+// @access  Private
+exports.verifyToken = catchAsync(async (req, res, next) => {
+  // 1.) Get the user based on the token
+  const hashedToken = crypto
+    .createHash("sha256")
+    .update(req.params.token)
+    .digest("hex");
+
+  const user = await User.findOne({
+    passwordResetToken: hashedToken, //comparare the users token from params and db
+    passwordResetExpires: { $gt: Date.now() }, // check the token if expired
+  });
+
+  // 2.) If token has not expired, and there is new user, set the new password
+  if (!user) {
+    return next(new AppError("Token is invalid or has expired.", 400));
+  }
+
+  res.status(200).json({
+    status: "Token verified",
+  });
 });
 
 // @route   Patch api/v1/users/updatePassword
