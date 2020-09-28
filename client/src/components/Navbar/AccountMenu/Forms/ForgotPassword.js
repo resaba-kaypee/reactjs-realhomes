@@ -1,59 +1,41 @@
-import React, { useContext, useState, useEffect } from "react";
-
+import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../../../context/auth/authContext";
 import FormContext from "../../../../context/form/formContext";
 
-import Modal from "../../../Modal";
 import Alerts from "../../../Notification/Alert";
-import Logo from "../../../Shared/Logo";
+import Modal from "../../../Modal";
 
-const SignIn = ({ setIsOpen }) => {
+const ForgotPassword = ({ setIsOpen }) => {
   const authContext = useContext(AuthContext);
-  const { loginUser, success, isAuthenticated, user, error } = authContext;
+  const { forgotPassword, error, success } = authContext;
   const formContext = useContext(FormContext);
-  const { closeForms, setForgotPassword, setShowSignUp } = formContext;
+  const { closeForms, setShowSignIn, setShowSignUp } = formContext;
 
-  const [value, setValue] = useState({
+  const [data, setData] = useState({
     email: "",
-    password: "",
   });
+
+  const { email } = data;
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // upon submitting disable submit button and successful close the form and clear message
   useEffect(() => {
-    if (!success && isAuthenticated && user) {
+    if (!error || !success) {
       setIsSubmitting(false);
-      setValue({
-        email: "",
-        password: "",
-      });
-      closeForms();
+      setData({ email: "" });
     }
-    // eslint-disable-next-line
-  }, [success, isAuthenticated, user]);
-
-  // before logging in, if no more error enable the submit buttom again
-  useEffect(() => {
-    if (!error) {
-      setIsSubmitting(false);
-      setValue({
-        email: "",
-        password: "",
-      });
-    }
-  }, [error]);
-
-  const { email, password } = value;
+  }, [error, success]);
 
   const onChange = (e) => {
-    setValue({ ...value, [e.target.name]: e.target.value });
+    setData({
+      [e.target.name]: e.target.value,
+    });
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    loginUser(value);
+    forgotPassword(data);
   };
 
   return (
@@ -69,11 +51,21 @@ const SignIn = ({ setIsOpen }) => {
               closeForms();
             }}></button>
           <form
-            onSubmit={onSubmit}
-            className="relative px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
-            <div className="flex items-center justify-center w-full h-20">
-              {error ? <Alerts /> : <Logo />}
-            </div>
+            className="relative px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md"
+            onSubmit={onSubmit}>
+            {error || success ? (
+              <div className="flex items-center justify-center h-40">
+                <Alerts />
+              </div>
+            ) : (
+              <div className="w-full h-40 text-center">
+                <h3 className="pt-4 mb-2 text-2xl">Forgot Your Password?</h3>
+                <p className="mb-4 text-sm text-gray-700">
+                  We get it, stuff happens. Just enter your email address below
+                  and we'll send you a link to reset your password!
+                </p>
+              </div>
+            )}
             <button
               type="button"
               tabIndex="-1"
@@ -103,47 +95,32 @@ const SignIn = ({ setIsOpen }) => {
                 required
               />
             </div>
-            <div className="mb-6">
-              <label
-                className="block mb-2 text-sm font-bold text-gray-700"
-                htmlFor="password">
-                Password
-              </label>
-              <input
-                className="w-full px-3 py-2 mb-3 leading-tight text-gray-700 border border-red-500 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                id="password"
-                type="password"
-                name="password"
-                placeholder="******************"
-                onChange={onChange}
-                value={password}
-                required
-              />
-            </div>
             <div className="flex flex-col items-center justify-center">
               <button
+                className={`${
+                  isSubmitting ? "opacity-50 cursor-wait" : "opacity-100"
+                } px-4 py-2 font-bold text-white bg-blue-500 rounded opacity-100 hover:bg-blue-700 focus:outline-none focus:shadow-outline`}
                 disabled={isSubmitting}
-                type="submit"
-                className={
-                  (isSubmitting ? "opacity-50 cursor-wait" : "opacity-100") +
-                  " px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
-                }>
-                {isSubmitting ? "Signing in..." : "Sign In"}
+                type="submit">
+                {isSubmitting ? "Submitting..." : "Reset Password"}
               </button>
               <div className="flex flex-col items-center mt-4">
-                <button
-                  className="inline-block text-sm font-bold text-blue-500 align-baseline hover:text-blue-800"
-                  onClick={() => setForgotPassword()}
-                  type="button">
-                  Forgot Password?
-                </button>
                 <p className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800">
                   No account?{" "}
                   <button
+                    className="font-bold text-blue-700 border-b-2 border-blue-800"
                     onClick={() => setShowSignUp()}
-                    type="button"
-                    className="font-bold text-blue-700 border-b-2 border-blue-800">
+                    type="button">
                     Register here
+                  </button>
+                </p>
+                <p className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800">
+                  Have an account?{" "}
+                  <button
+                    className="font-bold text-blue-700 border-b-2 border-blue-800"
+                    onClick={() => setShowSignIn()}
+                    type="button">
+                    Sign in here
                   </button>
                 </p>
               </div>
@@ -158,4 +135,4 @@ const SignIn = ({ setIsOpen }) => {
   );
 };
 
-export default SignIn;
+export default ForgotPassword;

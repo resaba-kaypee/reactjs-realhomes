@@ -11,7 +11,7 @@ const SignUp = ({ setIsOpen }) => {
   const authContext = useContext(AuthContext);
   const { registerUser, error, success } = authContext;
   const formContext = useContext(FormContext);
-  const { closeForms, setShowSignIn } = formContext;
+  const { closeForms, setForgotPassword, setShowSignIn } = formContext;
 
   const [value, setValue] = useState({
     name: "",
@@ -31,6 +31,12 @@ const SignUp = ({ setIsOpen }) => {
   useEffect(() => {
     if (!error || !success) {
       setIsSubmitting(false);
+      setValue({
+        name: "",
+        email: "",
+        password: "",
+        passwordConfirm: "",
+      });
     }
   }, [error, success]);
 
@@ -124,12 +130,12 @@ const SignUp = ({ setIsOpen }) => {
               <label
                 className="block mb-2 text-sm font-bold text-gray-700"
                 htmlFor="passwordConfirm">
-                Corfirm Password
+                Confirm Password
               </label>
               <input
                 className="w-full px-4 py-3 leading-tight text-gray-700 border border-red-500 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                 id="passwordConfirm"
-                type="passwordConfirm"
+                type="password"
                 name="passwordConfirm"
                 placeholder="******************"
                 onChange={onChange}
@@ -148,11 +154,12 @@ const SignUp = ({ setIsOpen }) => {
                 {isSubmitting ? "Submitting..." : "Sign Up"}
               </button>
               <div className="flex flex-col items-center mt-4">
-                <a
+                <button
                   className="inline-block text-sm font-bold text-blue-500 align-baseline hover:text-blue-800"
-                  href="!#">
+                  onClick={() => setForgotPassword()}
+                  type="button">
                   Forgot Password?
-                </a>
+                </button>
                 <p className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800">
                   Have an account?{" "}
                   <button
