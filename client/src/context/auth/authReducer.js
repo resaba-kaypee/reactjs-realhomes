@@ -3,6 +3,9 @@ import {
   AUTH_ERROR,
   REGISTER_USER,
   UPDATE_USER,
+  FORGOT_PASSWORD,
+  RESET_PASSWORD,
+  VERIFY_TOKEN,
   LOGIN,
   LOGOUT,
   ERROR,
@@ -12,6 +15,9 @@ import {
 export default (state, action) => {
   switch (action.type) {
     case UPDATE_USER:
+    case FORGOT_PASSWORD:
+    case RESET_PASSWORD:
+    case VERIFY_TOKEN:
     case REGISTER_USER:
       return {
         ...state,

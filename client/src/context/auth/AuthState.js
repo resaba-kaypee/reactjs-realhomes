@@ -7,6 +7,9 @@ import {
   USER_LOADED,
   REGISTER_USER,
   UPDATE_USER,
+  FORGOT_PASSWORD,
+  RESET_PASSWORD,
+  VERIFY_TOKEN,
   ERROR,
   CLEAR_ERRORS,
   LOGIN,
@@ -90,6 +93,44 @@ const AuthState = (props) => {
     }
   };
 
+  // forgot password
+  const forgotPassword = async (data) => {
+    try {
+      const res = await axios.post(
+        "/api/v1/users/forgotPassword",
+        data,
+        config
+      );
+      dispatch({ type: FORGOT_PASSWORD, payload: res.data });
+    } catch (err) {
+      dispatch({ type: ERROR, payload: err.response.data.message });
+    }
+  };
+
+  // reset password
+  const resetPassword = async (token, data) => {
+    try {
+      const res = await axios.patch(
+        `/api/v1/users/resetPassword/${token}`,
+        data,
+        config
+      );
+      dispatch({ type: RESET_PASSWORD, payload: res.data });
+    } catch (err) {
+      dispatch({ type: ERROR, payload: err.response.data.message });
+    }
+  };
+
+  // verfify token
+  const verifyToken = async (token) => {
+    try {
+      const res = await axios.get(`/api/v1/users/verify-token/${token}`);
+      dispatch({ type: VERIFY_TOKEN, payload: res.data });
+    } catch (err) {
+      dispatch({ type: ERROR, payload: err.response.data.message });
+    }
+  };
+
   // deavtivate user account
   const deleteUser = () => {};
 
@@ -117,7 +158,10 @@ const AuthState = (props) => {
         error: state.error,
         registerUser,
         updateUser,
+        forgotPassword,
         updatePassword,
+        resetPassword,
+        verifyToken,
         loginUser,
         loadUser,
         logoutUser,
