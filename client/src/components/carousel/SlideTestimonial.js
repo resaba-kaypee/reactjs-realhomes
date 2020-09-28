@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import Carousel, { Dots } from "@brainhubeu/react-carousel";
 
 import QuoteImg from "../../assets/img/quote.png";
-import imageOne from "../../assets/sample/mona.jpg";
-import imageTwo from "../../assets/sample/scream.jpg";
-import imageThree from "../../assets/sample/starry-night.jpg";
 
 const SlideTestimonial = () => {
   const [state, setState] = useState({
@@ -48,7 +45,6 @@ const SlideTestimonial = () => {
 
   const onChange = (value) => {
     setState({ ...state, value });
-    console.log(value);
   };
 
   return (
