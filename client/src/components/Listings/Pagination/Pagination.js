@@ -27,8 +27,10 @@ const Pagination = () => {
   const query = currentLocation.slice(0, currentLocation.length - 1).join("&");
 
   useEffect(() => {
-    setStart(num);
-    setCurrentPage(num);
+    if (!isNaN(num)) {
+      setStart(num);
+      setCurrentPage(num);
+    }
   }, [num]);
 
   useEffect(() => {
@@ -79,22 +81,31 @@ const Pagination = () => {
   return (
     <nav>
       <div className="flex justify-center my-2">
-        <p className="text-lg leading-5 text-gray-700">
-          Showing
-          <span className="px-2 font-semibold">{from}</span>
-          to
-          <span className="px-2 font-semibold">
-            {to > totalResults ? totalResults : to}{" "}
-          </span>
-          of
-          <span className="px-2 font-semibold">{totalResults}</span>
-          results
-        </p>
+        {totalResults && totalResults > 0 ? (
+          <p className="text-lg leading-5 text-gray-700">
+            Showing
+            <span className="px-2 font-semibold">{`${from}`}</span>
+            to
+            <span className="px-2 font-semibold">
+              {to > totalResults ? `${totalResults}` : `${to}`}{" "}
+            </span>
+            of
+            <span className="px-2 font-semibold">{`${totalResults}`}</span>
+            results
+          </p>
+        ) : (
+          <p className="text-lg leading-5 text-gray-700">
+            Showing
+            <span className="px-2 font-semibold">{`${totalResults}`}</span>
+            results
+          </p>
+        )}
       </div>
       <ul className="text-lg pagination">
         <li className={`page-item ${currentPage === 1 && "disabled"}`}>
           <button
-            className="page-link"
+            className={`page-link ${totalPages === 0 && "cursor-not-allowed"}`}
+            disabled={totalPages === 0}
             onClick={() => onPrevPage()}
             style={{ boxShadow: "none" }}
             type="button">
@@ -117,7 +128,8 @@ const Pagination = () => {
           ))}
         <li className={`page-item ${currentPage === totalPages && "disabled"}`}>
           <button
-            className="page-link"
+            className={`page-link ${totalPages === 0 && "cursor-not-allowed"}`}
+            disabled={totalPages === 0}
             onClick={() => onNextPage()}
             style={{ boxShadow: "none" }}
             type="button">
