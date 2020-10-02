@@ -12,7 +12,7 @@ import {
   SavedProperties,
 } from "./UserTabs";
 
-const UserDashBoard = () => {
+const UserDashBoard = ({ match }) => {
   const authContext = useContext(AuthContext);
   const { isAuthenticated } = authContext;
   const propertyContext = useContext(PropertyContext);
@@ -25,6 +25,8 @@ const UserDashBoard = () => {
     // eslint-disable-next-line
   }, [isAuthenticated]);
 
+  console.log(match);
+
   return (
     <>
       <Container>
@@ -33,36 +35,36 @@ const UserDashBoard = () => {
             <div className="mx-10 my-2">
               <nav className="flex flex-row justify-between my-4 transition duration-500 ease-in-out border-b md:justify-start">
                 <NavLink
-                  to="/my-home/saved-properties"
+                  to={`${match.url}/saved-properties`}
                   activeClassName="border-b text-gray-900 border-blue-700"
                   className="block py-2 mr-6 font-medium leading-tight text-center text-blue-600 capitalize transition duration-500 ease-in-out focus:outline-none focus:text-gray-900 hover:text-gray-900 sm:leading-13">
                   Saved Properties
                 </NavLink>
                 <NavLink
-                  to="/my-home/compare-properties"
+                  to={`${match.url}/compare-properties`}
                   activeClassName="border-b text-gray-900 border-blue-700"
                   className="block py-2 mr-6 font-medium leading-tight text-center text-blue-600 capitalize transition duration-500 ease-in-out focus:outline-none focus:text-gray-900 hover:text-gray-900 sm:leading-13">
                   Compare Properties
                 </NavLink>
                 <NavLink
-                  to="/my-home/account-settings"
+                  to={`${match.url}/account-settings`}
                   activeClassName="border-b text-gray-900 border-blue-700"
                   className="block py-2 mr-6 font-medium leading-tight text-center text-blue-600 capitalize transition duration-500 ease-in-out focus:outline-none focus:text-gray-900 hover:text-gray-900 sm:leading-13">
                   Account Settings
                 </NavLink>
               </nav>
               <Switch>
-                <Route exact path="/my-home" component={TrackHomeBar} />
+                <Route exact path={`${match.path}`} component={TrackHomeBar} />
                 <Route
-                  path="/my-home/saved-properties"
+                  path={`${match.path}/saved-properties`}
                   component={SavedProperties}
                 />
                 <Route
-                  path="/my-home/compare-properties"
+                  path={`${match.path}/compare-properties`}
                   component={CompareProperties}
                 />
                 <Route
-                  path="/my-home/account-settings"
+                  path={`${match.path}/account-settings`}
                   component={AccountSettings}
                 />
               </Switch>
