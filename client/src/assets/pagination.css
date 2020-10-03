@@ -41,11 +41,12 @@
   color: #fff;
   background-color: #007bff;
   border-color: #007bff;
+  transition: background-color 0.5s ease-in-out;
 }
 .page-item.disabled .page-link {
   color: #6c757d;
   pointer-events: none;
-  cursor: auto;
+  cursor: not-allowed;
   background-color: #fff;
   border-color: #dee2e6;
 }
