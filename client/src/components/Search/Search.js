@@ -12,6 +12,7 @@ const Search = () => {
   const { setHistorySearch } = propertyContext;
 
   const [params, setParams] = useState({});
+  const pageNumber = 1;
 
   const onChange = (e) =>
     setParams({ ...params, [e.target.name]: _stateNameToAbb(e.target.value) });
@@ -25,14 +26,14 @@ const Search = () => {
 
   const query = () => {
     location.search = `?${queryStr}`;
-    history.push(`/properties-search${location.search}`);
+    history.push(`/properties-search${location.search}&page=${pageNumber}`);
   };
 
   // if window.location is /rentals-search
   const queryForRentals = () => {
     const qs = `${queryStr}&type[type]=apartment`;
     location.search = `?${qs}`;
-    history.push(`/rentals-search${location.search}`);
+    history.push(`/rentals-search${location.search}&page=${pageNumber}`);
   };
 
   const onSubmit = (e) => {
