@@ -66,12 +66,19 @@ const NavLinks = ({ isOpen }) => {
               to="/about-us">
               About Us
             </NavLink>
-            <NavLink
-              activeClassName="border-b-2 border-blue-700 text-gray-900"
+            <a
               className="block px-4 py-1 my-1 border-b-2 rounded-sm shadow hover:border-blue-400 hover:bg-gray-100 hover:text-gray-800"
-              to="/about-app">
-              About App
-            </NavLink>
+              href="https://github.com/resaba-kaypee/reactjs-realhomes"
+              target="_blank"
+              rel="noopener noreferrer">
+              About App{" "}
+              <span>
+                <SvgIcon
+                  name="github"
+                  className="inline-block w-6 h-6 text-gray-800 fill-current"
+                />
+              </span>
+            </a>
           </nav>
         </button>
       </nav>
