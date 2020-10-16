@@ -9,6 +9,7 @@ import AgentForm from "./AgentForm";
 import HouseDescription from "./HouseDescription";
 import { MapSingle } from "../Mapbox";
 import HouseInfo from "./HouseInfo";
+import Mortgage from "./Mortgage";
 import SimilarProperties from "./SimilarPropertiesSlide";
 import Spinner from "../Spinner";
 import Container from "../Shared/Container";
@@ -111,6 +112,11 @@ const PropertyDetails = () => {
                     {/* --DESCRIPTION-- */}
                     <div className="mt-12">
                       <HouseDescription description={property.description} />
+                    </div>
+
+                    {/* --MORTGAGE-- */}
+                    <div className="mt-12">
+                      <Mortgage price={property.price} />
                     </div>
                   </div>
 
