@@ -16,7 +16,7 @@ const PropertyCard = ({ property }) => {
           <NavLink to={`/property/${property.slug}`}>
             <img
               className="absolute object-cover object-center w-full h-full"
-              src={require(`../../assets/img/property/${property.imageCover}`)}
+              src={require(`../../../../public/property/${property.imageCover}`)}
               alt="property card"
             />
           </NavLink>
@@ -27,7 +27,7 @@ const PropertyCard = ({ property }) => {
           <div className="flex items-baseline justify-between px-4">
             <div className="w-24 h-24 mr-5 overflow-hidden border-2 border-gray-100 rounded-full">
               <img
-                src={require(`../../assets/img/user/${property.user.photo}`)}
+                src={require(`../../../../public/users/${property.user.photo}`)}
                 alt="agent avatar"
                 className="object-cover w-full h-full"
               />

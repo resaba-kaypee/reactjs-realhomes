@@ -158,7 +158,7 @@ const AccountSettings = () => {
                   <div className="flex w-1/4 overflow-hidden">
                     <img
                       className="object-cover w-16 h-16 rounded-full"
-                      src={require(`../../../../assets/img/user/${userPhoto}`)}
+                      src={require(`../../../../../../public/users/${userPhoto}`)}
                       alt="user"
                     />
                   </div>

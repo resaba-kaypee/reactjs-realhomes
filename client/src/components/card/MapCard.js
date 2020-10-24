@@ -10,7 +10,7 @@ const MapCard = ({ property }) => {
       <div className="flex w-4/6 capitalize border-r">
         <img
           className="object-cover w-24 h-24 mr-4 shadow-lg"
-          src={require(`../../assets/img/property/${property.imageCover}`)}
+          src={require(`../../../../public/property/${property.imageCover}`)}
           alt=""
         />
         <div className="flex flex-col truncate">

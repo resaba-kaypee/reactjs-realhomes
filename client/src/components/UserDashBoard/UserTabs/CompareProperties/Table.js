@@ -24,7 +24,7 @@ const Table = ({ list }) => {
                         <div className="relative w-48">
                           <img
                             className="object-cover w-48 h-48 shadow-lg"
-                            src={require(`../../../../assets/img/property/${property.imageCover}`)}
+                            src={require(`../../../../../../public/property/${property.imageCover}`)}
                             alt=""
                           />
                           <div className="absolute top-0 left-0">

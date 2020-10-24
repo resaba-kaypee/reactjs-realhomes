@@ -21,13 +21,13 @@ const Card = ({ property, _id }) => {
               <button
                 onClick={() => deletePropertyFromList(_id)}
                 type="button"
-                className="-mt-2 -ml-3 text-green-500 bg-gray-200 rounded-full shadow-xl hover:text-red-600">
+                className="-mt-2 -ml-3 text-green-500 bg-gray-200 rounded-full shadow-xl hover:text-red-600 focus:outline-none">
                 <SvgIcon name="close" className="w-10 h-10 fill-current" />
               </button>
             </div>
             <img
               className="object-cover w-48 h-48 shadow-lg"
-              src={require(`../../../../assets/img/property/${property.imageCover}`)}
+              src={require(`../../../../../../public/property/${property.imageCover}`)}
               alt=""
             />
           </div>

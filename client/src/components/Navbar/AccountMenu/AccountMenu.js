@@ -25,9 +25,9 @@ const AccountMenu = () => {
     setShowSignIn,
   } = formContext;
 
-  const userPhoto = user && isAuthenticated ? user.photo : "default.jpg";
-
   const [isOpen, setIsOpen] = useState(false);
+
+  const userPhoto = user && isAuthenticated ? user.photo : "default.jpg";
 
   const handleEscape = (e) => {
     if (e.key === "Esc" || e.key === "Escape") {
@@ -50,7 +50,7 @@ const AccountMenu = () => {
         <>
           <figure className="w-12 h-12 mr-4 overflow-hidden border-2 rounded-full">
             <img
-              src={require(`../../../assets/img/user/${userPhoto}`)}
+              src={require(`../../../../../public/users/${userPhoto}`)}
               alt="your avatar"
               className="object-cover w-full h-full"
             />

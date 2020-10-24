@@ -16,7 +16,7 @@ const PropertyCardSimple = ({ property }) => {
             <div className="w-56 h-56">
               <img
                 className="object-cover w-full h-full"
-                src={require(`../../assets/img/property/${property.imageCover}`)}
+                src={require(`../../../../public/property/${property.imageCover}`)}
                 alt={property.propertyId}
               />
             </div>

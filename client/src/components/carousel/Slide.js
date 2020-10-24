@@ -7,7 +7,7 @@ const Slide = ({ cover, images }) => {
 
   const slides = imgs.map((img) => (
     <img
-      src={require(`../../assets/img/property/${img}`)}
+      src={require(`../../../../public/property/${img}`)}
       alt="property cover"
     />
   ));

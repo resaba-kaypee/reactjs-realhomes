@@ -1,8 +1,8 @@
-const multer = require('multer');
-const sharp = require('sharp');
-const AppError = require('../utils/appError');
-const catchAsync = require('../utils/catchAsync');
-const Property = require('../models/Property');
+const multer = require("multer");
+const sharp = require("sharp");
+const AppError = require("../utils/appError");
+const catchAsync = require("../utils/catchAsync");
+const Property = require("../models/Property");
 
 const {
   getAll,
@@ -10,38 +10,38 @@ const {
   createOne,
   updateOne,
   deleteOne,
-} = require('./handlerFactory');
+} = require("./handlerFactory");
 
 const multerStorage = multer.memoryStorage();
 
 const multerFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith('image')) {
+  if (file.mimetype.startsWith("image")) {
     cb(null, true);
   } else {
-    cb(new AppError('Not an image! Please upload only image.', 400), false);
+    cb(new AppError("Not an image! Please upload only image.", 400), false);
   }
 };
 
 const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
 
 exports.uploadImages = upload.fields([
-  { name: 'imageCover', maxCount: 1 },
-  { name: 'images', maxCount: 3 },
+  { name: "imageCover", maxCount: 1 },
+  { name: "images", maxCount: 3 },
 ]);
 
 exports.resizeImages = catchAsync(async (req, res, next) => {
   if (!req.files) return next();
 
-  const property = await Property.findById(req.params.id).select('slug');
+  const property = await Property.findById(req.params.id).select("slug");
 
   // 1.) Cover image
   req.body.imageCover = `${property.slug}-${Date.now()}-cover.jpg`;
 
   await sharp(req.files.imageCover[0].buffer)
     .resize(2000, 1333)
-    .toFormat('jpeg')
+    .toFormat("jpeg")
     .jpeg({ qulity: 90 })
-    .toFile(`client/src/assets/img/property/${req.body.imageCover}`);
+    .toFile(`public/property/${req.body.imageCover}`);
 
   // 2.) Images
   req.body.images = [];
@@ -52,9 +52,9 @@ exports.resizeImages = catchAsync(async (req, res, next) => {
 
       await sharp(file.buffer)
         .resize(2000, 1333)
-        .toFormat('jpeg')
+        .toFormat("jpeg")
         .jpeg({ qulity: 90 })
-        .toFile(`client/src/assets/img/property/${filename}`);
+        .toFile(`public/property/${filename}`);
 
       req.body.images.push(filename);
     })
@@ -68,7 +68,7 @@ exports.checkIfNew = catchAsync(async (req, res, next) => {
     newTagDateExpires: {
       $lt: Date.now(),
     },
-  }).select('newTag');
+  }).select("newTag");
 
   // if newTagDateExpires set newTag to false
   if (properties)
@@ -88,7 +88,7 @@ exports.setPropertyUserIds = (req, res, next) => {
 
 exports.featuredProperties = (req, res, next) => {
   req.query.limit = 6;
-  req.query.sort = '-price';
+  req.query.sort = "-price";
   next();
 };
 

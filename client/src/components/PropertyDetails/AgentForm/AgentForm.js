@@ -11,7 +11,7 @@ const AgentForm = ({ user }) => {
         <div className="flex flex-col items-center mt-6">
           <img
             className="block object-cover object-center w-48 h-48 overflow-hidden rounded md:object-contain"
-            src={require(`../../../assets/img/user/${user.photo}`)}
+            src={require(`../../../../../public/users/${user.photo}`)}
             alt="agent"
           />
 
