@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import PropTypes from "prop-types";
 
 import PropertyContext from "../../../context/property/propertyContext";
 import { SlideSimple } from "../../Carousel";
@@ -32,10 +31,6 @@ const SimilarPropertiesSlide = ({ type }) => {
       </div>
     </>
   );
-};
-
-SimilarPropertiesSlide.propTypes = {
-  type: PropTypes.string,
 };
 
 export default SimilarPropertiesSlide;

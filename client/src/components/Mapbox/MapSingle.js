@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+
 import ReactMapGL, { Marker } from "react-map-gl";
 import SvgIcon from "../SvgIcon";
 
@@ -26,11 +26,6 @@ const MapSingle = ({ longitude, latitude }) => {
       </Marker>
     </ReactMapGL>
   );
-};
-
-Map.protoTypes = {
-  longitude: PropTypes.number,
-  latitude: PropTypes.number,
 };
 
 export default MapSingle;

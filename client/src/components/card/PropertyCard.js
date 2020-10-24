@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+
 import { NavLink } from "react-router-dom";
 
 import SavePropertyButton from "./SavePropertyCardButton";
@@ -109,10 +109,6 @@ const PropertyCard = ({ property }) => {
       </div>
     </div>
   );
-};
-
-PropertyCard.propTypes = {
-  property: PropTypes.object.isRequired,
 };
 
 export default PropertyCard;

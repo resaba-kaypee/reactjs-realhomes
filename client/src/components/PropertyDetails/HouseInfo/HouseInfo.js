@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+
 import SvgIcon from "../../SvgIcon";
 
 const HouseInfo = ({
@@ -146,20 +146,6 @@ const HouseInfo = ({
       </div>
     </>
   );
-};
-
-HouseInfo.propTypes = {
-  features: PropTypes.array.isRequired,
-  id: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  status: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  bedrooms: PropTypes.number.isRequired,
-  bathrooms: PropTypes.number.isRequired,
-  garage: PropTypes.number,
-  lot: PropTypes.number,
-  area: PropTypes.number,
-  year: PropTypes.string.isRequired,
 };
 
 export default HouseInfo;

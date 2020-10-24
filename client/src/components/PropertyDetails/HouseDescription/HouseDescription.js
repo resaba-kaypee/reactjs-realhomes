@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 
 import SvgIcon from "../../SvgIcon";
 
@@ -41,10 +40,6 @@ const HouseDescription = ({ description }) => {
       </div>
     </>
   );
-};
-
-HouseDescription.propTypes = {
-  description: PropTypes.string,
 };
 
 export default HouseDescription;

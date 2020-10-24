@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+
 import Carousel, { Dots } from "@brainhubeu/react-carousel";
 
 const Slide = ({ cover, images }) => {
@@ -39,11 +39,6 @@ const Slide = ({ cover, images }) => {
       </div>
     </div>
   );
-};
-
-Slide.propTypes = {
-  cover: PropTypes.string,
-  images: PropTypes.array.isRequired,
 };
 
 export default Slide;

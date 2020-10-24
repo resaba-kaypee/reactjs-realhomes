@@ -1,6 +1,5 @@
 import React from "react";
 
-import PropTypes from "prop-types";
 import Carousel from "@brainhubeu/react-carousel";
 import { PropertyCardSimple } from "../Card";
 import Spinner from "../Spinner";
@@ -37,10 +36,6 @@ const SlideSimple = ({ properties, loading }) => {
       )}
     </Carousel>
   );
-};
-
-SlideSimple.protoTypes = {
-  properties: PropTypes.object.isRequired,
 };
 
 export default SlideSimple;

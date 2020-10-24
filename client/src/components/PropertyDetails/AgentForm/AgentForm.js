@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 const AgentForm = ({ user }) => {
   return (
@@ -115,10 +114,6 @@ const AgentForm = ({ user }) => {
       </div>
     </div>
   );
-};
-
-AgentForm.propTypes = {
-  user: PropTypes.object.isRequired,
 };
 
 export default AgentForm;
