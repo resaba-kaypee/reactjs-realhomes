@@ -13,16 +13,18 @@ const signToken = (id) => {
   });
 };
 
-const createAndSendToken = (user, statusCode, res) => {
+const createAndSendToken = (user, statusCode, req, res) => {
   const token = signToken(user._id);
   const cookieOptions = {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
     ),
     httpOnly: true,
+    // testing production env
+    // secure: process.env.NODE_ENV === "production",
+    // Heroku specific options
+    secure: req.secure || req.headers["x-forwarded-proto"] === "https",
   };
-
-  if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
 
   res.cookie("jwt", token, cookieOptions);
 
@@ -43,7 +45,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   const url = `${req.protocol}://${req.get("host")}/me`;
   await new Email(newUser, url).sendWelcome();
 
-  createAndSendToken(newUser, 201, res);
+  createAndSendToken(newUser, 201, req, res);
 });
 
 // @route   POST api/v1/users/login
@@ -59,56 +61,56 @@ exports.login = catchAsync(async (req, res, next) => {
   // 2.) Check if user exist && password is correct
   const user = await User.findOne({ email }).select("+password"); // include password in output
 
-  if (!user) return next(new AppError("Incorrect email.", 400));
+  if (!user) return next(new AppError("Incorrect email or password.", 400));
 
-  if (user.loginAttemptsExpires < Date.now()) {
-    user.loginAttempts = 0;
-    user.loginAttemptsExpires = undefined;
-  }
+  // if (user.loginAttemptsExpires < Date.now()) {
+  //   user.loginAttempts = 0;
+  //   user.loginAttemptsExpires = undefined;
+  // }
 
   // iit block the user from logging in ultil date expires and stops from setting a new expire date
-  if (user.loginAttemptsExpires > Date.now()) {
-    return next(
-      new AppError(
-        `Maximum login attempts exceeded, Please try again in ${Math.ceil(
-          (user.loginAttemptsExpires - Date.now()) / 1000
-        )} seconds.`,
-        400
-      )
-    );
-  }
+  // if (user.loginAttemptsExpires > Date.now()) {
+  //   return next(
+  //     new AppError(
+  //       `Maximum login attempts exceeded, Please try again in ${Math.ceil(
+  //         (user.loginAttemptsExpires - Date.now()) / 1000
+  //       )} seconds.`,
+  //       400
+  //     )
+  //   );
+  // }
 
-  if (!(await user.correctPassword(password, user.password))) {
-    // if password is incorrect increment login attempts
-    user.loginAttempts += 1;
+  // if (!(await user.correctPassword(password, user.password))) {
+  //   // if password is incorrect increment login attempts
+  //   user.loginAttempts += 1;
 
-    // if login attempts is greater than allowed attempts set a date to be able to log in again
-    if (user.loginAttempts > 5) {
-      user.loginAttempts = 0;
-      user.loginAttemptsExpires = Date.now() + 5 * 60 * 1000;
-      user.save({ validateBeforeSave: false });
+  //   // if login attempts is greater than allowed attempts set a date to be able to log in again
+  //   if (user.loginAttempts > 5) {
+  //     user.loginAttempts = 0;
+  //     user.loginAttemptsExpires = Date.now() + 5 * 60 * 1000;
+  //     user.save({ validateBeforeSave: false });
 
-      return next(
-        new AppError(
-          `Maximum login attempts exceeded, Please try again in ${Math.ceil(
-            (user.loginAttemptsExpires - Date.now()) / 1000
-          )} seconds.`,
-          400
-        )
-      );
-    }
+  //     return next(
+  //       new AppError(
+  //         `Maximum login attempts exceeded, Please try again in ${Math.ceil(
+  //           (user.loginAttemptsExpires - Date.now()) / 1000
+  //         )} seconds.`,
+  //         400
+  //       )
+  //     );
+  //   }
 
-    user.save({ validateBeforeSave: false });
-    return next(
-      new AppError(
-        `Incorrect password. Attempts ${user.loginAttempts} out of 5`,
-        400
-      )
-    );
-  }
+  //   user.save({ validateBeforeSave: false });
+  //   return next(
+  //     new AppError(
+  //       `Incorrect password. Attempts ${user.loginAttempts} out of 5`,
+  //       400
+  //     )
+  //   );
+  // }
 
   // 3.) If everything is ok, send token to client
-  createAndSendToken(user, 200, res);
+  createAndSendToken(user, 200, req, res);
 });
 
 // @route   POST api/v1/users/logout
@@ -230,7 +232,17 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     //   "host"
     // )}/api/v1/users/resetPassword/${resetToken}`;
 
-    const resetURL = `http://localhost:3000/resetPassword/${resetToken}`;
+    let resetURL = "";
+
+    if (process.env.NODE_ENV === "production") {
+      resetURL = `${req.protocol}://${req.get(
+        "host"
+      )}/resetPassword/${resetToken}`;
+    } else {
+      resetURL = `http://localhost:3000/resetPassword/${resetToken}`;
+    }
+
+    console.log(resetURL);
 
     await new Email(user, resetURL).sendPasswordReset();
 
@@ -280,7 +292,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   // 3.) Update changedPasswordAt property for the user
 
   // 4.) Log the user in, send JWT
-  createAndSendToken(user, 200, res);
+  createAndSendToken(user, 200, req, res);
 });
 
 // @route   Patch api/v1/users/verify-token/:token
@@ -327,5 +339,5 @@ exports.updateMyPassword = catchAsync(async (req, res, next) => {
   await user.save();
 
   // 4.) Log user in, send JWT
-  createAndSendToken(user, 200, res);
+  createAndSendToken(user, 200, req, res);
 });
