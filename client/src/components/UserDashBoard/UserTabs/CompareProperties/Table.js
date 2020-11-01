@@ -1,4 +1,5 @@
 import React, { Fragment, useContext } from "react";
+import DayJS from "react-dayjs";
 
 import PropertyContext from "../../../../context/property/propertyContext";
 
@@ -160,7 +161,9 @@ const Table = ({ list }) => {
                 <td
                   key={_id}
                   className="px-4 py-3 text-sm text-center text-gray-700 border">
-                  {property.yearBuilt}
+                  <DayJS format="MMM DD YYYY, h:m:s A">
+                    {property.datePosted}
+                  </DayJS>
                 </td>
               ))}
             </tr>
