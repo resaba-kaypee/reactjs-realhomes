@@ -15,12 +15,24 @@ const AccountSettings = () => {
     user,
   } = authContext;
 
-  const userPhoto = user && isAuthenticated ? user.photo : "default.jpg";
-
   const [imageName, setImageName] = useState("Upload new photo");
   const [isEmptyInfo, setIsEmptyInfo] = useState(true);
   const [isEmptyPassword, setIsEmptyPassword] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
+  const [userPhoto, setUserPhoto] = useState("default.jpg");
+
+  useEffect(() => {
+    if (user && isAuthenticated) {
+      setUserPhoto(user.photo);
+    } else {
+      setUserPhoto("default.jpg");
+    }
+  }, [user, isAuthenticated]);
+
+  const userPhotoSrc =
+    process.env.NODE_ENV === "production"
+      ? window.location.origin + "/users/" + userPhoto
+      : require(`../../../../../../public/users/${userPhoto}`);
 
   const [identification, setIdentification] = useState({
     email: "",
@@ -158,7 +170,7 @@ const AccountSettings = () => {
                   <div className="flex w-1/4 overflow-hidden">
                     <img
                       className="object-cover w-16 h-16 rounded-full"
-                      src={require(`../../../../../../public/users/${userPhoto}`)}
+                      src={userPhotoSrc}
                       alt="user"
                     />
                   </div>

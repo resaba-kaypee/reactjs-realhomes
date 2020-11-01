@@ -26,8 +26,20 @@ const AccountMenu = () => {
   } = formContext;
 
   const [isOpen, setIsOpen] = useState(false);
+  const [userPhoto, setUserPhoto] = useState("default.jpg");
 
-  const userPhoto = user && isAuthenticated ? user.photo : "default.jpg";
+  useEffect(() => {
+    if (user && isAuthenticated) {
+      setUserPhoto(user.photo);
+    } else {
+      setUserPhoto("default.jpg");
+    }
+  }, [user, isAuthenticated]);
+
+  const userPhotoSrc =
+    process.env.NODE_ENV === "production"
+      ? window.location.origin + "/users/" + userPhoto
+      : require(`../../../../../public/users/${userPhoto}`);
 
   const handleEscape = (e) => {
     if (e.key === "Esc" || e.key === "Escape") {
@@ -50,7 +62,7 @@ const AccountMenu = () => {
         <>
           <figure className="w-12 h-12 mr-4 overflow-hidden border-2 rounded-full">
             <img
-              src={require(`../../../../../public/users/${userPhoto}`)}
+              src={userPhotoSrc}
               alt="your avatar"
               className="object-cover w-full h-full"
             />
