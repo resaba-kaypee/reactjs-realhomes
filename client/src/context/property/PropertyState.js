@@ -59,7 +59,7 @@ const PropertyState = (props) => {
       const res = await axios.get("/api/newest");
       dispatch({ type: GET_ALL_PROPERTY, payload: res.data });
     } catch (err) {
-      dispatch({ type: ERROR, payload: err.response.data });
+      dispatch({ type: ERROR, payload: err.response.data.message });
     }
   };
 
@@ -69,7 +69,7 @@ const PropertyState = (props) => {
       const res = await axios.get(`api/properties-search${location.search}`);
       dispatch({ type: GET_PROPERTIES_BY_LOCATION, payload: res.data });
     } catch (err) {
-      dispatch({ type: ERROR, payload: err.response.data });
+      dispatch({ type: ERROR, payload: err.response.data.message });
     }
   };
 
@@ -79,7 +79,7 @@ const PropertyState = (props) => {
       const res = await axios.get(`/api/properties-search${location.search}`);
       dispatch({ type: GET_SIMILAR_PROPERTIES, payload: res.data });
     } catch (err) {
-      dispatch({ type: ERROR, payload: err.response.data });
+      dispatch({ type: ERROR, payload: err.response.data.message });
     }
   };
 
@@ -89,7 +89,7 @@ const PropertyState = (props) => {
       const res = await axios.get(`/api/featured-properties`);
       dispatch({ type: GET_FEATURED_PROPERTIES, payload: res.data });
     } catch (err) {
-      dispatch({ type: ERROR, payload: err.response.data });
+      dispatch({ type: ERROR, payload: err.response.data.message });
     }
   };
 
@@ -99,7 +99,7 @@ const PropertyState = (props) => {
       const res = await axios.get(`api/affordable`);
       dispatch({ type: GET_AFFORDABLE_PROPERTIES, payload: res.data });
     } catch (err) {
-      dispatch({ type: ERROR, payload: err.response.data });
+      dispatch({ type: ERROR, payload: err.response.data.message });
     }
   };
 
@@ -109,7 +109,7 @@ const PropertyState = (props) => {
       const res = await axios.get(`/api/property/${slug}`);
       dispatch({ type: GET_PROPERTY, payload: res.data });
     } catch (err) {
-      dispatch({ type: ERROR, payload: err.response.data });
+      dispatch({ type: ERROR, payload: err.response.data.message });
     }
   };
 
@@ -119,7 +119,7 @@ const PropertyState = (props) => {
       const res = await axios.get(`api/rentals`);
       dispatch({ type: GET_ALL_APARTMENT, payload: res.data });
     } catch (err) {
-      dispatch({ type: ERROR, payload: err.response.data });
+      dispatch({ type: ERROR, payload: err.response.data.message });
     }
   };
 
